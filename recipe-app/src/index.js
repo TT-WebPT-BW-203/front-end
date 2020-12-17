@@ -3,13 +3,27 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
+import { composeWithDevTools } from "redux-devtools-extension";
 import reportWebVitals from "./reportWebVitals";
+
+import rootReducer from "./store/reducers";
+
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk, logger))
+);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
