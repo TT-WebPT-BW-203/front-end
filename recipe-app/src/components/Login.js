@@ -1,31 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = () => {
-  return (
-    //navigation still needs to be done
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
 
-    // Login Form with Username and Password and submit button.
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
+  };
+  return (
+    // to test fake api later: >> https://reqres.in/api/
+
     <Form>
       <FormGroup>
-        <Label for="userName">Username</Label>
-        <Input type="text" name="Name" id="userName" placeholder="Username" />
+        <Label for="username">Username</Label>
+        <Input
+          type="text"
+          name="name"
+          id="username"
+          placeholder="Username"
+          onChange={handleChange}
+        />
       </FormGroup>
       <FormGroup>
-        <Label for="userPassword">Password</Label>
+        <Label for="password">Password</Label>
         <Input
           type="password"
           name="password"
-          id="userPassword"
+          id="password"
           placeholder="Password"
+          onChange={handleChange}
         />
       </FormGroup>
 
       <Button>Submit</Button>
     </Form>
-
-    //footer still needs to be done
   );
 };
 
