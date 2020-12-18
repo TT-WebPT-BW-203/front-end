@@ -1,5 +1,5 @@
 import axios from "axios";
-const port;
+const port = "";
 
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
