@@ -1,12 +1,18 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = () => {
+  //uncomment this state when you get yout login endpoint
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+
+  console.log("credentials: ", credentials);
+  //eve.holt@reqres.in
+  //cityslicka
 
   const handleChange = (e) => {
     setCredentials({
@@ -14,16 +20,32 @@ const Login = () => {
       [e.target.name]: e.target.value,
     });
   };
-  return (
-    // to test fake api later: >> https://reqres.in/api/
 
-    <Form>
+  const login = (e) => {
+    e.preventDefault();
+    axios
+      .post("https://reqres.in/api/login", credentials)
+      .then((res) => {
+        console.log("success: ", res);
+      })
+      .catch((err) => console.log(err.message));
+    setCredentials({
+      username: "",
+      password: "",
+    });
+  };
+
+  // to test fake api later: >> https://reqres.in/api/
+
+  return (
+    <Form onSubmit={login}>
       <FormGroup>
         <Label for="username">Username</Label>
         <Input
           type="text"
-          name="name"
+          name="username"
           id="username"
+          value={credentials.username}
           placeholder="Username"
           onChange={handleChange}
         />
@@ -35,6 +57,7 @@ const Login = () => {
           name="password"
           id="password"
           placeholder="Password"
+          value={credentials.password}
           onChange={handleChange}
         />
       </FormGroup>
