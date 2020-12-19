@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = () => {
@@ -21,9 +21,9 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //post request
-    axios
-      .post("https://family-recipes21.herokuapp.com/api/users/register", user)
-      .then((res) => console.log("successful response: ", res))
+    axiosWithAuth()
+      .post("/api/users/register", user)
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
     setUser({
       username: "",
