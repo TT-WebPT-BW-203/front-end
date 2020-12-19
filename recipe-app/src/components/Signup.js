@@ -1,34 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = () => {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
   return (
     <div>
       <Form>
         <FormGroup>
-          <Label for="fullName">Full Name</Label>
+          <Label for="username">Username</Label>
           <Input
             type="text"
-            name="fName"
-            id="fullName"
-            placeholder="Full Name"
+            name="username"
+            id="username"
+            placeholder="Username"
+            value={user.username}
           />
         </FormGroup>
         <FormGroup>
-          <Label for="userName">Username</Label>
-          <Input type="text" name="Name" id="userName" placeholder="Username" />
+          <Label for="email">Email</Label>
+          <Input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            value={user.email}
+          />
         </FormGroup>
         <FormGroup>
-          <Label for="userEmail">Email</Label>
-          <Input type="email" name="email" id="userEmail" placeholder="Email" />
-        </FormGroup>
-        <FormGroup>
-          <Label for="userPassword">Password</Label>
+          <Label for="password">Password</Label>
           <Input
             type="password"
             name="password"
-            id="userPassword"
+            id="password"
             placeholder="Password"
+            value={user.password}
           />
         </FormGroup>
 
