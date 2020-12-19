@@ -23,10 +23,11 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    axios
-      .post("https://reqres.in/api/login", credentials)
+    axiosWithAuth()
+      .post("api/users/login", credentials)
       .then((res) => {
         console.log("success: ", res);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
       })
       .catch((err) => console.log(err.message));
     setCredentials({

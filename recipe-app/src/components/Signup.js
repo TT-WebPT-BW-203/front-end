@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = () => {
+  const history = useHistory();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -22,8 +25,12 @@ const SignUp = () => {
     e.preventDefault();
     //post request
     axiosWithAuth()
-      .post("/api/users/register", user)
-      .then((res) => console.log(res))
+      .post("https://family-recipes21.herokuapp.com/api/users/register", user)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        history.push("/dashboard");
+      })
       .catch((err) => console.log(err));
     setUser({
       username: "",
