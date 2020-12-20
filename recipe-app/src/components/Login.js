@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-const Login = () => {
-  //uncomment this state when you get yout login endpoint
+const Login = (props) => {
+  console.log("props in login: ", props);
+  const history = useHistory();
+
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
 
   console.log("credentials: ", credentials);
-  //eve.holt@reqres.in
-  //cityslicka
 
   const handleChange = (e) => {
     setCredentials({
@@ -28,6 +29,7 @@ const Login = () => {
       .then((res) => {
         console.log("success: ", res);
         localStorage.setItem("token", JSON.stringify(res.data.token));
+        history.push("/dashboard");
       })
       .catch((err) => console.log(err.message));
     setCredentials({
@@ -35,8 +37,6 @@ const Login = () => {
       password: "",
     });
   };
-
-  // to test fake api later: >> https://reqres.in/api/
 
   return (
     <Form onSubmit={login}>
@@ -68,4 +68,11 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    username: state.username,
+    password: state.password,
+    loggedIn: state.loggedIn,
+  };
+};
+export default connect(mapStateToProps, {})(Login);
