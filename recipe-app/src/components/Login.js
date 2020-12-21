@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { getUser } from "../store/actions/index";

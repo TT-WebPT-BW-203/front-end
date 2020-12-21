@@ -12,11 +12,11 @@ const AddRecipe = () => {
       <h3>Add Recipe Form</h3>
       <form>
         {/* <input placeholder="Enter Recipe Title" value={recipe.title} />
-        <input placeholder="Enter Source" value={recipe.source} />
+        <input placeholder="Enter Source" value={recipe.source} /> */}
         {/* ingredients */}
         {/* Instructions */}
         <button>Save</button>
-        <button>Cancel</button> */}
+        <button>Cancel</button>
       </form>
     </div>
   );
