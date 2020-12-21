@@ -27,10 +27,14 @@ export const getUser = (userData) => (dispatch) => {
 
 export const signup = (signupData) => (dispatch) => {
   dispatch({ type: START_SIGNUP });
-  axios
+  axiosWithAuth()
     .post("/api/users/register", signupData)
     .then((res) => {
       console.log("res in the signup request: ", res);
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: SIGNUP_FAIL, payload: err });
+    });
 };
