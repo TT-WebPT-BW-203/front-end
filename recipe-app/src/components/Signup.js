@@ -2,19 +2,16 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { signup } from "../store/actions";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = (props) => {
   console.log("props in the signup: ", props);
-  const history = useHistory();
+  const { push } = useHistory();
   const [user, setUser] = useState({
     username: "",
     password: "",
     email: "",
   });
-
-  console.log("user body: ", user);
 
   const handleChange = (e) => {
     setUser({
@@ -26,20 +23,12 @@ const SignUp = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.signup(user);
-    //post request
-    // axiosWithAuth()
-    //   .post("https://family-recipes21.herokuapp.com/api/users/register", user)
-    //   .then((res) => {
-    //     console.log(res);
-    //     localStorage.setItem("token", JSON.stringify(res.data.token));
-    //   })
-    //   .catch((err) => console.log(err));
     setUser({
       username: "",
       password: "",
       email: "",
     });
-    history.push("/dashboard");
+    push("/dashboard");
   };
 
   return (
@@ -85,7 +74,4 @@ const SignUp = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {};
-};
 export default connect(null, { signup })(SignUp);

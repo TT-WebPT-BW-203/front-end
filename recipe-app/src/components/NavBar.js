@@ -14,6 +14,7 @@ const NavBar = () => {
       <Link to="/login">
         <p>Login</p>
       </Link>
+      {/* need to hide the signup link when the user is logged in */}
       <Link to="/signup">
         <p>Sign Up</p>
       </Link>

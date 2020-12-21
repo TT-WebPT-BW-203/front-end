@@ -62,6 +62,14 @@ export const userReducer = (state = initialState, action) => {
         user: action.payload,
       };
     }
+    case SIGNUP_FAIL: {
+      return {
+        ...state,
+        error: action.payload.response.data,
+        loggedIn: false,
+        isLoading: false,
+      };
+    }
     default: {
       return state;
     }
