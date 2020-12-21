@@ -63,11 +63,4 @@ const Login = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.userReducer.username,
-    password: state.userReducer.password,
-    loggedIn: state.userReducer.loggedIn,
-  };
-};
-export default connect(mapStateToProps, { getUser })(Login);
+export default connect(null, { getUser })(Login);
