@@ -3,14 +3,13 @@ import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
-  const history = useHistory();
+  const { push } = useHistory();
   const logout = (e) => {
     localStorage.removeItem("token");
-    history.push("/login");
+    push("/login");
   };
   return (
     <div>
-      NavBar
       <Link to="/login">
         <p>Login</p>
       </Link>
