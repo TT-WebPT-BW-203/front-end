@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { getUser } from "../store/actions/index";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = (props) => {
@@ -24,18 +25,13 @@ const Login = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    axiosWithAuth()
-      .post("api/users/login", credentials)
-      .then((res) => {
-        console.log("success: ", res);
-        localStorage.setItem("token", JSON.stringify(res.data.token));
-        history.push("/dashboard");
-      })
-      .catch((err) => console.log(err.message));
+    props.getUser(credentials);
+
     setCredentials({
       username: "",
       password: "",
     });
+    history.push("/dashboard");
   };
 
   return (
@@ -70,9 +66,9 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    username: state.username,
-    password: state.password,
-    loggedIn: state.loggedIn,
+    username: state.userReducer.username,
+    password: state.userReducer.password,
+    loggedIn: state.userReducer.loggedIn,
   };
 };
-export default connect(mapStateToProps, {})(Login);
+export default connect(mapStateToProps, { getUser })(Login);
