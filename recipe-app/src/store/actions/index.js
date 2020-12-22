@@ -16,6 +16,7 @@ export const getUser = (userData) => (dispatch) => {
     .post("api/users/login", userData)
     .then((res) => {
       console.log("response login in reducer: ", res.data);
+      localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -30,7 +31,8 @@ export const signup = (signupData) => (dispatch) => {
     .post("/api/users/register", signupData)
     .then((res) => {
       console.log("res in the signup request: ", res);
-      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.user });
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: SIGNUP_SUCCESS, payload: res.data.token });
     })
     .catch((err) => {
       console.log(err);

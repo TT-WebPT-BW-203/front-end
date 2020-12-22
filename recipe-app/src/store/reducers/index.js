@@ -11,11 +11,6 @@ const initialState = {
   error: "",
   isLoading: false,
   loggedIn: false,
-  user: {
-    username: "",
-    password: "",
-    email: "",
-  },
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -32,9 +27,10 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         error: "",
-        loggedIn: true,
         isLoading: false,
-        user: action.payload,
+        loggedIn: true,
+        message: "",
+        data: action.payload,
       };
     }
     case LOGIN_FAIL: {

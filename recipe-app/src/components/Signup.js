@@ -6,7 +6,7 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = (props) => {
   console.log("props in the signup: ", props);
-  const { push } = useHistory();
+  const history = useHistory();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -28,7 +28,7 @@ const SignUp = (props) => {
       password: "",
       email: "",
     });
-    push("/dashboard");
+    history.push("/dashboard");
   };
 
   return (

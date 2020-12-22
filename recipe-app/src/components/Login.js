@@ -25,7 +25,6 @@ const Login = (props) => {
   const login = (e) => {
     e.preventDefault();
     props.getUser(credentials);
-
     setCredentials({
       username: "",
       password: "",
@@ -34,7 +33,7 @@ const Login = (props) => {
   };
 
   return (
-    <Form onSubmit={login}>
+    <form onSubmit={login}>
       <FormGroup>
         <Label for="username">Username</Label>
         <Input
@@ -59,8 +58,13 @@ const Login = (props) => {
       </FormGroup>
 
       <Button>Submit</Button>
-    </Form>
+    </form>
   );
 };
 
-export default connect(null, { getUser })(Login);
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.isLoading,
+  };
+};
+export default connect(mapStateToProps, { getUser })(Login);
