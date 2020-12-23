@@ -1,17 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div>
-      <h3>This is the Dashboard component</h3>
+      <h3>Welcome</h3>
 
-      <Link to="/dashboard/add_recipe">
+      <Link to="/dashboard/add_recipe_1">
         <button>Add Recipe</button>
       </Link>
     </div>
   );
 };
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {};
+};
+export default connect(mapStateToProps, {})(Dashboard);

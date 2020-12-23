@@ -1,10 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-const NavBar = (props) => {
-  console.log("props in the navbar: ", props);
+const NavBar = () => {
   const { push } = useHistory();
   const logout = (e) => {
     localStorage.removeItem("token");
@@ -31,9 +29,4 @@ const NavBar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    username: state.data,
-  };
-};
-export default connect(mapStateToProps, {})(NavBar);
+export default NavBar;

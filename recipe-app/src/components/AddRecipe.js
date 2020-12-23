@@ -1,21 +1,48 @@
 import React, { useState } from "react";
+import { history, useHistory } from "react-router-dom";
 
 const AddRecipe = () => {
+  const history = useHistory();
   const [recipe, setRecipe] = useState({
     title: "",
     source: "",
-    ingredients: [],
-    category: [],
+    category: "",
   });
+
+  const handleChange = (e) => {
+    setRecipe({
+      ...recipe,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const saveRecipeOne = (e) => {
+    e.preventDefault();
+    history.push("dashboard/add_recipe_2");
+  };
   return (
     <div>
       <h3>Add Recipe Form</h3>
-      <form>
-        {/* <input placeholder="Enter Recipe Title" value={recipe.title} />
-        <input placeholder="Enter Source" value={recipe.source} /> */}
-        {/* ingredients */}
-        {/* Instructions */}
-        <button>Save</button>
+      <form onSubmit={saveRecipeOne}>
+        <input
+          placeholder="Enter Title"
+          name="title"
+          value={recipe.title}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Enter Source"
+          name="source"
+          value={recipe.source}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Enter Category"
+          name="category"
+          value={recipe.category}
+          onChange={handleChange}
+        />
+        <button>Enter Ingredients</button>
         <button>Cancel</button>
       </form>
     </div>
