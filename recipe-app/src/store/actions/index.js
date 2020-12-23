@@ -43,10 +43,10 @@ export const signup = (signupData) => (dispatch) => {
     });
 };
 
-export const addRecipe = (recipe) => (dispatch) => {
+export const addRecipe = (recipe, id) => (dispatch) => {
   dispatch({ type: START_RECIPE });
   axiosWithAuth()
-    .post(`/api/recipes/user/14`, recipe)
+    .post(`/api/recipes/user/${id}`, recipe)
     .then((res) => {
       console.log(res);
       dispatch({ type: RECIPE_POST_SUCCESS, payload: res.data });
