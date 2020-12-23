@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { history, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const AddRecipe = () => {
   const history = useHistory();
@@ -16,14 +16,14 @@ const AddRecipe = () => {
     });
   };
 
-  const saveRecipeOne = (e) => {
+  const saveRecipe = (e) => {
     e.preventDefault();
-    history.push("dashboard/add_recipe_2");
+    history.push("/dashboard/ingredients");
   };
   return (
     <div>
       <h3>Add Recipe Form</h3>
-      <form onSubmit={saveRecipeOne}>
+      <form onSubmit={saveRecipe}>
         <input
           placeholder="Enter Title"
           name="title"
@@ -43,8 +43,8 @@ const AddRecipe = () => {
           onChange={handleChange}
         />
         <button>Enter Ingredients</button>
-        <button>Cancel</button>
       </form>
+      <button>Cancel</button>
     </div>
   );
 };

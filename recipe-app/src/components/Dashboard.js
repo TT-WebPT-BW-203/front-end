@@ -8,7 +8,7 @@ const Dashboard = (props) => {
     <div>
       <h3>Welcome</h3>
 
-      <Link to="/dashboard/add_recipe_1">
+      <Link to="/dashboard/add_recipe">
         <button>Add Recipe</button>
       </Link>
     </div>
