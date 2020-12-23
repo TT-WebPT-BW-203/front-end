@@ -12,6 +12,10 @@ const Dashboard = (props) => {
       <Link to="/dashboard/add_recipe">
         <button>Add Recipe</button>
       </Link>
+
+      {props.recipes.length > 0
+        ? props.recipes.map((rec) => <p>{rec.title}</p>)
+        : null}
     </div>
   );
 };
