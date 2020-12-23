@@ -11,6 +11,7 @@ const NavBar = () => {
   return (
     <div>
       <h1>Secret Family Recipes</h1>
+
       <Link to="/login">
         <p>Login</p>
       </Link>
