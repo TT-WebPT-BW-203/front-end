@@ -7,13 +7,10 @@ import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 const Login = (props) => {
   console.log("props in login: ", props);
   const history = useHistory();
-
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-
-  console.log("credentials: ", credentials);
 
   const handleChange = (e) => {
     setCredentials({

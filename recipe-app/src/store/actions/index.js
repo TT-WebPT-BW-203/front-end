@@ -7,6 +7,9 @@ import {
   START_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  START_RECIPE,
+  RECIPE_POST_SUCCESS,
+  RECIPE_POST_FAIL,
 } from "./actionTypes";
 
 export const getUser = (userData) => (dispatch) => {
@@ -40,11 +43,25 @@ export const signup = (signupData) => (dispatch) => {
     });
 };
 
-const START_GETTING_INFO = "START_GETTING_INFO";
-const getInfo = () => (dispatch) => {
-  dispatch({ type: START_GETTING_INFO });
+export const addRecipe = (recipe, id) => (dispatch) => {
+  dispatch({ type: START_RECIPE });
   axiosWithAuth()
-    .get(`/api/users/login`)
-    .then((res) => console.log("res in the getInfo: ", res))
-    .catch((err) => console.log(err));
+    .post(`/api/recipes/user/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: RECIPE_POST_SUCCESS });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: RECIPE_POST_FAIL });
+    });
 };
+
+// const START_GETTING_INFO = "START_GETTING_INFO";
+// const getInfo = () => (dispatch) => {
+//   dispatch({ type: START_GETTING_INFO });
+//   axiosWithAuth()
+//     .get(`/api/users/login`)
+//     .then((res) => console.log("res in the getInfo: ", res))
+//     .catch((err) => console.log(err));
+// };

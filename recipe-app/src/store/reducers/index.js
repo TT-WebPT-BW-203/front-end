@@ -5,6 +5,9 @@ import {
   START_SIGNUP,
   SIGNUP_SUCCESS,
   SIGNUP_FAIL,
+  START_RECIPE,
+  RECIPE_POST_SUCCESS,
+  RECIPE_POST_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
