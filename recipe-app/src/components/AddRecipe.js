@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { addRecipe } from "../store/actions";
+import { connect } from "react-redux";
 
-const AddRecipe = () => {
+const AddRecipe = (props) => {
+  console.log("props in the AddRecipe component: ", props);
   const history = useHistory();
   const [recipe, setRecipe] = useState({
     title: "",
     source: "",
     category: "",
   });
-
+  console.log(recipe);
   const handleChange = (e) => {
     setRecipe({
       ...recipe,
@@ -18,6 +21,7 @@ const AddRecipe = () => {
 
   const saveRecipe = (e) => {
     e.preventDefault();
+    props.addRecipe(recipe, props.userData.id);
     history.push("/dashboard/ingredients");
   };
   return (
@@ -49,4 +53,9 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+const mapStateToProps = (state) => {
+  return {
+    userData: state.userData,
+  };
+};
+export default connect(mapStateToProps, { addRecipe })(AddRecipe);

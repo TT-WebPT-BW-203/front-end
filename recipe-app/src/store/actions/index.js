@@ -43,17 +43,17 @@ export const signup = (signupData) => (dispatch) => {
     });
 };
 
-export const addRecipe = (recipe, id) => (dispatch) => {
+export const addRecipe = (recipe) => (dispatch) => {
   dispatch({ type: START_RECIPE });
   axiosWithAuth()
-    .post(`/api/recipes/user/${id}`)
+    .post(`/api/recipes/user/14`, recipe)
     .then((res) => {
       console.log(res);
-      dispatch({ type: RECIPE_POST_SUCCESS });
+      dispatch({ type: RECIPE_POST_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: RECIPE_POST_FAIL });
+      dispatch({ type: RECIPE_POST_FAIL, payload: err });
     });
 };
 

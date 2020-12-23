@@ -14,8 +14,6 @@ const initialState = {
   error: "",
   isLoading: false,
   loggedIn: false,
-  user: "",
-  data: "",
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -70,6 +68,26 @@ export const userReducer = (state = initialState, action) => {
         error: action.payload,
         loggedIn: false,
         isLoading: false,
+      };
+    }
+    case START_RECIPE:
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    case RECIPE_POST_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        recipes: [...action.payload],
+      };
+    case RECIPE_POST_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     }
     default: {
