@@ -17,7 +17,7 @@ export const getUser = (userData) => (dispatch) => {
     .then((res) => {
       console.log("response login in reducer: ", res.data);
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
     })
     .catch((err) => {
       console.log(err);
@@ -38,4 +38,13 @@ export const signup = (signupData) => (dispatch) => {
       console.log(err);
       dispatch({ type: SIGNUP_FAIL, payload: err });
     });
+};
+
+const START_GETTING_INFO = "START_GETTING_INFO";
+const getInfo = () => (dispatch) => {
+  dispatch({ type: START_GETTING_INFO });
+  axiosWithAuth()
+    .get(`/api/users/login`)
+    .then((res) => console.log("res in the getInfo: ", res))
+    .catch((err) => console.log(err));
 };
