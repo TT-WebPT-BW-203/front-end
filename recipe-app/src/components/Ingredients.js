@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, userHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Ingredients = () => {
   const history = useHistory();
@@ -12,6 +12,9 @@ const Ingredients = () => {
           Enter Instructions
         </button>
       </form>
+      <Link to="/dashboard/add_recipe">
+        <p>Back</p>
+      </Link>
     </div>
   );
 };
