@@ -5,9 +5,10 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
+  useEffect(() => {}, []);
   return (
     <div>
-      {/* <h3>Welcome {props.username}</h3> */}
+      <h3>Welcome {props.username}</h3>
 
       <Link to="/add_recipe">
         <button>Add New Recipe</button>
