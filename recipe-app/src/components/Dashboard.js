@@ -9,8 +9,8 @@ const Dashboard = (props) => {
     <div>
       {/* <h3>Welcome {props.username}</h3> */}
 
-      <Link to="/dashboard/add_recipe">
-        <button>Add Recipe</button>
+      <Link to="/add_recipe">
+        <button>Add New Recipe</button>
       </Link>
 
       {props.recipes.length > 0 ? (
@@ -24,7 +24,7 @@ const Dashboard = (props) => {
       ) : (
         <div>
           <p>You have not saved any recipes yet</p>
-          <button>Add Recipe Now</button>
+          <button>Add a Recipe Now</button>
         </div>
       )}
     </div>

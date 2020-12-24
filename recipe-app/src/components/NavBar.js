@@ -20,7 +20,7 @@ const NavBar = (props) => {
 
   useEffect(() => {
     hydrateRecipes();
-  }, [props.id]);
+  }, []);
   return (
     <div>
       <h1>Secret Family Recipes</h1>

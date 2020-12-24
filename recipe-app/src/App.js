@@ -19,13 +19,13 @@ function App() {
       <PrivateRoute path="/dashboard">
         <Dashboard />
       </PrivateRoute>
-      <PrivateRoute path="/dashboard/add_recipe">
+      <PrivateRoute path="/add_recipe">
         <AddRecipe />
       </PrivateRoute>
-      <PrivateRoute path="/dashboard/ingredients">
+      <PrivateRoute path="/ingredients">
         <Ingredients />
       </PrivateRoute>
-      <PrivateRoute path="/dashboard/instructions">
+      <PrivateRoute path="/instructions">
         <Instructions />
       </PrivateRoute>
     </div>

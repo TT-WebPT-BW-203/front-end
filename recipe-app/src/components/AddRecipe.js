@@ -23,7 +23,7 @@ const AddRecipe = (props) => {
   const saveRecipe = (e) => {
     e.preventDefault();
     props.addRecipe(recipe, props.userData.id);
-    history.push("/dashboard/ingredients");
+    history.push("/ingredients");
   };
   return (
     <div>
@@ -55,7 +55,13 @@ const AddRecipe = (props) => {
         />
         <button>Enter Ingredients</button>
       </form>
-      <button>Cancel</button>
+      <button
+        onClick={() => {
+          history.push("/dashboard");
+        }}
+      >
+        Cancel
+      </button>
     </div>
   );
 };
