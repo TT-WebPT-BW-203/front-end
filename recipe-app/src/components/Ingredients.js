@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { useHistory, Link } from "react-router-dom";
+import Ingredient from "./Ingredient";
+import { Link } from "react-router-dom";
 
 const Ingredients = () => {
-  const history = useHistory();
-
   const [ingredient, setIngredient] = useState({
     name: "",
   });
@@ -35,7 +34,7 @@ const Ingredients = () => {
       </form>
       <div>
         {ingredientList.map((ingr) => (
-          <p>{ingr.name}</p>
+          <Ingredient info={ingr} />
         ))}
       </div>
       <Link to="/instructions">
