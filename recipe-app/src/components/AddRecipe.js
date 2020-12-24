@@ -10,6 +10,7 @@ const AddRecipe = (props) => {
     title: "",
     source: "",
     category: "",
+    image: "",
   });
   console.log(recipe);
   const handleChange = (e) => {
@@ -44,6 +45,12 @@ const AddRecipe = (props) => {
           placeholder="Enter Category"
           name="category"
           value={recipe.category}
+          onChange={handleChange}
+        />
+        <input
+          placeholder="Enter URL for recipe image"
+          name="image"
+          value={recipe.image}
           onChange={handleChange}
         />
         <button>Enter Ingredients</button>

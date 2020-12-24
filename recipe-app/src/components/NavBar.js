@@ -1,13 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const NavBar = () => {
+const NavBar = (props) => {
   const { push } = useHistory();
   const logout = (e) => {
     localStorage.removeItem("token");
     push("/login");
   };
+
+  const hydrateRecipes = () => {
+    axiosWithAuth()
+      .get(`/api/recipes/user/${props.id}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    hydrateRecipes();
+  }, [props.id]);
   return (
     <div>
       <h1>Secret Family Recipes</h1>
@@ -30,4 +43,9 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+const mapStateToProps = (state) => {
+  return {
+    id: state.userData.id,
+  };
+};
+export default connect(null, { mapStateToProps })(NavBar);

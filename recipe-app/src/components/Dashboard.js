@@ -7,15 +7,26 @@ const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
   return (
     <div>
-      <h3>Welcome {props.username}</h3>
+      {/* <h3>Welcome {props.username}</h3> */}
 
       <Link to="/dashboard/add_recipe">
         <button>Add Recipe</button>
       </Link>
 
-      {props.recipes.length > 0
-        ? props.recipes.map((rec) => <p>{rec.title}</p>)
-        : null}
+      {props.recipes.length > 0 ? (
+        props.recipes.map((rec) => (
+          <div>
+            <p>{rec.title}</p>
+            <img src={rec.image} alt="dish" />
+            <p>Category: {rec.category}</p>
+          </div>
+        ))
+      ) : (
+        <div>
+          <p>You have not saved any recipes yet</p>
+          <button>Add Recipe Now</button>
+        </div>
+      )}
     </div>
   );
 };
