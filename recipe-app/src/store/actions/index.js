@@ -66,7 +66,7 @@ export const getUserRecipes = (id) => (dispatch) => {
     .get(`/api/recipes/user/${id}`)
     .then((res) => {
       console.log(res);
-      dispatch({ type: GET_RECIPES_SUCCESS, payload: res });
+      dispatch({ type: GET_RECIPES_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

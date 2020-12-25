@@ -11,17 +11,17 @@ const Dashboard = (props) => {
     props.getUserRecipes(props.userId);
   }, []);
 
-  // useEffect(() => {
-  //   axiosWithAuth()
-  //     .get(`/api/recipes/user/${props.userId}`)
-  //     .then((res) => {
-  //       console.log(
-  //         "res in the useEffect in the Dashboard component: ",
-  //         res.data
-  //       );
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/user/${props.userId}`)
+      .then((res) => {
+        console.log(
+          "res in the useEffect in the Dashboard component: ",
+          res.data
+        );
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div>
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.username,
     recipes: state.recipes,
-    userId: state.userData.id,
+    //userId: state.userData.id,
   };
 };
 export default connect(mapStateToProps, { getUserRecipes })(Dashboard);

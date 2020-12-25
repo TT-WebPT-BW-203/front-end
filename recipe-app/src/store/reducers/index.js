@@ -8,6 +8,9 @@ import {
   START_RECIPE,
   RECIPE_POST_SUCCESS,
   RECIPE_POST_FAIL,
+  START_GETTING_RECIPES,
+  GET_RECIPES_SUCCESS,
+  GET_RECIPES_ERROR,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -89,6 +92,27 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    }
+    case START_GETTING_RECIPES: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case GET_RECIPES_SUCCESS: {
+      return {
+        ...state,
+        recipes: action.payload,
+        error: "",
+      };
+    }
+    case GET_RECIPES_ERROR: {
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
       };
     }
     default: {
