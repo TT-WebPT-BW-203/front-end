@@ -2,24 +2,26 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { getUserRecipes } from "../store/actions";
 
 const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
-  useEffect(() => {
-    axiosWithAuth().get().then().catch();
-  }, []);
 
   useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/recipes/user/${props.userId}`)
-      .then((res) => {
-        console.log(
-          "res in the useEffect in the Dashboard component: ",
-          res.data
-        );
-      })
-      .catch((err) => console.log(err));
+    props.getUserRecipes(props.userId);
   }, []);
+
+  // useEffect(() => {
+  //   axiosWithAuth()
+  //     .get(`/api/recipes/user/${props.userId}`)
+  //     .then((res) => {
+  //       console.log(
+  //         "res in the useEffect in the Dashboard component: ",
+  //         res.data
+  //       );
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div>
@@ -48,4 +50,4 @@ const mapStateToProps = (state) => {
     userId: state.userData.id,
   };
 };
-export default connect(mapStateToProps, {})(Dashboard);
+export default connect(mapStateToProps, { getUserRecipes })(Dashboard);

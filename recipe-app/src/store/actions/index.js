@@ -15,7 +15,7 @@ import {
   GET_RECIPES_ERROR,
 } from "./actionTypes";
 
-export const getUser = (userData) => (dispatch) => {
+export const logUser = (userData) => (dispatch) => {
   console.log("userData:", userData);
   dispatch({ type: START_LOGIN });
   axiosWithAuth()
@@ -23,7 +23,7 @@ export const getUser = (userData) => (dispatch) => {
     .then((res) => {
       console.log("response login in reducer: ", res.data);
       localStorage.setItem("token", res.data.token);
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

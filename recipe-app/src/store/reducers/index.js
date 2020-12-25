@@ -33,7 +33,8 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
         loggedIn: true,
         userData: action.payload,
-        username: action.payload.username,
+        userId: action.payload.user.id,
+        username: action.payload.user.username,
         recipes: [],
       };
     }

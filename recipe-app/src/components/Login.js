@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import { getUser } from "../store/actions/index";
+import { logUser } from "../store/actions/index";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const Login = (props) => {
@@ -21,7 +21,7 @@ const Login = (props) => {
 
   const login = (e) => {
     e.preventDefault();
-    props.getUser(credentials);
+    props.logUser(credentials);
     setCredentials({
       username: "",
       password: "",
@@ -64,4 +64,4 @@ const mapStateToProps = (state) => {
     isLoading: state.isLoading,
   };
 };
-export default connect(mapStateToProps, { getUser })(Login);
+export default connect(mapStateToProps, { logUser })(Login);
