@@ -13,7 +13,10 @@ const Dashboard = (props) => {
     axiosWithAuth()
       .get(`/api/recipes/user/${props.userId}`)
       .then((res) => {
-        console.log("res in the useEffect in the Dashboard component: ", res);
+        console.log(
+          "res in the useEffect in the Dashboard component: ",
+          res.data
+        );
       })
       .catch((err) => console.log(err));
   }, []);
@@ -28,7 +31,7 @@ const Dashboard = (props) => {
 
       {props.recipes &&
         props.recipes.map((rec) => (
-          <div>
+          <div key={rec.id}>
             <p>{rec.title}</p>
             <img src={rec.image} alt="dish" />
             <p>Category: {rec.category}</p>

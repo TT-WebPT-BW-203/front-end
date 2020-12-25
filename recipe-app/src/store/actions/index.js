@@ -10,6 +10,9 @@ import {
   START_RECIPE,
   RECIPE_POST_SUCCESS,
   RECIPE_POST_FAIL,
+  START_GETTING_RECIPES,
+  GET_RECIPES_SUCCESS,
+  GET_RECIPES_ERROR,
 } from "./actionTypes";
 
 export const getUser = (userData) => (dispatch) => {
@@ -57,11 +60,16 @@ export const addRecipe = (recipe, id) => (dispatch) => {
     });
 };
 
-// const START_GETTING_INFO = "START_GETTING_INFO";
-// const getInfo = () => (dispatch) => {
-//   dispatch({ type: START_GETTING_INFO });
-//   axiosWithAuth()
-//     .get(`/api/users/login`)
-//     .then((res) => console.log("res in the getInfo: ", res))
-//     .catch((err) => console.log(err));
-// };
+export const getUserRecipes = (id) => (dispatch) => {
+  dispatch({ type: START_GETTING_RECIPES });
+  axiosWithAuth()
+    .get(`/api/recipes/user/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: GET_RECIPES_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: GET_RECIPES_ERROR, payload: err });
+    });
+};
