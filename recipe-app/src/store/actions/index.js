@@ -51,11 +51,9 @@ export const addRecipe = (recipe, id) => (dispatch) => {
   axiosWithAuth()
     .post(`/api/recipes/user/${id}`, recipe)
     .then((res) => {
-      console.log(res);
       dispatch({ type: RECIPE_POST_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: RECIPE_POST_FAIL, payload: err });
     });
 };
@@ -65,11 +63,9 @@ export const getUserRecipes = (id) => (dispatch) => {
   axiosWithAuth()
     .get(`/api/recipes/user/${id}`)
     .then((res) => {
-      console.log(res);
       dispatch({ type: GET_RECIPES_SUCCESS, payload: res.data });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({ type: GET_RECIPES_ERROR, payload: err });
     });
 };
