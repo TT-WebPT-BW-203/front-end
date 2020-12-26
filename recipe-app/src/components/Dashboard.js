@@ -20,11 +20,13 @@ const Dashboard = (props) => {
 
       {props.recipes &&
         props.recipes.map((rec) => (
-          <div key={rec.id}>
-            <p>{rec.title}</p>
-            <img src={rec.image} alt="dish" />
-            <p>Category: {rec.category}</p>
-          </div>
+          <Link to={`/recipe/${rec.id}`} key={rec.id}>
+            <div>
+              <p>{rec.title}</p>
+              <img src={rec.image} alt="dish" />
+              <p>Category: {rec.category}</p>
+            </div>
+          </Link>
         ))}
     </div>
   );
