@@ -11,18 +11,6 @@ const Dashboard = (props) => {
     props.getUserRecipes(props.userId);
   }, []);
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/recipes/user/14`)
-      .then((res) => {
-        console.log(
-          "res in the useEffect in the Dashboard component: ",
-          res.data
-        );
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
   return (
     <div>
       {props.username && <h3>Welcome {props.username}</h3>}
