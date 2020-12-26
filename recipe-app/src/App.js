@@ -6,7 +6,8 @@ import Dashboard from "./components/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
 import Recipe from "./components/Recipe";
 import AddRecipe from "./components/AddRecipe";
-import Ingredients from "./components/Ingredients";
+import IngredientsForm from "./components/IngredientsForm";
+import IngredientList from "./components/IngredientList";
 import Instructions from "./components/Instructions";
 
 import { Route } from "react-router-dom";
@@ -27,7 +28,10 @@ function App() {
         <AddRecipe />
       </PrivateRoute>
       <PrivateRoute path="/ingredients">
-        <Ingredients />
+        <IngredientsForm />
+      </PrivateRoute>
+      <PrivateRoute path="/ingredients/ingredients_list">
+        <IngredientList />
       </PrivateRoute>
       <PrivateRoute path="/instructions">
         <Instructions />
