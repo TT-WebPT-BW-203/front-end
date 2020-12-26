@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
   const [ingredient, setIngredient] = useState("");
-  console.log(ingredient);
+  console.log("Ingredient in the IngredientsForm: ", ingredient);
 
   const [ingredientList, setIngredientList] = useState([]);
 
@@ -20,6 +20,7 @@ const IngredientsForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addToIngredientsList(ingredient);
+    setIngredient("");
   };
 
   return (

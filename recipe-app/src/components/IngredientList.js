@@ -1,12 +1,13 @@
 import React from "react";
+import Ingredient from "./Ingredient";
 
 const IngredientList = (props) => {
-  console.log("props in the IngredeientsList component: ", props);
+  console.log("props in the IngredientsList component: ", props);
   return (
     <div>
-      This is the Ingredient List
+      Your Ingredients:
       {props.ingredientList.map((ing) => (
-        <li>{ing}</li>
+        <Ingredient ingredient={ing} />
       ))}
     </div>
   );
