@@ -13,7 +13,7 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/recipes/user/${props.userId}`)
+      .get(`/api/recipes/user/14`)
       .then((res) => {
         console.log(
           "res in the useEffect in the Dashboard component: ",
@@ -47,7 +47,7 @@ const mapStateToProps = (state) => {
   return {
     username: state.username,
     recipes: state.recipes,
-    //userId: state.userData.id,
+    userId: state.userId,
   };
 };
 export default connect(mapStateToProps, { getUserRecipes })(Dashboard);

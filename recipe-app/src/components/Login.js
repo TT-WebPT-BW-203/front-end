@@ -62,6 +62,7 @@ const Login = (props) => {
 const mapStateToProps = (state) => {
   return {
     isLoading: state.isLoading,
+    userId: state.userId,
   };
 };
 export default connect(mapStateToProps, { logUser })(Login);
