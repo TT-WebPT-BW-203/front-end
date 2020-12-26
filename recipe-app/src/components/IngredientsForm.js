@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import IngredientList from "./IngredientList";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const IngredientsForm = () => {
+const IngredientsForm = (props) => {
+  console.log("props in the IngredientsForm: ", props);
   const [ingredient, setIngredient] = useState("");
   console.log(ingredient);
 
@@ -39,4 +41,9 @@ const IngredientsForm = () => {
   );
 };
 
-export default IngredientsForm;
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipes,
+  };
+};
+export default connect(mapStateToProps, {})(IngredientsForm);

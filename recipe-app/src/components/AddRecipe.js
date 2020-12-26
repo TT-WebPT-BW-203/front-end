@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { addRecipe } from "../store/actions";
 import { connect } from "react-redux";
 
@@ -22,7 +22,7 @@ const AddRecipe = (props) => {
 
   const saveRecipe = (e) => {
     e.preventDefault();
-    props.addRecipe(recipe, props.userData.id);
+    props.addRecipe(recipe, props.userId);
     history.push("/ingredients");
   };
   return (
@@ -68,7 +68,7 @@ const AddRecipe = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    userData: state.userData,
+    userId: state.userId,
   };
 };
 export default connect(mapStateToProps, { addRecipe })(AddRecipe);
