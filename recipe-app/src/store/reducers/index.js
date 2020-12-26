@@ -11,6 +11,9 @@ import {
   START_GETTING_RECIPES,
   GET_RECIPES_SUCCESS,
   GET_RECIPES_ERROR,
+  START_POST_INGREDIENT,
+  POST_INGREDIENT_SUCCESS,
+  POST_INGREDIENT_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -113,6 +116,11 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         isLoading: false,
+      };
+    }
+    case START_POST_INGREDIENT: {
+      return {
+        ...state,
       };
     }
     default: {

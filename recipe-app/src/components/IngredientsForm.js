@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
+
   const [ingredient, setIngredient] = useState("");
   console.log("Ingredient in the IngredientsForm: ", ingredient);
 

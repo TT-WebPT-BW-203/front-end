@@ -13,6 +13,9 @@ import {
   START_GETTING_RECIPES,
   GET_RECIPES_SUCCESS,
   GET_RECIPES_ERROR,
+  START_POST_INGREDIENT,
+  POST_INGREDIENT_SUCCESS,
+  POST_INGREDIENT_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -67,5 +70,19 @@ export const getUserRecipes = (id) => (dispatch) => {
     })
     .catch((err) => {
       dispatch({ type: GET_RECIPES_ERROR, payload: err });
+    });
+};
+
+export const postIngredients = (recId, ingredient) => (dispatch) => {
+  dispatch({ type: START_POST_INGREDIENT });
+  axiosWithAuth()
+    .post(`/api/recipes/${recId}/ingredients`, ingredient)
+    .then((res) => {
+      console.log("res in the post ingredient: ", res.data);
+      dispatch({ type: POST_INGREDIENT_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: POST_INGREDIENT_FAIL });
     });
 };
