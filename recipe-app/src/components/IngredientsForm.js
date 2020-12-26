@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import IngredientList from "./IngredientList";
+import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -21,6 +22,7 @@ const IngredientsForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     addToIngredientsList(ingredient);
+    //props.postIngredients()
     setIngredient("");
   };
 
@@ -48,4 +50,4 @@ const mapStateToProps = (state) => {
     recipes: state.recipes,
   };
 };
-export default connect(mapStateToProps, {})(IngredientsForm);
+export default connect(mapStateToProps, { postIngredients })(IngredientsForm);
