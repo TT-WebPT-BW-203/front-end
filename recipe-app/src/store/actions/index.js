@@ -90,13 +90,14 @@ export const postIngredients = (recId, ingredient) => (dispatch) => {
     });
 };
 
-export const updateRecipe = (recID, updatedRecipe) => (dispatch) => {
+export const updateRecipe = (id, updatedRecipe) => (dispatch) => {
+  console.log("updated recipe: ", updatedRecipe);
   dispatch({ type: START_UPDATE_RECIPE });
   axiosWithAuth()
-    .put(`/api/recipes/${recID}`, updatedRecipe)
+    .put(`/api/recipes/${id}`, updatedRecipe)
     .then((res) => {
       console.log("res in the update recipeByID", res);
-      dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res });
+      dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);

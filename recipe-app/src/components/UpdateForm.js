@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateRecipe } from "../store/actions";
 
 const UpdateForm = (props) => {
   console.log("props in the updateRecipe compoment: ", props);
+  const { id } = useParams();
+  const history = useHistory();
 
   const [initialRecipe, setInitialRecipe] = useState({
     title: "",
@@ -14,6 +17,8 @@ const UpdateForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.updateRecipe(id, initialRecipe);
+    history.goBack();
   };
 
   const handleChange = (e) => {

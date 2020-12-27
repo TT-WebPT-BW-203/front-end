@@ -10,7 +10,9 @@ const Recipe = (props) => {
   const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
   return (
     <div>
-      <h3>Title: {recipe.title}</h3>
+      <p>
+        Title: <h3>{recipe.title}</h3>
+      </p>
       <p>Source: {recipe.source}</p>
       <h4>Ingredients: </h4>
       {/* map list of Ingredients */}
@@ -22,7 +24,7 @@ const Recipe = (props) => {
         Edit
       </button>
       <button>Delete</button>
-      <p onClick={() => history.push("/dashboard")}>Back to Recipes</p>
+      <p onClick={() => history.goBack()}>Back to Recipes</p>
     </div>
   );
 };

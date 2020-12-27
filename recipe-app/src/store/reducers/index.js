@@ -14,6 +14,9 @@ import {
   START_POST_INGREDIENT,
   POST_INGREDIENT_SUCCESS,
   POST_INGREDIENT_FAIL,
+  START_UPDATE_RECIPE,
+  UPDATE_RECIPE_SUCCESS,
+  UPDATE_RECIPE_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -121,6 +124,28 @@ export const userReducer = (state = initialState, action) => {
     case START_POST_INGREDIENT: {
       return {
         ...state,
+      };
+    }
+    case START_UPDATE_RECIPE: {
+      return {
+        ...state,
+        isLoading: true,
+        error: false,
+      };
+    }
+    case UPDATE_RECIPE_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        recipes: action.payload,
+      };
+    }
+    case UPDATE_RECIPE_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     }
     default: {
