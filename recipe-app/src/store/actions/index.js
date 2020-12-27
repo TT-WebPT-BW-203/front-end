@@ -16,6 +16,9 @@ import {
   START_POST_INGREDIENT,
   POST_INGREDIENT_SUCCESS,
   POST_INGREDIENT_FAIL,
+  START_UPDATE_RECIPE,
+  UPDATE_RECIPE_SUCCESS,
+  UPDATE_RECIPE_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -84,5 +87,19 @@ export const postIngredients = (recId, ingredient) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: POST_INGREDIENT_FAIL });
+    });
+};
+
+export const updateRecipe = (recID, updatedRecipe) => (dispatch) => {
+  dispatch({ type: START_UPDATE_RECIPE });
+  axiosWithAuth()
+    .put(`/api/recipes/${recID}`, updatedRecipe)
+    .then((res) => {
+      console.log("res in the update recipeByID", res);
+      dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: UPDATE_RECIPE_FAIL, payload: err });
     });
 };

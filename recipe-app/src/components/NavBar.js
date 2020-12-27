@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 const NavBar = (props) => {
+  console.log("props in the navbar", props);
   const { push } = useHistory();
-  const logout = (e) => {
+  const logout = () => {
     localStorage.removeItem("token");
     push("/login");
   };
@@ -32,7 +33,9 @@ const NavBar = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    id: state.userData.id,
+    id: state.userId,
+    username: state.username,
+    loggedIn: state.loggedIn,
   };
 };
-export default connect(null, { mapStateToProps })(NavBar);
+export default connect(mapStateToProps, {})(NavBar);

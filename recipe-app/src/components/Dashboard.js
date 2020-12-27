@@ -12,8 +12,7 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      {props.username && <h3>Welcome {props.username}</h3>}
-
+      {props.username && <h2>Welcome {props.username}</h2>}
       <Link to="/add_recipe">
         <button>Add New Recipe</button>
       </Link>
