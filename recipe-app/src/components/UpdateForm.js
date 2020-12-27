@@ -57,12 +57,7 @@ const UpdateForm = (props) => {
         />
         <button>Update</button>
       </form>
-      <button
-      // push to previous page, not a specific component, for
-      //simplicity's sake
-      >
-        Cancel
-      </button>
+      <button>Cancel</button>
     </div>
   );
 };

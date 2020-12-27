@@ -19,6 +19,9 @@ import {
   START_UPDATE_RECIPE,
   UPDATE_RECIPE_SUCCESS,
   UPDATE_RECIPE_FAIL,
+  START_DELETE_RECIPE,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -102,5 +105,19 @@ export const updateRecipe = (id, updatedRecipe) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: UPDATE_RECIPE_FAIL, payload: err });
+    });
+};
+
+export const deleteRecipe = (id, recipeToDelete) => (dispatch) => {
+  dispatch({ type: START_DELETE_RECIPE });
+  axiosWithAuth()
+    .delete(`/api/recipes/${id}`)
+    .then((res) => {
+      console.log("res in the delete: ", res);
+      dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: DELETE_RECIPE_FAIL, payload: err });
     });
 };
