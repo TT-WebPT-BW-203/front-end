@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { updateRecipe } from "../store/actions";
 
 const UpdateForm = (props) => {
-  console.log("porps in the updateRecipe compoment: ", props);
+  console.log("props in the updateRecipe compoment: ", props);
+
+  const [initialRecipe, setInitialRecipe] = useState({
+    title: "",
+    source: "",
+    category: "",
+    image: "",
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+  };
+
+  const handleChange = (e) => {
+    setInitialRecipe({
+      ...initialRecipe,
+      [e.target.name]: e.target.value,
+    });
   };
   return (
     <div>
@@ -15,26 +29,26 @@ const UpdateForm = (props) => {
         <input
           placeholder="Enter Title"
           name="title"
-          //   value={recipe.title}
-          //   onChange={handleChange}
+          value={initialRecipe.title}
+          onChange={handleChange}
         />
         <input
           placeholder="Enter Source"
           name="source"
-          //   value={recipe.source}
-          //   onChange={handleChange}
+          value={initialRecipe.source}
+          onChange={handleChange}
         />
         <input
           placeholder="Enter Category"
           name="category"
-          //   value={recipe.category}
-          //   onChange={handleChange}
+          value={initialRecipe.category}
+          onChange={handleChange}
         />
         <input
           placeholder="Enter URL for recipe image"
           name="image"
-          //   value={recipe.image}
-          //   onChange={handleChange}
+          value={initialRecipe.image}
+          onChange={handleChange}
         />
         <button>Update</button>
       </form>
@@ -48,4 +62,9 @@ const UpdateForm = (props) => {
   );
 };
 
-export default connect(null, { updateRecipe })(UpdateForm);
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipes,
+  };
+};
+export default connect(mapStateToProps, { updateRecipe })(UpdateForm);
