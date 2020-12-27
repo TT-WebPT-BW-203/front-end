@@ -108,7 +108,7 @@ export const updateRecipe = (id, updatedRecipe) => (dispatch) => {
     });
 };
 
-export const deleteRecipe = (id, recipeToDelete) => (dispatch) => {
+export const deleteRecipe = (id) => (dispatch) => {
   dispatch({ type: START_DELETE_RECIPE });
   axiosWithAuth()
     .delete(`/api/recipes/${id}`)
