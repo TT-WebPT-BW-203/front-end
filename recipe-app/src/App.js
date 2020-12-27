@@ -10,7 +10,7 @@ import IngredientsForm from "./components/IngredientsForm";
 import IngredientList from "./components/IngredientList";
 import Instructions from "./components/Instructions";
 
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import UpdateForm from "./components/UpdateForm";
 
 function App() {
@@ -22,9 +22,14 @@ function App() {
       <PrivateRoute path="/dashboard">
         <Dashboard />
       </PrivateRoute>
-      <PrivateRoute path="/recipe/:id">
-        <Recipe />
-      </PrivateRoute>
+      <Switch>
+        <PrivateRoute exact path="/recipe/:id/update_recipe">
+          <UpdateForm />
+        </PrivateRoute>
+        <PrivateRoute path="/recipe/:id">
+          <Recipe />
+        </PrivateRoute>
+      </Switch>
       <PrivateRoute path="/add_recipe">
         <AddRecipe />
       </PrivateRoute>
@@ -36,9 +41,6 @@ function App() {
       </PrivateRoute>
       <PrivateRoute path="/instructions">
         <Instructions />
-      </PrivateRoute>
-      <PrivateRoute path="/recipe/:id/update_recipe">
-        <UpdateForm />
       </PrivateRoute>
     </div>
   );
