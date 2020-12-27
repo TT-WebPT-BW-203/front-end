@@ -16,7 +16,11 @@ const Recipe = (props) => {
       {/* map list of Ingredients */}
       <h4>Instructions: </h4>
       <img alt="dish" />
-      <button>Edit</button>
+      <button
+        onClick={() => history.push(`/recipe/${recipe.id}/update_recipe`)}
+      >
+        Edit
+      </button>
       <button>Delete</button>
       <p onClick={() => history.push("/dashboard")}>Back to Recipes</p>
     </div>

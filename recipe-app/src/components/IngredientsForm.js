@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import IngredientList from "./IngredientList";
 import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
@@ -11,6 +12,12 @@ const IngredientsForm = (props) => {
   console.log("Ingredient in the IngredientsForm: ", ingredient);
 
   const [ingredientList, setIngredientList] = useState([]);
+
+  const params = useParams();
+  const recipe = props.recipes.find(
+    (recipe) => recipe.id === Number(params.id)
+  );
+  console.log("recipe params: ", recipe);
 
   const addToIngredientsList = (ing) => {
     setIngredientList([...ingredientList, ing]);

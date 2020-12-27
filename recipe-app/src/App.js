@@ -11,6 +11,7 @@ import IngredientList from "./components/IngredientList";
 import Instructions from "./components/Instructions";
 
 import { Route } from "react-router-dom";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   return (
@@ -35,6 +36,9 @@ function App() {
       </PrivateRoute>
       <PrivateRoute path="/instructions">
         <Instructions />
+      </PrivateRoute>
+      <PrivateRoute path="/recipe/:id/update_recipe">
+        <UpdateForm />
       </PrivateRoute>
     </div>
   );
