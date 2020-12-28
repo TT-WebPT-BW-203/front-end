@@ -17,6 +17,9 @@ import {
   START_UPDATE_RECIPE,
   UPDATE_RECIPE_SUCCESS,
   UPDATE_RECIPE_FAIL,
+  START_DELETE_RECIPE,
+  DELETE_RECIPE_SUCCESS,
+  DELETE_RECIPE_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -142,6 +145,28 @@ export const userReducer = (state = initialState, action) => {
       };
     }
     case UPDATE_RECIPE_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+    case START_DELETE_RECIPE: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case DELETE_RECIPE_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        recipes: action.payload,
+      };
+    }
+    case DELETE_RECIPE_FAIL: {
       return {
         ...state,
         isLoading: false,
