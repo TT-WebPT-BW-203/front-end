@@ -1,7 +1,16 @@
 import React from "react";
+import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
 import { connect } from "react-redux";
+import {
+  RecipeContainer,
+  RecipeTitle,
+  Button,
+  RightContent,
+  LeftContent,
+  Image,
+} from "../styles";
 
 const Recipe = (props) => {
   console.log("props in the Recipe component: ", props);
@@ -10,28 +19,37 @@ const Recipe = (props) => {
 
   const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
   return (
-    <div>
-      Title: <h3>{recipe.title}</h3>
-      <p>Source: {recipe.source}</p>
-      <h4>Ingredients: </h4>
-      {/* map list of Ingredients */}
-      <h4>Instructions: </h4>
-      <img alt="dish" />
-      <button
-        onClick={() => history.push(`/recipe/${recipe.id}/update_recipe`)}
-      >
-        Edit
-      </button>
-      <button
-        onClick={() => {
-          props.deleteRecipe(params.id);
-          history.goBack();
-        }}
-      >
-        Delete
-      </button>
-      <p onClick={() => history.goBack()}>Back to Recipes</p>
-    </div>
+    <RecipeContainer>
+      <LeftContent>
+        Title: <RecipeTitle>{recipe.title}</RecipeTitle>
+        <p>Source: {recipe.source}</p>
+        <h4>Ingredients: </h4>
+        {/* map list of Ingredients */}
+        <h4>Instructions: </h4>
+      </LeftContent>
+      <RightContent>
+        {recipe.image === "" ? (
+          <Image src={img_placeholder} alt="Missing dish image" />
+        ) : (
+          <Image src={recipe.image} alt="Dish" />
+        )}
+
+        <Button
+          onClick={() => history.push(`/recipe/${recipe.id}/update_recipe`)}
+        >
+          Edit
+        </Button>
+        <Button
+          onClick={() => {
+            props.deleteRecipe(params.id);
+            history.goBack();
+          }}
+        >
+          Delete
+        </Button>
+        <p onClick={() => history.goBack()}>Back to Recipes</p>
+      </RightContent>
+    </RecipeContainer>
   );
 };
 

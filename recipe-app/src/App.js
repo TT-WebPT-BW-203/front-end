@@ -15,7 +15,7 @@ import UpdateForm from "./components/UpdateForm";
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <NavBar />
       <Route path="/login" render={() => <Login />} />
       <Route path="/signup" render={() => <SignUp />} />

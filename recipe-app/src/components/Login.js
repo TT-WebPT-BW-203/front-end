@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { logUser } from "../store/actions/index";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import { Button, FormGroup, Label, Input } from "reactstrap";
 
 const Login = (props) => {
   console.log("props in login: ", props);
