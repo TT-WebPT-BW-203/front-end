@@ -1,32 +1,31 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 // import { getUserRecipes } from "../store/actions";
 
 const SearchBar = (props) => {
   console.log("props in the SearchBar: ", props);
   const [search, setSearch] = useState("");
-
-  const findRecipe = (search) => {
-    console.log("search in the find recipe: ", search);
-    const searchResult = props.recipes.find(
-      (recipe) => recipe.title === search
-    );
-    console.log("searchResult: ", searchResult.title);
-  };
+  const [results, setResults] = useState([{}]);
+  console.log("results: ", results);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-  const handleSubmit = (e) => {
+  const performSearch = (e) => {
     e.preventDefault();
-    findRecipe(search);
+    setResults(
+      props.recipes.filter(
+        (recipe) => recipe.title === search || recipe.category === search
+      )
+    );
     setSearch("");
   };
 
   return (
     <div>
       <h3>Search for Recipes</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={performSearch}>
         <input
           placeholder="Enter recipe title to search here"
           name="search"
@@ -35,6 +34,12 @@ const SearchBar = (props) => {
         />
         <button>Search</button>
       </form>
+      <div>
+        <h4>Results:</h4>
+        {results.map((result) => (
+          <Link>{result.title}</Link>
+        ))}
+      </div>
     </div>
   );
 };
