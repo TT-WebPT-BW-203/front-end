@@ -35,10 +35,13 @@ const SearchBar = (props) => {
         <button>Search</button>
       </form>
       <div>
-        <h4>Results:</h4>
-        {results.map((result) => (
-          <Link to={`/recipe/${result.id}`}>{result.title}</Link>
-        ))}
+        {results.length >= 1 &&
+          results.map((result) => (
+            <div>
+              <h4>Results:</h4>
+              <Link to={`/recipe/${result.id}`}>{result.title}</Link>
+            </div>
+          ))}
       </div>
     </div>
   );
