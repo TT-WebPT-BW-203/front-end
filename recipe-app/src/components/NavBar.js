@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { StyledNavBar, H1, NavBarLinks } from "../styles";
+import { StyledNavBar, H1, NavBarLinks, NavLinks } from "../styles";
 
 const NavBar = (props) => {
   console.log("props in the navbar", props);
@@ -16,18 +16,20 @@ const NavBar = (props) => {
     <StyledNavBar>
       <H1>Secret Family Recipes</H1>
 
-      <Link to="/login">
-        <NavBarLinks>Login</NavBarLinks>
-      </Link>
+      <NavLinks>
+        <Link to="/login">
+          <NavBarLinks>Login</NavBarLinks>
+        </Link>
 
-      <Link to="/signup">
-        <NavBarLinks>Sign Up</NavBarLinks>
-      </Link>
+        <Link to="/signup">
+          <NavBarLinks>Sign Up</NavBarLinks>
+        </Link>
 
-      <Link to="/dashboard">
-        <NavBarLinks>Your Recipes</NavBarLinks>{" "}
-      </Link>
-      <NavBarLinks onClick={logout}>Log Out</NavBarLinks>
+        <Link to="/dashboard">
+          <NavBarLinks>Your Recipes</NavBarLinks>{" "}
+        </Link>
+        <NavBarLinks onClick={logout}>Log Out</NavBarLinks>
+      </NavLinks>
     </StyledNavBar>
   );
 };

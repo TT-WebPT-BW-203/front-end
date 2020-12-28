@@ -3,14 +3,19 @@ import styled from "styled-components";
 export const StyledNavBar = styled.div`
   display: flex;
   width: 100%;
-  border: red 1px solid;
+  justify-content: space-between;
 `;
 
-export const H1 = styled.h1`
-  color: red;
-  border: solid 1px black;
-`;
+export const H1 = styled.h1``;
 
+export const NavLinks = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 export const NavBarLinks = styled.p`
-  background: hotpink;
+  padding: 0.75rem;
+`;
+
+export const A = styled.link`
+  text-decoration: none;
 `;
