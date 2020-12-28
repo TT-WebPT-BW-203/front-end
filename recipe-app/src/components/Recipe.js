@@ -21,7 +21,7 @@ const Recipe = (props) => {
   return (
     <RecipeContainer>
       <LeftContent>
-        Title: <RecipeTitle>{recipe.title}</RecipeTitle>
+        <RecipeTitle>{recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
         <h4>Ingredients: </h4>
         {/* map list of Ingredients */}
