@@ -1,17 +1,25 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { getUserRecipes } from "../store/actions";
+// import { getUserRecipes } from "../store/actions";
 
 const SearchBar = (props) => {
   console.log("props in the SearchBar: ", props);
   const [search, setSearch] = useState("");
 
+  const findRecipe = (search) => {
+    console.log("search in the find recipe: ", search);
+    const searchResult = props.recipes.find(
+      (recipe) => recipe.title === search
+    );
+    console.log("searchResult: ", searchResult.title);
+  };
+
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    findRecipe(search);
     setSearch("");
   };
 
@@ -37,4 +45,4 @@ const mapStateToProps = (state) => {
     userId: state.userId,
   };
 };
-export default connect(mapStateToProps, { getUserRecipes })(SearchBar);
+export default connect(mapStateToProps, {})(SearchBar);
