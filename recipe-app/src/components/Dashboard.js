@@ -13,6 +13,7 @@ import {
   ThumbnailContainer,
   ButtonWrap,
 } from "../styles";
+import SearchBar from "./SearchBar";
 
 const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
@@ -24,6 +25,7 @@ const Dashboard = (props) => {
   return (
     <div>
       {props.username && <h2>Welcome {props.username}</h2>}
+      <SearchBar />
       <Link to="/add_recipe">
         <ButtonWrap>
           <Button>Add New Recipe</Button>
@@ -36,7 +38,7 @@ const Dashboard = (props) => {
           color="#000"
           height={100}
           width={100}
-          timeout={3000} //3 secs
+          timeout={6000}
         />
       ) : null}
       <RecipesContainer>

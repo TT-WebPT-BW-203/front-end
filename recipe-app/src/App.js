@@ -9,9 +9,9 @@ import AddRecipe from "./components/AddRecipe";
 import IngredientsForm from "./components/IngredientsForm";
 import IngredientList from "./components/IngredientList";
 import Instructions from "./components/Instructions";
+import UpdateForm from "./components/UpdateForm";
 
 import { Route, Switch } from "react-router-dom";
-import UpdateForm from "./components/UpdateForm";
 
 function App() {
   return (
