@@ -25,7 +25,7 @@ const Dashboard = (props) => {
   return (
     <div>
       {props.username && <h2>Welcome {props.username}</h2>}
-      <SearchBar />
+      <SearchBar recipes={props.recipes} userId={props.userId} />
       <Link to="/add_recipe">
         <ButtonWrap>
           <Button>Add New Recipe</Button>

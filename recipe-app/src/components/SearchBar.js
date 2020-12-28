@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { getUserRecipes } from "../store/actions";
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+  console.log("props in the SearchBar: ", props);
   const [search, setSearch] = useState("");
-  console.log(search);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -29,4 +31,10 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+  return {
+    recipes: state.recipes,
+    userId: state.userId,
+  };
+};
+export default connect(mapStateToProps, { getUserRecipes })(SearchBar);
