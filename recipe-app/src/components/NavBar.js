@@ -17,15 +17,15 @@ const NavBar = (props) => {
       <H1>Secret Family Recipes</H1>
 
       <NavLinks>
-        <Link to="/login">
+        <Link to="/login" style={{ textDecoration: "none" }}>
           <NavBarLinks>Login</NavBarLinks>
         </Link>
 
-        <Link to="/signup">
+        <Link to="/signup" style={{ textDecoration: "none" }}>
           <NavBarLinks>Sign Up</NavBarLinks>
         </Link>
 
-        <Link to="/dashboard">
+        <Link to="/dashboard" style={{ textDecoration: "none" }}>
           <NavBarLinks>Your Recipes</NavBarLinks>{" "}
         </Link>
         <NavBarLinks onClick={logout}>Log Out</NavBarLinks>

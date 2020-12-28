@@ -59,7 +59,13 @@ const UpdateForm = (props) => {
         />
         <button>Update</button>
       </form>
-      <button>Cancel</button>
+      <button
+        onClick={() => {
+          history.goBack();
+        }}
+      >
+        Cancel
+      </button>
     </div>
   );
 };

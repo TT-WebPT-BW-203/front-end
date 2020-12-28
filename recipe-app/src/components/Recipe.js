@@ -1,6 +1,6 @@
 import React from "react";
 import img_placeholder from "../../src/img_placeholder.png";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
 import { connect } from "react-redux";
 import {
@@ -47,7 +47,9 @@ const Recipe = (props) => {
         >
           Delete
         </Button>
-        <p onClick={() => history.goBack()}>Back to Recipes</p>
+        <Link style={{ marginTop: ".5rem" }} onClick={() => history.goBack()}>
+          Back to Recipes
+        </Link>
       </RightContent>
     </RecipeContainer>
   );
