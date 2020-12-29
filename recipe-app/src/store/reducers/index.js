@@ -128,6 +128,23 @@ export const userReducer = (state = initialState, action) => {
     case START_POST_INGREDIENT: {
       return {
         ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case POST_INGREDIENT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        ingredients: [...action.payload],
+      };
+    }
+    case POST_INGREDIENT_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     }
     case START_UPDATE_RECIPE: {

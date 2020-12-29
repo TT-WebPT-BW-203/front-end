@@ -32,7 +32,7 @@ const IngredientsForm = (props) => {
     e.preventDefault();
     addToList();
     props.postIngredients(recipe.id, ingredient);
-    setIngredient("");
+    setIngredient({ name: "" });
   };
 
   return (
