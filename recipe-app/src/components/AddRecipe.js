@@ -23,9 +23,8 @@ const AddRecipe = (props) => {
 
   const saveRecipe = (e) => {
     e.preventDefault();
-    const newRecipe = props.addRecipe(recipe, props.userId);
+    props.addRecipe(recipe, props.userId);
     history.push(`/dashboard/`);
-    console.log(newRecipe);
   };
   return (
     <div>

@@ -18,12 +18,15 @@ const Recipe = (props) => {
   const params = useParams();
 
   const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
+  console.log("recipe", recipe);
   return (
     <RecipeContainer>
       <LeftContent>
-        <RecipeTitle>{recipe.title}</RecipeTitle>
+        <RecipeTitle>Title: {recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
-        <Button onClick={() => history.push(`${recipe.id}/ingredients`)}>
+        <Button
+          onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
+        >
           Add Ingredients
         </Button>
         {/* map list of Ingredients */}
@@ -37,7 +40,9 @@ const Recipe = (props) => {
         )}
 
         <Button
-          onClick={() => history.push(`/recipe/${recipe.id}/update_recipe`)}
+          onClick={() => {
+            // history.push(`/recipe/${recipe.id}/update_recipe`)
+          }}
         >
           Edit
         </Button>

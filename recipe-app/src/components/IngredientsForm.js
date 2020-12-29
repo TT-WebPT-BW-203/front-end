@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,6 +13,7 @@ const IngredientsForm = (props) => {
   console.log("ingredient", ingredient);
 
   const { id } = useParams();
+  const history = useHistory();
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
@@ -38,10 +39,13 @@ const IngredientsForm = (props) => {
         <input name="ingredient" value={ingredient} onChange={handleChange} />
         <button>Add Ingredient</button>
       </form>
-
-      <Link to="/add_recipe">
-        <p>&#60;&#60;Back</p>
-      </Link>
+      <button
+        onClick={() => {
+          history.goBack();
+        }}
+      >
+        Save Ingredients
+      </button>
     </div>
   );
 };
