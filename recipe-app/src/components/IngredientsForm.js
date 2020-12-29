@@ -7,7 +7,9 @@ import Ingredient from "./Ingredient";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
-  const [ingredient, setIngredient] = useState("");
+  const [ingredient, setIngredient] = useState({
+    name: "",
+  });
   const [ingredientList, setIngredientList] = useState([]);
   console.log("ingredientList", ingredientList);
   console.log("ingredient", ingredient);
@@ -23,12 +25,13 @@ const IngredientsForm = (props) => {
   };
 
   const handleChange = (e) => {
-    setIngredient(e.target.value);
+    setIngredient({ name: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     addToList();
+    props.postIngredients(recipe.id, ingredient);
     setIngredient("");
   };
 
@@ -36,7 +39,11 @@ const IngredientsForm = (props) => {
     <div>
       <form onSubmit={handleSubmit}>
         <h3>Enter Ingredients:</h3>
-        <input name="ingredient" value={ingredient} onChange={handleChange} />
+        <input
+          name="ingredient"
+          value={ingredient.name}
+          onChange={handleChange}
+        />
         <button>Add Ingredient</button>
       </form>
       <button

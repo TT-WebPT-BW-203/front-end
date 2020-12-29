@@ -61,6 +61,7 @@ export const addRecipe = (recipe, id) => (dispatch) => {
     .post(`/api/recipes/user/${id}`, recipe)
     .then((res) => {
       dispatch({ type: RECIPE_POST_SUCCESS, payload: res.data });
+      //try deleting this line below
       return res.data;
     })
     .catch((err) => {
