@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
@@ -11,14 +11,28 @@ import {
   LeftContent,
   Image,
 } from "../styles";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Recipe = (props) => {
   console.log("props in the Recipe component: ", props);
+  const [rehydrate, setRehydrate] = useState([{}]);
+  console.log("rehydrate", rehydrate);
   const history = useHistory();
   const params = useParams();
 
   const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
   console.log("recipe", recipe);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/${params.id}`)
+      .then((res) => {
+        console.log("getrecipesbyID res: ", res.data.ingredients);
+        setRehydrate(res.data.ingredients);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <RecipeContainer>
       <LeftContent>
@@ -31,7 +45,7 @@ const Recipe = (props) => {
           Add Ingredients
         </Button>
         <p>List: </p>
-        {props.ingredients.map((ing) => (
+        {rehydrate.map((ing) => (
           <li>{ing.name}</li>
         ))}
 
