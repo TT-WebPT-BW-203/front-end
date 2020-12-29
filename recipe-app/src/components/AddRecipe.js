@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { addRecipe } from "../store/actions";
 import { connect } from "react-redux";
 
 const AddRecipe = (props) => {
   console.log("props in the AddRecipe component: ", props);
   const history = useHistory();
+  const { id } = useParams();
   const [recipe, setRecipe] = useState({
     title: "",
     source: "",
@@ -22,8 +23,9 @@ const AddRecipe = (props) => {
 
   const saveRecipe = (e) => {
     e.preventDefault();
-    props.addRecipe(recipe, props.userId);
-    history.push("/ingredients");
+    const newRecipe = props.addRecipe(recipe, props.userId);
+    history.push(`/dashboard/`);
+    console.log(newRecipe);
   };
   return (
     <div>

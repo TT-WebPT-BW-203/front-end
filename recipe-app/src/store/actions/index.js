@@ -61,6 +61,7 @@ export const addRecipe = (recipe, id) => (dispatch) => {
     .post(`/api/recipes/user/${id}`, recipe)
     .then((res) => {
       dispatch({ type: RECIPE_POST_SUCCESS, payload: res.data });
+      return res.data;
     })
     .catch((err) => {
       dispatch({ type: RECIPE_POST_FAIL, payload: err });
@@ -89,7 +90,7 @@ export const postIngredients = (recId, ingredient) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: POST_INGREDIENT_FAIL });
+      dispatch({ type: POST_INGREDIENT_FAIL, payload: err });
     });
 };
 

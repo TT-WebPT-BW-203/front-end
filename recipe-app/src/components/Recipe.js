@@ -23,9 +23,11 @@ const Recipe = (props) => {
       <LeftContent>
         <RecipeTitle>{recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
-        <h4>Ingredients: </h4>
+        <Button onClick={() => history.push(`${recipe.id}/ingredients`)}>
+          Add Ingredients
+        </Button>
         {/* map list of Ingredients */}
-        <h4>Instructions: </h4>
+        <Button>Instructions</Button>
       </LeftContent>
       <RightContent>
         {recipe.image === "" ? (

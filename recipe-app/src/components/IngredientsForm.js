@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import IngredientList from "./IngredientList";
 import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -8,42 +7,22 @@ import { connect } from "react-redux";
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
 
-  const [ingredient, setIngredient] = useState("");
-  console.log("Ingredient in the IngredientsForm: ", ingredient);
+  const { id } = useParams();
 
-  const [ingredientList, setIngredientList] = useState([]);
-
-  const params = useParams();
-  const recipe = props.recipes.find(
-    (recipe) => recipe.id === Number(params.id)
-  );
+  const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
 
-  const addToIngredientsList = (ing) => {
-    setIngredientList([...ingredientList, ing]);
-  };
-
-  const handleChange = (e) => {
-    setIngredient(e.target.value);
-  };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    addToIngredientsList(ingredient);
-    //props.postIngredients()
-    setIngredient("");
-  };
+  const handleChange = (e) => {};
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form>
         <h3>Enter Ingredients:</h3>
-        <input name="ingredient" value={ingredient} onChange={handleChange} />
-        <button>Add Ingredient</button>
+        <input name="ingredient" />
+        <Link to={`recipe/${id}/ingredients`}>
+          <button>Add Ingredient</button>
+        </Link>
       </form>
-      <IngredientList ingredientList={ingredientList} />
-      <Link to="/instructions">
-        <p>Save Ingredients and Continue to Instructions &#62;&#62;</p>
-      </Link>
 
       <Link to="/add_recipe">
         <p>&#60;&#60;Back</p>
@@ -55,6 +34,7 @@ const IngredientsForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
+    userId: state.userId,
   };
 };
 export default connect(mapStateToProps, { postIngredients })(IngredientsForm);

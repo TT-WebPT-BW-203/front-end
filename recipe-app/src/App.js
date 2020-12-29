@@ -33,7 +33,7 @@ function App() {
       <PrivateRoute path="/add_recipe">
         <AddRecipe />
       </PrivateRoute>
-      <PrivateRoute path="/ingredients">
+      <PrivateRoute exact path="/recipe/:id/ingredients">
         <IngredientsForm />
       </PrivateRoute>
       <PrivateRoute path="/ingredients/ingredients_list">
