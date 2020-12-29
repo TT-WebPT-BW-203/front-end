@@ -33,30 +33,38 @@ const UpdateForm = (props) => {
     <div>
       <h3>UpdateForm</h3>
       <form onSubmit={handleSubmit}>
+        <label htmlFor="title">Update recipe title:</label>
         <input
-          placeholder="Enter Title"
+          id="title"
           name="title"
           value={initialRecipe.title}
           onChange={handleChange}
         />
+        <br />
+        <label htmlFor="source">Update Source: </label>
         <input
-          placeholder="Enter Source"
+          id="source"
           name="source"
           value={initialRecipe.source}
           onChange={handleChange}
         />
+        <br />
+        <label htmlFor="category">Update Category: </label>
         <input
-          placeholder="Enter Category"
+          id="category"
           name="category"
           value={initialRecipe.category}
           onChange={handleChange}
         />
+        <br />
+        <label htmlFor="image">Update Image URL</label>
         <input
-          placeholder="Enter URL for recipe image"
+          id="image"
           name="image"
           value={initialRecipe.image}
           onChange={handleChange}
         />
+        <br />
         <button>Update</button>
       </form>
       <button
@@ -73,6 +81,7 @@ const UpdateForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
+    ingredients: state.ingredients,
   };
 };
 export default connect(mapStateToProps, { updateRecipe })(UpdateForm);

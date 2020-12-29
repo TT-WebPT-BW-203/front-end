@@ -48,6 +48,7 @@ export const userReducer = (state = initialState, action) => {
         userId: action.payload.user.id,
         username: action.payload.user.username,
         recipes: [],
+        ingredients: [],
       };
     }
     case LOGIN_FAIL: {

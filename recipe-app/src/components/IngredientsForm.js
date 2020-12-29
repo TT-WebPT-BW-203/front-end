@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 const IngredientsForm = (props) => {
@@ -52,7 +51,6 @@ const IngredientsForm = (props) => {
       >
         Save Ingredients
       </button>
-      {/* to move later */}
     </div>
   );
 };
@@ -60,6 +58,7 @@ const IngredientsForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
+    ingredients: state.ingredients,
     userId: state.userId,
   };
 };

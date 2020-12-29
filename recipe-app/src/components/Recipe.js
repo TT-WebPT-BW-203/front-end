@@ -3,7 +3,6 @@ import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
 import { connect } from "react-redux";
-import IngredientList from "./IngredientList";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -25,13 +24,17 @@ const Recipe = (props) => {
       <LeftContent>
         <RecipeTitle>Title: {recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
+        <p>Category: {recipe.category}</p>
         <Button
           onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
         >
           Add Ingredients
         </Button>
-        {/* map list of Ingredients */}
-        <IngredientList />
+        <p>List: </p>
+        {props.ingredients.map((ing) => (
+          <li>{ing.name}</li>
+        ))}
+
         <Button>Instructions</Button>
       </LeftContent>
       <RightContent>
@@ -43,7 +46,7 @@ const Recipe = (props) => {
 
         <Button
           onClick={() => {
-            // history.push(`/recipe/${recipe.id}/update_recipe`)
+            history.push(`/recipe/${recipe.id}/update_recipe`);
           }}
         >
           Edit
@@ -70,6 +73,7 @@ const Recipe = (props) => {
 const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
+    ingredients: state.ingredients,
   };
 };
 

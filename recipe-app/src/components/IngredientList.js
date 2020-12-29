@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import Ingredient from "./Ingredient";
 
 const IngredientList = (props) => {
   console.log("props in the IngredientsList component: ", props);
