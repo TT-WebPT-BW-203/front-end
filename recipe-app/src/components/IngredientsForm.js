@@ -3,7 +3,6 @@ import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Ingredient from "./Ingredient";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
@@ -53,6 +52,7 @@ const IngredientsForm = (props) => {
       >
         Save Ingredients
       </button>
+      {/* to move later */}
     </div>
   );
 };

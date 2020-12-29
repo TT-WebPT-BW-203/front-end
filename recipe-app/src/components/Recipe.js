@@ -3,6 +3,7 @@ import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
 import { connect } from "react-redux";
+import IngredientList from "./IngredientList";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -30,6 +31,7 @@ const Recipe = (props) => {
           Add Ingredients
         </Button>
         {/* map list of Ingredients */}
+        <IngredientList />
         <Button>Instructions</Button>
       </LeftContent>
       <RightContent>
