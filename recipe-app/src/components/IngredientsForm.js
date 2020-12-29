@@ -3,25 +3,40 @@ import { useParams } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import Ingredient from "./Ingredient";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
+  const [ingredient, setIngredient] = useState("");
+  const [ingredientList, setIngredientList] = useState([]);
+  console.log("ingredientList", ingredientList);
+  console.log("ingredient", ingredient);
 
   const { id } = useParams();
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
 
-  const handleChange = (e) => {};
+  const addToList = () => {
+    setIngredientList([...ingredientList, ingredient]);
+  };
+
+  const handleChange = (e) => {
+    setIngredient(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addToList();
+    setIngredient("");
+  };
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h3>Enter Ingredients:</h3>
-        <input name="ingredient" />
-        <Link to={`recipe/${id}/ingredients`}>
-          <button>Add Ingredient</button>
-        </Link>
+        <input name="ingredient" value={ingredient} onChange={handleChange} />
+        <button>Add Ingredient</button>
       </form>
 
       <Link to="/add_recipe">
