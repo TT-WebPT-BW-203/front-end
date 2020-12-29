@@ -49,7 +49,10 @@ const Recipe = (props) => {
         >
           Delete
         </Button>
-        <Link style={{ marginTop: ".5rem" }} onClick={() => history.goBack()}>
+        <Link
+          style={{ marginTop: ".5rem" }}
+          onClick={() => history.push("/dashboard")}
+        >
           Back to Recipes
         </Link>
       </RightContent>
