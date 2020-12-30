@@ -54,7 +54,13 @@ const Recipe = (props) => {
           Add Ingredients
         </Button>
 
-        <Button>Instructions</Button>
+        <Button
+          onClick={() => {
+            history.push(`/instructions`);
+          }}
+        >
+          Instructions
+        </Button>
       </LeftContent>
       <RightContent>
         {recipe.image === "" ? (
