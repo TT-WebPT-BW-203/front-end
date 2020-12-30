@@ -45,7 +45,10 @@ const Recipe = (props) => {
         <p>Ingredients: </p>
 
         {rehydrate.map((ing) => (
-          <li>{ing.name}</li>
+          <li>
+            {ing.name} <button>edit</button>
+            <button>delete</button>
+          </li>
         ))}
         <Button
           onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
