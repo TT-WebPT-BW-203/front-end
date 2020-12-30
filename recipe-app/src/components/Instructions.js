@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { postInstructions } from "../store/actions";
 
@@ -10,6 +10,8 @@ const Instructions = (props) => {
     details: "",
   });
   console.log(instruction);
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     setInstruction({
@@ -48,7 +50,7 @@ const Instructions = (props) => {
         <button>Add Another Step</button>
       </form>
       <button>Finish</button>
-      <Link to="dashboard/add_recipe">
+      <Link to="/dashboard">
         <p>Back</p>
       </Link>
     </div>

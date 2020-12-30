@@ -56,7 +56,7 @@ const Recipe = (props) => {
 
         <Button
           onClick={() => {
-            history.push(`/instructions`);
+            history.push(`/instructions/${recipe.id}`);
           }}
         >
           Instructions

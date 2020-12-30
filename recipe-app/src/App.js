@@ -34,10 +34,7 @@ function App() {
       <PrivateRoute exact path="/recipe/:id/ingredients">
         <IngredientsForm />
       </PrivateRoute>
-      <PrivateRoute exact path="/recipe/:id/ingredients_list">
-        <IngredientList />
-      </PrivateRoute>
-      <PrivateRoute path="/instructions">
+      <PrivateRoute exact path="/instructions/:id">
         <Instructions />
       </PrivateRoute>
       <PrivateRoute path="/dashboard">
