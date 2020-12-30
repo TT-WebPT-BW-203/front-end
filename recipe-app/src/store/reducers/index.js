@@ -23,6 +23,9 @@ import {
   START_EDIT_INGREDIENT,
   EDIT_INGREDIENT_SUCCESS,
   EDIT_INGREDIENT_FAIL,
+  START_POST_INSTRUCTION,
+  POST_INSTRUCTION_SUCCESS,
+  POST_INSTRUCTION_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -39,6 +42,9 @@ export const userReducer = (state = initialState, action) => {
         loggedIn: false,
         isLoading: true,
         error: "",
+        recipes: [],
+        ingredients: [],
+        instructions: [],
       };
     }
     case LOGIN_SUCCESS: {
@@ -50,8 +56,6 @@ export const userReducer = (state = initialState, action) => {
         userData: action.payload,
         userId: action.payload.user.id,
         username: action.payload.user.username,
-        recipes: [],
-        ingredients: [],
       };
     }
     case LOGIN_FAIL: {
@@ -214,6 +218,29 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         error: action.payload,
         isLoading: false,
+      };
+    }
+    //START
+    case START_POST_INSTRUCTION: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case POST_INSTRUCTION_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        instructions: [...action.payload],
+      };
+    }
+    case POST_INSTRUCTION_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
       };
     }
     default: {

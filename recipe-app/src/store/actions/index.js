@@ -150,11 +150,11 @@ export const postInstructions = (id, instruction) => (dispatch) => {
   axiosWithAuth()
     .post(`/api/recipes/${id}/instructions`, instruction)
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       dispatch({ type: POST_INSTRUCTION_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: POST_INGREDIENT_FAIL, payload: err });
+      dispatch({ type: POST_INSTRUCTION_FAIL, payload: err });
     });
 };
