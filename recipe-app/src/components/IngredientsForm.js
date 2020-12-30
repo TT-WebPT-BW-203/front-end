@@ -12,8 +12,6 @@ const IngredientsForm = (props) => {
   const [ingredient, setIngredient] = useState({
     name: "",
   });
-  const [ingredientList, setIngredientList] = useState([]);
-  console.log("ingredientList", ingredientList);
   console.log("ingredient", ingredient);
 
   const { id } = useParams();
@@ -32,16 +30,6 @@ const IngredientsForm = (props) => {
       .catch((err) => console.log(err));
   }, [props.ingredients]);
 
-  const rehydrateFn = () => {
-    axiosWithAuth()
-      .get(`/api/recipes/${id}`)
-      .then((res) => {
-        console.log("getrecipesbyID res: ", res.data);
-        setRehydrate(res.data.ingredients);
-      })
-      .catch((err) => console.log(err));
-  };
-
   const handleChange = (e) => {
     setIngredient({ name: e.target.value });
   };
@@ -49,13 +37,7 @@ const IngredientsForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     props.postIngredients(recipe.id, ingredient);
-    setIngredientList([...ingredientList, ingredient]);
     setIngredient({ name: "" });
-  };
-
-  const saveIngredients = (e) => {
-    e.preventDefault();
-    setIngredientList([]);
   };
 
   return (
@@ -69,12 +51,13 @@ const IngredientsForm = (props) => {
         />
         <button>Add Ingredient</button>
       </form>
-      <button onClick={saveIngredients}>Save Ingredients</button>
-      <div>
-        {ingredientList.map((ing) => (
-          <p>{ing.name}</p>
-        ))}
-      </div>
+      <button
+        onClick={() => {
+          history.push(`/recipe/${id}`);
+        }}
+      >
+        Done adding ingredients
+      </button>
     </div>
   );
 };
