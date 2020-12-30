@@ -25,6 +25,9 @@ import {
   START_EDIT_INGREDIENT,
   EDIT_INGREDIENT_SUCCESS,
   EDIT_INGREDIENT_FAIL,
+  START_POST_INSTRUCTION,
+  POST_INSTRUCTION_SUCCESS,
+  POST_INSTRUCTION_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -138,5 +141,19 @@ export const editIngredient = (id, ingredient) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: EDIT_INGREDIENT_FAIL, payload: err });
+    });
+};
+
+export const postInstructions = (id, instruction) => (dispatch) => {
+  dispatch({ type: START_POST_INSTRUCTION });
+  axiosWithAuth()
+    .post(`/api/recipes/${id}/instructions`, instruction)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: POST_INSTRUCTION_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: POST_INGREDIENT_FAIL, payload: err });
     });
 };

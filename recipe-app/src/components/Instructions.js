@@ -14,10 +14,18 @@ const Instructions = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const addAnotherStep = (e) => {
+    e.preventDefault();
+    setInstruction({
+      step: "",
+      details: "",
+    });
+  };
   return (
     <div>
       Instructions
-      <form>
+      <form onSubmit={addAnotherStep}>
         <label htmlFor="step">Step#: </label>
         <input
           id="step"
