@@ -18,6 +18,8 @@ const Recipe = (props) => {
   console.log("props in the Recipe component (from the GLOBAL STATE): ", props);
 
   const [rehydrate, setRehydrate] = useState([{}]);
+  const [instructionsSideEffects, setInstructionsSideEffects] = useState([{}]);
+  console.log("instructionsSideEffects", instructionsSideEffects);
   const history = useHistory();
   const params = useParams();
 
@@ -33,9 +35,10 @@ const Recipe = (props) => {
       .then((res) => {
         console.log("getrecipesbyID res: ", res.data);
         setRehydrate(res.data.ingredients);
+        setInstructionsSideEffects(res.data.instructions);
       })
       .catch((err) => console.log(err));
-  }, [props.ingredients]);
+  }, [props.ingredients, props.instructions]);
 
   return (
     <RecipeContainer>
@@ -53,7 +56,12 @@ const Recipe = (props) => {
         >
           Add Ingredients
         </Button>
-
+        {instructionsSideEffects.map((inst) => (
+          <div>
+            <p>Step {inst.step}:</p>
+            <p>Details {inst.details}</p>
+          </div>
+        ))}
         <Button
           onClick={() => {
             history.push(`/instructions/${recipe.id}`);
@@ -99,6 +107,7 @@ const mapStateToProps = (state) => {
   return {
     recipes: state.recipes,
     ingredients: state.ingredients,
+    instructions: state.instructions,
   };
 };
 
