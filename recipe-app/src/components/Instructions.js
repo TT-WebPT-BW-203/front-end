@@ -1,17 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { postInstructions } from "../store/actions";
 
 const Instructions = (props) => {
   console.log("props in the instructions component: ", props);
   const [instruction, setInstruction] = useState({
-    step: "",
+    step: "", //input HAS to be number - validation
     details: "",
   });
   console.log(instruction);
 
   const history = useHistory();
+  const { id } = useParams();
+  console.log("deconstructed.id: ", id);
 
   const handleChange = (e) => {
     setInstruction({
@@ -22,6 +24,7 @@ const Instructions = (props) => {
 
   const addAnotherStep = (e) => {
     e.preventDefault();
+    props.postInstructions(id, instruction);
     setInstruction({
       step: "",
       details: "",
@@ -56,5 +59,8 @@ const Instructions = (props) => {
     </div>
   );
 };
+const mapStatetoProps = (state) => {
+  return {};
+};
 
-export default connect(null, { postInstructions })(Instructions);
+export default connect(mapStatetoProps, { postInstructions })(Instructions);
