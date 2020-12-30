@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { editIngredient } from "../store/actions";
 
 const Ingredient = (props) => {
   console.log("props in the Ingredient component: ", props);
@@ -12,4 +13,4 @@ const Ingredient = (props) => {
   );
 };
 
-export default connect(null, {})(Ingredient);
+export default connect(null, { editIngredient })(Ingredient);

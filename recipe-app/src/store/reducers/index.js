@@ -20,6 +20,9 @@ import {
   START_DELETE_RECIPE,
   DELETE_RECIPE_SUCCESS,
   DELETE_RECIPE_FAIL,
+  START_EDIT_INGREDIENT,
+  EDIT_INGREDIENT_SUCCESS,
+  EDIT_INGREDIENT_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
