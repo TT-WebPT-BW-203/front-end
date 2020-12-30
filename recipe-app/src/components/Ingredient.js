@@ -7,10 +7,6 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const Ingredient = (props) => {
   console.log("props in the Ingredient component: ", props);
 
-  const initialIngredient = {
-    name: "name",
-  };
-
   const [edit, setEdit] = useState(false);
   console.log("is editing? ", edit);
   const [newIngredient, setNewIngredient] = useState({
@@ -19,18 +15,19 @@ const Ingredient = (props) => {
   const [ingredientFromGet, setIngredientFromGet] = useState("");
   console.log("ingredientFromGet", ingredientFromGet);
 
+  const params = useParams();
   const { id } = props.ingredient;
   console.log("id", id);
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/ingredients/${id}`)
+      .get(`/api/ingredients/${params.id}`)
       .then((res) => {
         console.log("res in the get of ingrd by id: ", res.data.name);
         setIngredientFromGet(res.data.name);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props]);
 
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
@@ -59,7 +56,7 @@ const Ingredient = (props) => {
         </div>
       ) : (
         <li>
-          {ingredientFromGet}
+          {props.ingredient.name}
           <button onClick={handleEdit}>edit</button>
           <button>delete</button>
         </li>
