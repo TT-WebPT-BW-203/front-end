@@ -24,7 +24,14 @@ export const A = styled.link`
 
 export const RecipesContainer = styled.div`
   display: flex;
+  align-items: flex-start;
   flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+`;
+
+export const Welcome = styled.h2`
+  margin-left: 1rem;
 `;
 
 export const Button = styled.button`

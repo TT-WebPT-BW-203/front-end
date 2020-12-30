@@ -6,6 +6,7 @@ import { getUserRecipes } from "../store/actions";
 import Loader from "react-loader-spinner";
 import {
   RecipeCard,
+  Welcome,
   Button,
   CardTitle,
   RecipesContainer,
@@ -19,12 +20,13 @@ const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
 
   useEffect(() => {
+    //I think this needs to be changed to an axios call
     props.getUserRecipes(props.userId);
   }, []);
 
   return (
     <div>
-      {props.username && <h2>Welcome {props.username}</h2>}
+      {props.username && <Welcome>Welcome {props.username}</Welcome>}
       <SearchBar recipes={props.recipes} userId={props.userId} />
       <Link to="/add_recipe">
         <ButtonWrap>
@@ -50,7 +52,6 @@ const Dashboard = (props) => {
               style={{
                 textDecoration: "none",
                 display: "flex",
-                width: "100%",
                 justifyContent: "space-evenly",
               }}
             >
