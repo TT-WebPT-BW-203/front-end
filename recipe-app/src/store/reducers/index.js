@@ -163,7 +163,7 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: "",
-        recipes: action.payload,
+        recipes: [...action.payload],
       };
     }
     case UPDATE_RECIPE_FAIL: {
@@ -193,6 +193,27 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    }
+    case START_EDIT_INGREDIENT: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case EDIT_INGREDIENT_SUCCESS: {
+      return {
+        ...state,
+        ingredients: [...action.payload],
+        isLoading: false,
+        error: "",
+      };
+    }
+    case EDIT_INGREDIENT_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
       };
     }
     default: {

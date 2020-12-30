@@ -132,8 +132,8 @@ export const editIngredient = (id, ingredient) => (dispatch) => {
   axiosWithAuth()
     .put(`/api/ingredients/${id}`, ingredient)
     .then((res) => {
-      console.log("res inside the editIngByID: ", res);
-      dispatch({ type: EDIT_INGREDIENT_SUCCESS, payload: res });
+      console.log("res inside the editIngByID: ", res.data);
+      dispatch({ type: EDIT_INGREDIENT_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
