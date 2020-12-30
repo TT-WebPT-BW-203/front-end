@@ -127,10 +127,10 @@ export const deleteRecipe = (id) => (dispatch) => {
     });
 };
 
-export const editIngredient = (id) => (dispatch) => {
+export const editIngredient = (id, ingredient) => (dispatch) => {
   dispatch({ type: START_EDIT_INGREDIENT });
   axiosWithAuth()
-    .put(`/api/ingredients/${id}`)
+    .put(`/api/ingredients/${id}`, ingredient)
     .then((res) => {
       console.log("res inside the editIngByID: ", res);
       dispatch({ type: EDIT_INGREDIENT_SUCCESS, payload: res });
