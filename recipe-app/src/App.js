@@ -19,9 +19,7 @@ function App() {
       <NavBar />
       <Route path="/login" render={() => <Login />} />
       <Route path="/signup" render={() => <SignUp />} />
-      <PrivateRoute path="/dashboard">
-        <Dashboard />
-      </PrivateRoute>
+
       <Switch>
         <PrivateRoute exact path="/recipe/:id/update_recipe">
           <UpdateForm />
@@ -41,6 +39,9 @@ function App() {
       </PrivateRoute>
       <PrivateRoute path="/instructions">
         <Instructions />
+      </PrivateRoute>
+      <PrivateRoute path="/dashboard">
+        <Dashboard />
       </PrivateRoute>
     </div>
   );

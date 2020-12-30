@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { connect } from "react-redux";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
+
+  const [rehydrate, setRehydrate] = useState([{}]);
+  console.log("rehydrate", rehydrate);
   const [ingredient, setIngredient] = useState({
     name: "",
   });
@@ -18,8 +22,24 @@ const IngredientsForm = (props) => {
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
 
-  const addToList = () => {
-    setIngredientList([...ingredientList, ingredient]);
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/${id}`)
+      .then((res) => {
+        console.log("getrecipesbyID res: ", res.data);
+        setRehydrate(res.data.ingredients);
+      })
+      .catch((err) => console.log(err));
+  }, [props.ingredients]);
+
+  const rehydrateFn = () => {
+    axiosWithAuth()
+      .get(`/api/recipes/${id}`)
+      .then((res) => {
+        console.log("getrecipesbyID res: ", res.data);
+        setRehydrate(res.data.ingredients);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
@@ -28,9 +48,14 @@ const IngredientsForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addToList();
     props.postIngredients(recipe.id, ingredient);
+    setIngredientList([...ingredientList, ingredient]);
     setIngredient({ name: "" });
+  };
+
+  const saveIngredients = (e) => {
+    e.preventDefault();
+    setIngredientList([]);
   };
 
   return (
@@ -44,13 +69,12 @@ const IngredientsForm = (props) => {
         />
         <button>Add Ingredient</button>
       </form>
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Save Ingredients
-      </button>
+      <button onClick={saveIngredients}>Save Ingredients</button>
+      <div>
+        {ingredientList.map((ing) => (
+          <p>{ing.name}</p>
+        ))}
+      </div>
     </div>
   );
 };

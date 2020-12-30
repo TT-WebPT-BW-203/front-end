@@ -54,7 +54,7 @@ const AddRecipe = (props) => {
           value={recipe.image}
           onChange={handleChange}
         />
-        <button>Enter Ingredients</button>
+        <button>Add Recipe</button>
       </form>
       <button
         onClick={() => {

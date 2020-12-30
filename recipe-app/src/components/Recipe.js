@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { deleteRecipe } from "../store/actions";
-import { connect } from "react-redux";
+import { deleteRecipe, clearValues } from "../store/actions";
+import { connect, useDispatch } from "react-redux";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -14,24 +14,27 @@ import {
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Recipe = (props) => {
-  console.log("props in the Recipe component: ", props);
+  console.log("props in the Recipe component (from the GLOBAL STATE): ", props);
+
   const [rehydrate, setRehydrate] = useState([{}]);
-  console.log("rehydrate", rehydrate);
   const history = useHistory();
   const params = useParams();
 
   const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
-  console.log("recipe", recipe);
+  console.log(
+    "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
+    recipe
+  );
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${params.id}`)
       .then((res) => {
-        console.log("getrecipesbyID res: ", res.data.ingredients);
+        console.log("getrecipesbyID res: ", res.data);
         setRehydrate(res.data.ingredients);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.ingredients]);
 
   return (
     <RecipeContainer>
@@ -39,15 +42,16 @@ const Recipe = (props) => {
         <RecipeTitle>Title: {recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
         <p>Category: {recipe.category}</p>
+        <p>Ingredients: </p>
+
+        {rehydrate.map((ing) => (
+          <li>{ing.name}</li>
+        ))}
         <Button
           onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
         >
           Add Ingredients
         </Button>
-        <p>List: </p>
-        {rehydrate.map((ing) => (
-          <li>{ing.name}</li>
-        ))}
 
         <Button>Instructions</Button>
       </LeftContent>
@@ -91,4 +95,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { deleteRecipe })(Recipe);
+export default connect(mapStateToProps, { deleteRecipe, clearValues })(Recipe);

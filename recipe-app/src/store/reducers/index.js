@@ -20,6 +20,7 @@ import {
   START_DELETE_RECIPE,
   DELETE_RECIPE_SUCCESS,
   DELETE_RECIPE_FAIL,
+  CLEAR_VALUES,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -190,6 +191,12 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    }
+    case CLEAR_VALUES: {
+      return {
+        ...state,
+        ingredients: [],
       };
     }
     default: {

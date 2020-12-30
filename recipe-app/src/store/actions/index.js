@@ -22,6 +22,7 @@ import {
   START_DELETE_RECIPE,
   DELETE_RECIPE_SUCCESS,
   DELETE_RECIPE_FAIL,
+  CLEAR_VALUES,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -122,4 +123,10 @@ export const deleteRecipe = (id) => (dispatch) => {
       console.log(err);
       dispatch({ type: DELETE_RECIPE_FAIL, payload: err });
     });
+};
+
+export const clearValues = () => {
+  return {
+    type: CLEAR_VALUES,
+  };
 };
