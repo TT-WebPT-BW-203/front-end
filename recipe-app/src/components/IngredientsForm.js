@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { connect } from "react-redux";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
 
-  const [rehydrate, setRehydrate] = useState([{}]);
-  console.log("rehydrate", rehydrate);
   const [ingredient, setIngredient] = useState({
     name: "",
   });
@@ -19,16 +16,6 @@ const IngredientsForm = (props) => {
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
-
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/recipes/${id}`)
-      .then((res) => {
-        console.log("getrecipesbyID res: ", res.data);
-        setRehydrate(res.data.ingredients);
-      })
-      .catch((err) => console.log(err));
-  }, [props.ingredients]);
 
   const handleChange = (e) => {
     setIngredient({ name: e.target.value });
