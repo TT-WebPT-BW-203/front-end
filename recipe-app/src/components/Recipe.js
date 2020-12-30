@@ -3,6 +3,7 @@ import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
 import { deleteRecipe } from "../store/actions";
 import { connect } from "react-redux";
+import Ingredient from "./Ingredient";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -45,10 +46,7 @@ const Recipe = (props) => {
         <p>Ingredients: </p>
 
         {rehydrate.map((ing) => (
-          <li>
-            {ing.name} <button>edit</button>
-            <button>delete</button>
-          </li>
+          <Ingredient ingredient={ing} />
         ))}
         <Button
           onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
