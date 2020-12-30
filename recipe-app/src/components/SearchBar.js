@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { SearchContainer, SearchCentered } from "../styles";
 
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
@@ -19,18 +20,20 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div>
-      <h3>Search for Recipes</h3>
-      <form onSubmit={performSearch}>
-        <input
-          placeholder="Enter recipe title to search here"
-          name="search"
-          value={search}
-          onChange={handleChange}
-        />
-        <button>Search</button>
-      </form>
-      <div>
+    <SearchContainer>
+      <SearchCentered>
+        <h3>Search for Recipes</h3>
+        <form onSubmit={performSearch}>
+          <input
+            placeholder="Enter recipe title to search here"
+            name="search"
+            value={search}
+            onChange={handleChange}
+          />
+          <button>Search</button>
+        </form>
+      </SearchCentered>
+      <SearchCentered>
         {results.length >= 1 &&
           results.map((result) => (
             <div>
@@ -38,8 +41,8 @@ const SearchBar = (props) => {
               <Link to={`/recipe/${result.id}`}>{result.title}</Link>
             </div>
           ))}
-      </div>
-    </div>
+      </SearchCentered>
+    </SearchContainer>
   );
 };
 

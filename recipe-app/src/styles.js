@@ -91,3 +91,16 @@ export const LeftContent = styled.div`
 export const Image = styled.img`
   width: 100%;
 `;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto 2rem;
+`;
+
+export const SearchCentered = styled.div`
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+`;
