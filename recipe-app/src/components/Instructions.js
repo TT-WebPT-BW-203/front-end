@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { postInstructions } from "../store/actions";
 
-const Instructions = () => {
+const Instructions = (props) => {
+  console.log("props in the instructions component: ", props);
   const [instruction, setInstruction] = useState({
     step: "",
     details: "",
@@ -52,4 +55,4 @@ const Instructions = () => {
   );
 };
 
-export default Instructions;
+export default connect(null, { postInstructions })(Instructions);
