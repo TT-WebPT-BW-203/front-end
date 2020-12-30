@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { deleteRecipe, clearValues } from "../store/actions";
-import { connect, useDispatch } from "react-redux";
+import { deleteRecipe } from "../store/actions";
+import { connect } from "react-redux";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -95,4 +95,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { deleteRecipe, clearValues })(Recipe);
+export default connect(mapStateToProps, { deleteRecipe })(Recipe);
