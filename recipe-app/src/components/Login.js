@@ -12,6 +12,10 @@ const Login = (props) => {
     password: "",
   });
 
+  const goToDashboard = () => {
+    history.push("/dashboard");
+  };
+
   const handleChange = (e) => {
     setCredentials({
       ...credentials,
@@ -26,7 +30,7 @@ const Login = (props) => {
       username: "",
       password: "",
     });
-    history.push("/dashboard");
+    goToDashboard();
   };
 
   return (

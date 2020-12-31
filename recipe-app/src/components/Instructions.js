@@ -62,8 +62,9 @@ const Instructions = (props) => {
           <p>{listItem.details}</p>
         </div>
       ))}
-      <button>Back to Recipe</button>
-      <p>Back</p>
+      <button onClick={() => history.push(`/recipe/${id}`)}>
+        Back to Recipe
+      </button>
     </div>
   );
 };

@@ -31,16 +31,17 @@ function App() {
           <Recipe />
         </PrivateRoute>
       </Switch>
-
-      <PrivateRoute exact path="/instructions/:id">
-        <Instructions />
-      </PrivateRoute>
-      <PrivateRoute path="/dashboard">
-        <Dashboard />
-      </PrivateRoute>
-      <PrivateRoute path="/add_recipe">
-        <AddRecipe />
-      </PrivateRoute>
+      <Switch>
+        <PrivateRoute exact path="/instructions/:id">
+          <Instructions />
+        </PrivateRoute>
+        <PrivateRoute path="/dashboard">
+          <Dashboard />
+        </PrivateRoute>
+        <PrivateRoute path="/add_recipe">
+          <AddRecipe />
+        </PrivateRoute>
+      </Switch>
     </div>
   );
 }
