@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { postInstructions } from "../store/actions";
 
@@ -59,7 +59,7 @@ const Instructions = (props) => {
       {stepList.map((listItem) => (
         <div>
           <p>Step #{listItem.step}: </p>
-          <p>{listItem.details}</p>
+          <p>Details: {listItem.details}</p>
         </div>
       ))}
       <button onClick={() => history.push(`/recipe/${id}`)}>

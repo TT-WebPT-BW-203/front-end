@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { connect } from "react-redux";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
@@ -11,8 +12,26 @@ const IngredientsForm = (props) => {
   });
   console.log("ingredient", ingredient);
 
+  const [recipeGet, setRecipeGet] = useState([{}]);
+  console.log("recipeGet: ", recipeGet);
+
   const { id } = useParams();
   const history = useHistory();
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/${id}`)
+      .then((res) => {
+        console.log(
+          "IngredientsForm: useEffect(): res: ",
+          res.data.ingredients
+        );
+        setRecipeGet([...res.data.ingredients]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.ingredients]);
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
@@ -38,6 +57,11 @@ const IngredientsForm = (props) => {
         />
         <button>Add Ingredient</button>
       </form>
+      <div>
+        {recipeGet.map((ingr) => (
+          <p>{ingr.name}</p>
+        ))}
+      </div>
       <button
         onClick={() => {
           history.push(`/recipe/${id}`);
