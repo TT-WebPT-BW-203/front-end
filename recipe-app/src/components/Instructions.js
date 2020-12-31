@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { postInstructions } from "../store/actions";
@@ -10,6 +10,9 @@ const Instructions = (props) => {
     details: "",
   });
   console.log(instruction);
+
+  const [stepList, setStepList] = useState([]);
+  console.log("setplist", stepList);
 
   const history = useHistory();
   const { id } = useParams();
@@ -25,6 +28,7 @@ const Instructions = (props) => {
   const addAnotherStep = (e) => {
     e.preventDefault();
     props.postInstructions(id, instruction);
+    setStepList([...stepList, instruction]);
     setInstruction({
       step: "",
       details: "",
@@ -52,10 +56,14 @@ const Instructions = (props) => {
         <br />
         <button>Add Another Step</button>
       </form>
-      <button>Finish</button>
-      <Link to="/dashboard">
-        <p>Back</p>
-      </Link>
+      {stepList.map((listItem) => (
+        <div>
+          <p>Step #{listItem.step}: </p>
+          <p>{listItem.details}</p>
+        </div>
+      ))}
+      <button>Back to Recipe</button>
+      <p>Back</p>
     </div>
   );
 };
