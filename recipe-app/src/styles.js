@@ -111,3 +111,21 @@ export const SearchCentered = styled.div`
   text-align: center;
   width: 100%;
 `;
+
+export const CenteredForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 0 auto;
+`;
+
+export const StyledLabel = styled.label`
+  text-align: right;
+  padding: 2rem;
+`;
+
+export const StyledInput = styled.input`
+  height: 1.5rem;
+  border-radius: 3px;
+  width: 55%;
+`;

@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { addRecipe } from "../store/actions";
 import { connect } from "react-redux";
+import {
+  CenteredForm,
+  StyledLabel,
+  StyledInput,
+  ButtonCentered,
+  Button,
+  ButtonWrap,
+} from "../styles";
 
 const AddRecipe = (props) => {
   console.log("props in the AddRecipe component: ", props);
@@ -27,43 +35,60 @@ const AddRecipe = (props) => {
     history.push(`/dashboard/`);
   };
   return (
-    <div>
+    <CenteredForm>
       <h3>Add Recipe Form</h3>
       <form onSubmit={saveRecipe}>
-        <input
+        <StyledLabel htmlFor="title">Recipe Title:</StyledLabel>
+        <StyledInput
           placeholder="Enter Title"
           name="title"
+          id="title"
           value={recipe.title}
           onChange={handleChange}
         />
-        <input
+        <br />
+        <StyledLabel htmlFor="source">Recipe Source:</StyledLabel>
+        <StyledInput
           placeholder="Enter Source"
           name="source"
+          id="source"
           value={recipe.source}
           onChange={handleChange}
         />
-        <input
+        <br />
+        <StyledLabel htmlFor="category">Category: </StyledLabel>
+        <StyledInput
           placeholder="Enter Category"
           name="category"
+          id="category"
           value={recipe.category}
           onChange={handleChange}
         />
-        <input
+        <br />
+        <StyledLabel htmlFor="image">Image URL:</StyledLabel>
+        <StyledInput
           placeholder="Enter URL for recipe image"
           name="image"
+          id="image"
           value={recipe.image}
           onChange={handleChange}
         />
-        <button>Add Recipe</button>
+
+        <br />
+        <ButtonWrap>
+          <Button style={{ margin: "1rem" }}>Add Recipe</Button>
+        </ButtonWrap>
       </form>
-      <button
-        onClick={() => {
-          history.push("/dashboard");
-        }}
-      >
-        Cancel
-      </button>
-    </div>
+      <ButtonWrap>
+        <Button
+          onClick={() => {
+            history.push("/dashboard");
+          }}
+        >
+          Cancel
+        </Button>
+      </ButtonWrap>
+    </CenteredForm>
   );
 };
 
