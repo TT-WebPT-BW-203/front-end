@@ -29,7 +29,28 @@ const Recipe = (props) => {
     recipe
   );
 
-  return <div>recipe component</div>;
+  return (
+    <div>
+      recipe component
+      <h3>Recipe title will go here</h3>
+      <p>Source will go here: </p>
+      <div>
+        <h3>Ingredient List here</h3>
+        <p>will insert ingredient list here</p>
+      </div>
+      <div>
+        <h3>instructions will go here</h3>
+        <p>will insert instructions list here</p>
+      </div>
+      <div>
+        <img alt="the image will go here" />
+      </div>
+      <div>
+        <button>edit recipe</button>
+        <button>delete recipe</button>
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
