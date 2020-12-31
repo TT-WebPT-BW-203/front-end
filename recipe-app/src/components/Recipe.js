@@ -52,7 +52,7 @@ const Recipe = (props) => {
           <Ingredient ingredient={ing} />
         ))}
         <Button
-          onClick={() => history.push(`/recipe/${recipe.id}/ingredients`)}
+          onClick={() => history.push(`/recipe/ingredients/${recipe.id}`)}
         >
           Add Ingredients
         </Button>

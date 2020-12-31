@@ -24,21 +24,22 @@ function App() {
         <PrivateRoute exact path="/recipe/:id/update_recipe">
           <UpdateForm />
         </PrivateRoute>
+        <PrivateRoute exact path="/recipe/ingredients/:id">
+          <IngredientsForm />
+        </PrivateRoute>
         <PrivateRoute path="/recipe/:id">
           <Recipe />
         </PrivateRoute>
       </Switch>
-      <PrivateRoute path="/add_recipe">
-        <AddRecipe />
-      </PrivateRoute>
-      <PrivateRoute exact path="/recipe/:id/ingredients">
-        <IngredientsForm />
-      </PrivateRoute>
+
       <PrivateRoute exact path="/instructions/:id">
         <Instructions />
       </PrivateRoute>
       <PrivateRoute path="/dashboard">
         <Dashboard />
+      </PrivateRoute>
+      <PrivateRoute path="/add_recipe">
+        <AddRecipe />
       </PrivateRoute>
     </div>
   );
