@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editIngredient } from "../store/actions";
+import { Button, ButtonWrap, ListItems } from "../styles";
 
 const Ingredient = (props) => {
   const [edit, setEdit] = useState(false);
@@ -36,11 +37,13 @@ const Ingredient = (props) => {
           <button onClick={() => setEdit(!edit)}>cancel edit</button>
         </div>
       ) : (
-        <li>
+        <ListItems>
           {props.ingredient.name}
-          <button onClick={handleEdit}>edit</button>
-          <button>delete</button>
-        </li>
+          <ButtonWrap>
+            <Button onClick={handleEdit}>edit</Button>
+            <Button>delete</Button>
+          </ButtonWrap>
+        </ListItems>
       )}
     </div>
   );

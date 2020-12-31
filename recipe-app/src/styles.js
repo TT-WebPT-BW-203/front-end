@@ -76,7 +76,7 @@ export const CardTitle = styled.div`
 
 export const RecipeContainer = styled.div`
   display: flex;
-  width: 40%;
+  width: 75%;
   margin: 3rem auto;
 `;
 export const RecipeTitle = styled.h3`
@@ -128,4 +128,15 @@ export const StyledInput = styled.input`
   height: 1.5rem;
   border-radius: 3px;
   width: 55%;
+`;
+
+export const ListItems = styled.li`
+  display: flex;
+  list-style: none;
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size: larger;
+  padding-bottom: 0.5rem;
+  border: lightgray solid 1px;
 `;

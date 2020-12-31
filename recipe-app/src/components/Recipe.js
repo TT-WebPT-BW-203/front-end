@@ -46,7 +46,7 @@ const Recipe = (props) => {
         <RecipeTitle>Title: {recipe.title}</RecipeTitle>
         <p>Source: {recipe.source}</p>
         <p>Category: {recipe.category}</p>
-        <p>Ingredients: </p>
+        <h3>Ingredients: </h3>
 
         {rehydrate.map((ing) => (
           <Ingredient ingredient={ing} />
