@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { editIngredient } from "../store/actions";
+import { editIngredient, deleteIngredient } from "../store/actions";
 import { Button, ButtonWrap, ListItems, StyledInput } from "../styles";
 
 const Ingredient = (props) => {
@@ -41,7 +41,7 @@ const Ingredient = (props) => {
           {props.ingredient.name}
           <ButtonWrap style={{ justifyContent: "flex-end" }}>
             <Button onClick={handleEdit}>edit</Button>
-            <Button>delete</Button>
+            <Button onClick={() => props.deleteIngredient(id)}>delete</Button>
           </ButtonWrap>
         </ListItems>
       )}
@@ -54,4 +54,6 @@ const mapStateToProps = (state) => {
     ingredients: state.ingredients,
   };
 };
-export default connect(mapStateToProps, { editIngredient })(Ingredient);
+export default connect(mapStateToProps, { editIngredient, deleteIngredient })(
+  Ingredient
+);

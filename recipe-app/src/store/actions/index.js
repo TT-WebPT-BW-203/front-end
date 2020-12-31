@@ -28,6 +28,9 @@ import {
   START_POST_INSTRUCTION,
   POST_INSTRUCTION_SUCCESS,
   POST_INSTRUCTION_FAIL,
+  START_INGREDIENT_DELETE,
+  DELETE_INGREDIENT_SUCCESS,
+  DELETE_INGREDIENT_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -141,6 +144,20 @@ export const editIngredient = (id, ingredient) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: EDIT_INGREDIENT_FAIL, payload: err });
+    });
+};
+
+export const deleteIngredient = (id) => (dispatch) => {
+  dispatch({ type: START_INGREDIENT_DELETE });
+  axiosWithAuth()
+    .delete(`/api/ingredients/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: DELETE_INGREDIENT_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: DELETE_RECIPE_FAIL, payload: err });
     });
 };
 
