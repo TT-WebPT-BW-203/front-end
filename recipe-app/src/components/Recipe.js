@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import img_placeholder from "../../src/img_placeholder.png";
 import { useParams, useHistory, Link } from "react-router-dom";
-import { deleteRecipe } from "../store/actions";
+import {
+  deleteRecipe,
+  editIngredient,
+  deleteIngredient,
+} from "../store/actions";
 import { connect } from "react-redux";
 import Ingredient from "./Ingredient";
 import {
@@ -18,8 +22,12 @@ const Recipe = (props) => {
   console.log("props in the Recipe component (from the GLOBAL STATE): ", props);
 
   const [rehydrate, setRehydrate] = useState([{}]);
+  console.log("Recipe: rehydrate: ", rehydrate);
   const [instructionsSideEffects, setInstructionsSideEffects] = useState([{}]);
-  console.log("instructionsSideEffects", instructionsSideEffects);
+  console.log(
+    "Recipe: instructionsSideEffects: useEffect(): ",
+    instructionsSideEffects
+  );
   const history = useHistory();
   const params = useParams();
 
@@ -50,7 +58,10 @@ const Recipe = (props) => {
 
         {rehydrate.map((ing) => (
           <div>
-            <li>{ing.name} </li>
+            <li>
+              {ing.name} <button>edit</button>
+              <button>delete</button>
+            </li>
           </div>
         ))}
         <Button
@@ -113,4 +124,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { deleteRecipe })(Recipe);
+export default connect(mapStateToProps, {
+  deleteRecipe,
+  editIngredient,
+  deleteIngredient,
+})(Recipe);
