@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateRecipe } from "../store/actions";
+import { Button, ButtonWrap, CenteredForm, StyledLabel } from "../styles";
 
 const UpdateForm = (props) => {
   console.log("props in the updateRecipe compoment: ", props);
@@ -30,10 +31,10 @@ const UpdateForm = (props) => {
     });
   };
   return (
-    <div>
+    <CenteredForm>
       <h3>UpdateForm</h3>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Update recipe title:</label>
+        <StyledLabel htmlFor="title">Update recipe title:</StyledLabel>
         <input
           id="title"
           name="title"
@@ -41,7 +42,7 @@ const UpdateForm = (props) => {
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="source">Update Source: </label>
+        <StyledLabel htmlFor="source">Update Source: </StyledLabel>
         <input
           id="source"
           name="source"
@@ -49,7 +50,7 @@ const UpdateForm = (props) => {
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="category">Update Category: </label>
+        <StyledLabel htmlFor="category">Update Category: </StyledLabel>
         <input
           id="category"
           name="category"
@@ -57,7 +58,7 @@ const UpdateForm = (props) => {
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="image">Update Image URL</label>
+        <StyledLabel htmlFor="image">Update Image URL</StyledLabel>
         <input
           id="image"
           name="image"
@@ -65,16 +66,20 @@ const UpdateForm = (props) => {
           onChange={handleChange}
         />
         <br />
-        <button>Update</button>
+        <ButtonWrap>
+          <Button>Update</Button>
+        </ButtonWrap>
       </form>
-      <button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
-        Cancel
-      </button>
-    </div>
+      <ButtonWrap>
+        <Button
+          onClick={() => {
+            history.goBack();
+          }}
+        >
+          Cancel
+        </Button>
+      </ButtonWrap>
+    </CenteredForm>
   );
 };
 
