@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   START_LOGIN,
   LOGIN_FAIL,
@@ -26,6 +27,8 @@ import {
   START_POST_INSTRUCTION,
   POST_INSTRUCTION_SUCCESS,
   POST_INSTRUCTION_FAIL,
+  START_INGREDIENT_DELETE,
+  DELETE_INGREDIENT_SUCCESS,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -220,7 +223,28 @@ export const userReducer = (state = initialState, action) => {
         isLoading: false,
       };
     }
-    //START
+    case START_INGREDIENT_DELETE: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case DELETE_INGREDIENT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        ingredients: [...action.payload],
+      };
+    }
+    case DELETE_RECIPE_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
     case START_POST_INSTRUCTION: {
       return {
         ...state,
