@@ -62,13 +62,7 @@ const IngredientsForm = (props) => {
           <p>{ingr.name}</p>
         ))}
       </div>
-      <button
-        onClick={() => {
-          history.push(`/recipe/${id}`);
-        }}
-      >
-        Done adding ingredients
-      </button>
+      <button>Done adding ingredients</button>
     </div>
   );
 };

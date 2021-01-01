@@ -17,6 +17,7 @@ import {
 } from "../styles";
 import IngredientList from "./IngredientList";
 import InstructionsForm from "./InstructionsForm";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Recipe = (props) => {
   console.log();
@@ -29,6 +30,15 @@ const Recipe = (props) => {
     recipe
   );
 
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/user/${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div>
       <h3>Recipe title will go here: {recipe.title}</h3>
@@ -36,16 +46,12 @@ const Recipe = (props) => {
       <div>
         <h3>Ingredients: </h3>
         <IngredientList />
-        <button onClick={() => history.push(`/recipe/ingredients/${id}`)}>
-          Add Ingredients
-        </button>
+        <button>Add Ingredients</button>
       </div>
       <div>
         <h3>Instructions: </h3>
-        <button onClick={history.push(`/recipe/instructions/${id}`)}>
-          Add Instructions
-        </button>{" "}
-        //will take you to the InstructionsForm
+        <button>Add Instructions</button> //will take you to the
+        InstructionsForm
         <p>will insert instructions list here</p>
       </div>
       <div>

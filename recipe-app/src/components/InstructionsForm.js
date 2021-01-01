@@ -65,7 +65,7 @@ const InstructionsForm = (props) => {
         />
         <br />
         <button onClick={handleSubmit}>Save Step</button>
-        <button onClick={() => history.push(`/recipe/${id}`)}>Cancel</button>
+        <button>Cancel</button>
       </form>
       <div>
         {instructionList.map((inst) => (
