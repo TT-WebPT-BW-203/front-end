@@ -6,11 +6,13 @@ import { editIngredient, deleteIngredient } from "../store/actions";
 const Ingredient = (props) => {
   console.log("Ingredient: props: ", props);
   const { id } = useParams();
+  const ingrId = props.ingredient.id;
+  console.log("id:", ingrId);
   const [isEditing, setIsEditing] = useState(false);
   const [newIngredient, setNewIngredient] = useState({
     name: "",
   });
-
+  console.log("newIngredient", newIngredient);
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
   };
@@ -19,7 +21,13 @@ const Ingredient = (props) => {
   };
 
   const handleSave = () => {
+    props.editIngredient(ingrId, newIngredient);
+    setNewIngredient({ name: "" });
     setIsEditing(!isEditing);
+  };
+
+  const handleDelete = () => {
+    props.deleteIngredient(ingrId);
   };
 
   return (
@@ -35,7 +43,7 @@ const Ingredient = (props) => {
           <p>
             {props.ingredient.name}
             <button onClick={handleEditButton}>edit</button>
-            <button>delete</button>
+            <button onClick={handleDelete}>delete</button>
           </p>
         </div>
       )}

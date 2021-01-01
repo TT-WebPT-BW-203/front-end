@@ -17,7 +17,7 @@ const IngredientList = (props) => {
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/recipes/${id}	`)
+      .get(`/api/recipes/${id}`)
       .then((res) => {
         console.log("IngredientList: useEffect(): res: ", res.data);
         setRehydratedIngredients(res.data.ingredients);
