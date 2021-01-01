@@ -43,9 +43,9 @@ const Recipe = (props) => {
         </button>
       </div>
       <div>
-        <h3>instructions will go here</h3>
+        <h3>Instructions: </h3>
         <Instructions />
-        <button>add instructions</button>
+        <button>Add Instructions</button>
         <p>will insert instructions list here</p>
       </div>
       <div>

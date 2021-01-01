@@ -10,10 +10,6 @@ const IngredientList = (props) => {
 
   const [rehydratedIngredients, setRehydratedIngredients] = useState([]);
   console.log("IngredientList: rehydratedIngredients: ", rehydratedIngredients);
-  const [edit, setEdit] = useState(false);
-  const [editedIng, setEditedIng] = useState({
-    name: "",
-  });
 
   useEffect(() => {
     axiosWithAuth()
