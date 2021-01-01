@@ -30,7 +30,6 @@ const IngredientList = (props) => {
 
   return (
     <div>
-      Your Ingredients:
       {rehydratedIngredients.map((ingredient) => (
         <p>
           <Ingredient ingredient={ingredient} />

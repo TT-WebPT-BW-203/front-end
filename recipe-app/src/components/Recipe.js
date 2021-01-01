@@ -35,12 +35,11 @@ const Recipe = (props) => {
       <h3>Recipe title will go here: {recipe.title}</h3>
       <p>Source will go here: {recipe.source}</p>
       <div>
-        <h3>Ingredient List here</h3>
-        <button onClick={() => history.push(`/recipe/ingredients/${id}`)}>
-          add ingredients
-        </button>
+        <h3>Ingredients: </h3>
         <IngredientList />
-        <p>will insert ingredient list here</p>
+        <button onClick={() => history.push(`/recipe/ingredients/${id}`)}>
+          Add Ingredients
+        </button>
       </div>
       <div>
         <h3>instructions will go here</h3>

@@ -11,6 +11,7 @@ const Ingredient = (props) => {
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
   };
+
   const handleEditButton = () => {
     setIsEditing(!isEditing);
   };
