@@ -19,20 +19,19 @@ function App() {
       <Route path="/login" render={() => <Login />} />
       <Route path="/signup" render={() => <SignUp />} />
 
-      <Switch>
-        <PrivateRoute exact path="/recipe/:id/update_recipe">
-          <UpdateForm />
-        </PrivateRoute>
-        <PrivateRoute exact path="/recipe/ingredients/:id">
-          <IngredientsForm />
-        </PrivateRoute>
-        <PrivateRoute exact path="/recipe/instructions/:id">
+      <PrivateRoute exact path="/recipe/:id/update_recipe">
+        <UpdateForm />
+      </PrivateRoute>
+      <PrivateRoute path="/recipe/:id">
+        <Recipe />
+      </PrivateRoute>
+      <PrivateRoute exact path="/recipe/ingredients/:id">
+        <IngredientsForm />
+      </PrivateRoute>
+      {/* <PrivateRoute exact path="/recipe/instructions/:id">
           <InstructionsForm />
-        </PrivateRoute>
-        <PrivateRoute path="/recipe/:id">
-          <Recipe />
-        </PrivateRoute>
-      </Switch>
+        </PrivateRoute> */}
+
       <Switch>
         <PrivateRoute path="/dashboard">
           <Dashboard />
