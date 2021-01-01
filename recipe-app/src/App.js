@@ -7,7 +7,6 @@ import PrivateRoute from "./components/PrivateRoute";
 import Recipe from "./components/Recipe";
 import AddRecipe from "./components/AddRecipe";
 import IngredientsForm from "./components/IngredientsForm";
-import IngredientList from "./components/IngredientList";
 import InstructionsForm from "./components/InstructionsForm";
 import UpdateForm from "./components/UpdateForm";
 
@@ -27,14 +26,14 @@ function App() {
         <PrivateRoute exact path="/recipe/ingredients/:id">
           <IngredientsForm />
         </PrivateRoute>
+        <PrivateRoute exact path="/recipe/instructions/:id">
+          <InstructionsForm />
+        </PrivateRoute>
         <PrivateRoute path="/recipe/:id">
           <Recipe />
         </PrivateRoute>
       </Switch>
       <Switch>
-        <PrivateRoute exact path="/instructions/:id">
-          <InstructionsForm />
-        </PrivateRoute>
         <PrivateRoute path="/dashboard">
           <Dashboard />
         </PrivateRoute>

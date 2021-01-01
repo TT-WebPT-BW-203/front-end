@@ -43,8 +43,10 @@ const Recipe = (props) => {
       <div>
         <h3>Instructions: </h3>
         <InstructionsForm />
-        <button>Add Instructions</button> //will take you to the
-        InstructionsForm
+        <button onClick={history.push(`/recipe/instructions/${id}`)}>
+          Add Instructions
+        </button>{" "}
+        //will take you to the InstructionsForm
         <p>will insert instructions list here</p>
       </div>
       <div>
