@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Ingredient from "./Ingredient";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -9,12 +10,16 @@ const IngredientList = (props) => {
 
   const [rehydratedIngredients, setRehydratedIngredients] = useState([]);
   console.log("IngredientList: rehydratedIngredients: ", rehydratedIngredients);
+  const [edit, setEdit] = useState(false);
+  const [editedIng, setEditedIng] = useState({
+    name: "",
+  });
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${id}	`)
       .then((res) => {
-        console.log("IngrideintList: useEffect(): res: ", res.data);
+        console.log("IngredientList: useEffect(): res: ", res.data);
         setRehydratedIngredients(res.data.ingredients);
       })
       .catch((err) => console.log(err));
@@ -26,8 +31,10 @@ const IngredientList = (props) => {
   return (
     <div>
       Your Ingredients:
-      {props.ingredients.map((ing) => (
-        <p>{ing.name}</p>
+      {rehydratedIngredients.map((ingredient) => (
+        <p>
+          <Ingredient />
+        </p>
       ))}
     </div>
   );
