@@ -25,7 +25,7 @@ const Recipe = (props) => {
   console.log(id);
   const [recipes, setRecipes] = useState([]);
 
-  const recipe = recipes.find((rec) => rec.id === Number(id));
+  const recipe = props.recipes.find((rec) => rec.id === Number(id));
   console.log(
     "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
     recipe
