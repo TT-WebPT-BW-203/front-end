@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import img_placeholder from "../../src/img_placeholder.png";
 import { connect } from "react-redux";
@@ -15,14 +15,25 @@ import {
   ButtonWrap,
 } from "../styles";
 import SearchBar from "./SearchBar";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
+  const userId = props.userId;
+
+  const [getRecipes, setGetRecipes] = useState([]);
 
   useEffect(() => {
-    //I think this needs to be changed to an axios call
-    props.getUserRecipes(props.userId);
-  }, []);
+    axiosWithAuth()
+      .get(`/api/recipes/user/${userId}`)
+      .then((res) => {
+        console.log(res.data);
+        setGetRecipes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.userId]);
 
   return (
     <div>
@@ -44,8 +55,8 @@ const Dashboard = (props) => {
         />
       ) : null}
       <RecipesContainer>
-        {props.recipes &&
-          props.recipes.map((rec) => (
+        {getRecipes &&
+          getRecipes.map((rec) => (
             <Link
               to={`/recipe/${rec.id}`}
               key={rec.id}

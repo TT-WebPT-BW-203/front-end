@@ -18,28 +18,24 @@ function App() {
       <NavBar />
       <Route path="/login" render={() => <Login />} />
       <Route path="/signup" render={() => <SignUp />} />
-
       <PrivateRoute exact path="/recipe/:id/update_recipe">
         <UpdateForm />
+      </PrivateRoute>
+      <PrivateRoute path="/recipe/ingredients/:id">
+        <IngredientsForm />
+      </PrivateRoute>{" "}
+      <PrivateRoute path="/recipe/instructions/:id">
+        <InstructionsForm />
       </PrivateRoute>
       <PrivateRoute path="/recipe/:id">
         <Recipe />
       </PrivateRoute>
-      <PrivateRoute exact path="/recipe/ingredients/:id">
-        <IngredientsForm />
+      <PrivateRoute path="/dashboard">
+        <Dashboard />
       </PrivateRoute>
-      {/* <PrivateRoute exact path="/recipe/instructions/:id">
-          <InstructionsForm />
-        </PrivateRoute> */}
-
-      <Switch>
-        <PrivateRoute path="/dashboard">
-          <Dashboard />
-        </PrivateRoute>
-        <PrivateRoute path="/add_recipe">
-          <AddRecipe />
-        </PrivateRoute>
-      </Switch>
+      <PrivateRoute path="/add_recipe">
+        <AddRecipe />
+      </PrivateRoute>
     </div>
   );
 }

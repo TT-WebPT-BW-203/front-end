@@ -42,7 +42,6 @@ const Recipe = (props) => {
       </div>
       <div>
         <h3>Instructions: </h3>
-        <InstructionsForm />
         <button onClick={history.push(`/recipe/instructions/${id}`)}>
           Add Instructions
         </button>{" "}
