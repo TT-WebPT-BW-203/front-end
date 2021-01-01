@@ -30,6 +30,7 @@ const Login = (props) => {
       username: "",
       password: "",
     });
+    goToDashboard();
   };
 
   return (

@@ -18,9 +18,14 @@ function App() {
       <NavBar />
       <Route path="/login" render={() => <Login />} />
       <Route path="/signup" render={() => <SignUp />} />
-      <Route path="/" render={() => <Login />} />
-      <PrivateRoute path="/dashboard">
+      <PrivateRoute exact path="/dashboard">
         <Dashboard />
+      </PrivateRoute>
+      <PrivateRoute path={`/recipe/:id/ingredients_form`}>
+        <IngredientsForm />
+      </PrivateRoute>
+      <PrivateRoute path={`/recipe/:id/instructions_form`}>
+        <InstructionsForm />
       </PrivateRoute>
       <PrivateRoute path={`/recipe/:id`}>
         <Recipe />

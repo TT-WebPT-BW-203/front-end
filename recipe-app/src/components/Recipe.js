@@ -20,24 +20,26 @@ import InstructionsForm from "./InstructionsForm";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Recipe = (props) => {
-  console.log();
   const history = useHistory();
   const { id } = useParams();
+  console.log(id);
+  const [recipes, setRecipes] = useState([]);
 
-  // const recipe = props.recipes.find((rec) => rec.id === Number(id));
-  // console.log(
-  //   "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
-  //   recipe
-  // );
+  const recipe = recipes.find((rec) => rec.id === Number(id));
+  console.log(
+    "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
+    recipe
+  );
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/recipes/user/${id}`)
+      .get(`/api/recipes/user/${props.userId}`)
       .then((res) => {
-        console.log(res);
+        console.log(res.data);
+        setRecipes(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [props.userId]);
 
   return (
     <div>
@@ -46,12 +48,16 @@ const Recipe = (props) => {
       <div>
         <h3>Ingredients: </h3>
         <IngredientList />
-        <button>Add Ingredients</button>
+        <button onClick={() => history.push(`/recipe/${id}/ingredients_form`)}>
+          Add Ingredients
+        </button>
       </div>
       <div>
         <h3>Instructions: </h3>
-        <button>Add Instructions</button> //will take you to the
-        InstructionsForm
+        <button onClick={() => history.push(`/recipe/${id}/instructions_form`)}>
+          Add Instructions
+        </button>{" "}
+        //will take you to the InstructionsForm
         <p>will insert instructions list here</p>
       </div>
       <div>
@@ -70,6 +76,7 @@ const mapStateToProps = (state) => {
     recipes: state.recipes,
     ingredients: state.ingredients,
     instructions: state.instructions,
+    userId: state.userId,
   };
 };
 
