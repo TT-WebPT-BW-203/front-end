@@ -124,7 +124,7 @@ export const userReducer = (state = initialState, action) => {
     case GET_RECIPES_SUCCESS: {
       return {
         ...state,
-        recipes: action.payload,
+        recipes: [...action.payload],
         error: "",
         isLoading: false,
       };

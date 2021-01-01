@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { getUserRecipes } from "../store/actions";
 import { logUser } from "../store/actions/index";
 import { Button, FormGroup, Label, Input } from "reactstrap";
 
 const Login = (props) => {
-  console.log("props in login: ", props);
   const history = useHistory();
   const [credentials, setCredentials] = useState({
     username: "",
@@ -26,10 +26,12 @@ const Login = (props) => {
   const login = (e) => {
     e.preventDefault();
     props.logUser(credentials);
+    props.getUserRecipes(props.userId);
     setCredentials({
       username: "",
       password: "",
     });
+
     goToDashboard();
   };
 
@@ -69,4 +71,4 @@ const mapStateToProps = (state) => {
     userId: state.userId,
   };
 };
-export default connect(mapStateToProps, { logUser })(Login);
+export default connect(mapStateToProps, { logUser, getUserRecipes })(Login);

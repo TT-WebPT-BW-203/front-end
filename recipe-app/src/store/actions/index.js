@@ -157,7 +157,7 @@ export const deleteIngredient = (id) => (dispatch) => {
     })
     .catch((err) => {
       console.log(err);
-      dispatch({ type: DELETE_RECIPE_FAIL, payload: err });
+      dispatch({ type: DELETE_INGREDIENT_FAIL, payload: err });
     });
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { getUserRecipes } from "../store/actions";
 import { Link } from "react-router-dom";
 import { StyledNavBar, H1, NavBarLinks, NavLinks } from "../styles";
 
@@ -26,7 +27,13 @@ const NavBar = (props) => {
         </Link>
 
         <Link to="/dashboard" style={{ textDecoration: "none" }}>
-          <NavBarLinks>Your Recipes</NavBarLinks>{" "}
+          <NavBarLinks
+            onClick={() => {
+              props.getUserRecipes(props.id);
+            }}
+          >
+            Your Recipes
+          </NavBarLinks>{" "}
         </Link>
         <NavBarLinks onClick={logout}>Log Out</NavBarLinks>
       </NavLinks>
@@ -41,4 +48,4 @@ const mapStateToProps = (state) => {
     loggedIn: state.loggedIn,
   };
 };
-export default connect(mapStateToProps, {})(NavBar);
+export default connect(mapStateToProps, { getUserRecipes })(NavBar);

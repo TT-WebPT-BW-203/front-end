@@ -31,7 +31,7 @@ const IngredientsForm = (props) => {
       .catch((err) => {
         console.log(err);
       });
-  }, [props.ingredients]);
+  }, [props.ingredients, props.recipe]);
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
   console.log("recipe params: ", recipe);
@@ -62,7 +62,9 @@ const IngredientsForm = (props) => {
           <p>{ingr.name}</p>
         ))}
       </div>
-      <button>Done adding ingredients</button>
+      <button onClick={() => history.push(`/recipe/${id}`)}>
+        Done adding ingredients
+      </button>
     </div>
   );
 };

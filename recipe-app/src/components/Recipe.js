@@ -39,7 +39,7 @@ const Recipe = (props) => {
         setRecipes(res.data);
       })
       .catch((err) => console.log(err));
-  }, [props.userId]);
+  }, [props.userId, props.recipe]);
 
   return (
     <div>
