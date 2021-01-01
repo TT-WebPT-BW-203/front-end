@@ -18,21 +18,26 @@ const Ingredient = (props) => {
     setIsEditing(!isEditing);
   };
 
-  const handleSave = () => {};
+  const handleSave = () => {
+    setIsEditing(!isEditing);
+  };
 
   return (
     <div>
       {isEditing ? (
         <div>
           <input value={newIngredient.name} onChange={handleChange} />
-          <button>save</button>
+          <button onClick={handleSave}>save</button>
           <button onClick={() => setIsEditing(!isEditing)}>cancel</button>
         </div>
       ) : (
-        <p>
-          Single Ingredient <button onClick={handleEditButton}>edit</button>
-          <button>delete</button>
-        </p>
+        <div>
+          <p>
+            {props.ingredient.name}
+            <button onClick={handleEditButton}>edit</button>
+            <button>delete</button>
+          </p>
+        </div>
       )}
     </div>
   );

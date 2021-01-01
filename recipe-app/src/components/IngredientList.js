@@ -33,7 +33,7 @@ const IngredientList = (props) => {
       Your Ingredients:
       {rehydratedIngredients.map((ingredient) => (
         <p>
-          <Ingredient />
+          <Ingredient ingredient={ingredient} />
         </p>
       ))}
     </div>
