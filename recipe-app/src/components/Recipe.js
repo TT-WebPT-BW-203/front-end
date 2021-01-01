@@ -18,6 +18,7 @@ import {
 } from "../styles";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import IngredientList from "./IngredientList";
+import Instructions from "./Instructions";
 
 const Recipe = (props) => {
   console.log();
@@ -43,6 +44,7 @@ const Recipe = (props) => {
       </div>
       <div>
         <h3>instructions will go here</h3>
+        <Instructions />
         <button>add instructions</button>
         <p>will insert instructions list here</p>
       </div>
