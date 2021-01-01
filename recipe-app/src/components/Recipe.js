@@ -43,7 +43,7 @@ const Recipe = (props) => {
 
   return (
     <div>
-      {/* <h3>Recipe title will go here: {recipe.title}</h3> */}
+      <h3>Recipe title will go here: {recipe.title}</h3>
       {/* <p>Source will go here: {recipe.source}</p> */}
       <div>
         <h3>Ingredients: </h3>
