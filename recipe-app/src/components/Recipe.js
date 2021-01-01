@@ -41,6 +41,11 @@ const Recipe = (props) => {
       .catch((err) => console.log(err));
   }, [props.userId, props.recipe]);
 
+  const handleDelete = () => {
+    props.deleteRecipe(id);
+    history.push("/dashboard");
+  };
+
   return (
     <div>
       <h3>Recipe title will go here: {recipe.title}</h3>
@@ -71,7 +76,7 @@ const Recipe = (props) => {
         >
           edit recipe
         </button>
-        <button>delete recipe</button>
+        <button onClick={handleDelete}>delete recipe</button>
       </div>
     </div>
   );
