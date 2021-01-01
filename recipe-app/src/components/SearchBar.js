@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { SearchContainer, SearchCentered } from "../styles";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const SearchBar = (props) => {
   const [search, setSearch] = useState("");
-  const [results, setResults] = useState([{}]);
+  const [recipes, setRecipes] = useState([]);
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/user/${props.userId}`)
+      .then((res) => {
+        console.log(res.data);
+        setRecipes(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [props.recipes]);
 
   const handleChange = (e) => {
     setSearch(e.target.value);
@@ -12,7 +26,7 @@ const SearchBar = (props) => {
   const performSearch = (e) => {
     e.preventDefault();
     setResults(
-      props.recipes.filter(
+      recipes.filter(
         (recipe) => recipe.title === search || recipe.category === search
       )
     );
@@ -34,10 +48,10 @@ const SearchBar = (props) => {
         </form>
       </SearchCentered>
       <SearchCentered>
+        <h4>Results:</h4>
         {results.length >= 1 &&
           results.map((result) => (
             <div>
-              <h4>Results:</h4>
               <Link to={`/recipe/${result.id}`}>{result.title}</Link>
             </div>
           ))}

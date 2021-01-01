@@ -21,14 +21,14 @@ const Dashboard = (props) => {
   console.log("props in the dashboard: ", props);
   const userId = props.userId;
 
-  const [getRecipes, setGetRecipes] = useState([]);
+  const [recipesByUser, setRecipesByUser] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/user/${userId}`)
       .then((res) => {
         console.log(res.data);
-        setGetRecipes(res.data);
+        setRecipesByUser(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -37,8 +37,8 @@ const Dashboard = (props) => {
 
   return (
     <div>
-      {props.username && <Welcome>Welcome {props.username}</Welcome>}
-      <SearchBar recipes={props.recipes} userId={props.userId} />
+      {recipesByUser && <Welcome>Welcome {props.username}</Welcome>}
+      <SearchBar recipes={recipesByUser.recipes} userId={props.userId} />
       <Link to="/add_recipe">
         <ButtonWrap>
           <Button>Add New Recipe</Button>
@@ -55,8 +55,8 @@ const Dashboard = (props) => {
         />
       ) : null}
       <RecipesContainer>
-        {getRecipes &&
-          getRecipes.map((rec) => (
+        {recipesByUser &&
+          recipesByUser.map((rec) => (
             <Link
               to={`/recipe/${rec.id}`}
               key={rec.id}
