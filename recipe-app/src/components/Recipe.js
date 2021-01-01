@@ -7,7 +7,6 @@ import {
   deleteIngredient,
 } from "../store/actions";
 import { connect } from "react-redux";
-import Ingredient from "./Ingredient";
 import {
   RecipeContainer,
   RecipeTitle,
@@ -16,9 +15,8 @@ import {
   LeftContent,
   Image,
 } from "../styles";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
 import IngredientList from "./IngredientList";
-import Instructions from "./Instructions";
+import InstructionsForm from "./InstructionsForm";
 
 const Recipe = (props) => {
   console.log();
@@ -44,8 +42,9 @@ const Recipe = (props) => {
       </div>
       <div>
         <h3>Instructions: </h3>
-        <Instructions />
-        <button>Add Instructions</button>
+        <InstructionsForm />
+        <button>Add Instructions</button> //will take you to the
+        InstructionsForm
         <p>will insert instructions list here</p>
       </div>
       <div>

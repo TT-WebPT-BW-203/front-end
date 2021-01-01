@@ -8,7 +8,7 @@ import Recipe from "./components/Recipe";
 import AddRecipe from "./components/AddRecipe";
 import IngredientsForm from "./components/IngredientsForm";
 import IngredientList from "./components/IngredientList";
-import Instructions from "./components/Instructions";
+import InstructionsForm from "./components/InstructionsForm";
 import UpdateForm from "./components/UpdateForm";
 
 import { Route, Switch } from "react-router-dom";
@@ -33,7 +33,7 @@ function App() {
       </Switch>
       <Switch>
         <PrivateRoute exact path="/instructions/:id">
-          <Instructions />
+          <InstructionsForm />
         </PrivateRoute>
         <PrivateRoute path="/dashboard">
           <Dashboard />
