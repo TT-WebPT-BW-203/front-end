@@ -24,11 +24,11 @@ const Recipe = (props) => {
   const history = useHistory();
   const { id } = useParams();
 
-  const recipe = props.recipes.find((rec) => rec.id === Number(id));
-  console.log(
-    "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
-    recipe
-  );
+  // const recipe = props.recipes.find((rec) => rec.id === Number(id));
+  // console.log(
+  //   "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
+  //   recipe
+  // );
 
   useEffect(() => {
     axiosWithAuth()
@@ -41,8 +41,8 @@ const Recipe = (props) => {
 
   return (
     <div>
-      <h3>Recipe title will go here: {recipe.title}</h3>
-      <p>Source will go here: {recipe.source}</p>
+      {/* <h3>Recipe title will go here: {recipe.title}</h3> */}
+      {/* <p>Source will go here: {recipe.source}</p> */}
       <div>
         <h3>Ingredients: </h3>
         <IngredientList />

@@ -21,8 +21,8 @@ const IngredientList = (props) => {
       .catch((err) => console.log(err));
   }, [props.ingredients]);
 
-  const list = props.ingredients.filter((ing) => ing.recipe_id === Number(id));
-  console.log("list const", list);
+  // const list = props.ingredients.filter((ing) => ing.recipe_id === Number(id));
+  // console.log("list const", list);
 
   return (
     <div>
