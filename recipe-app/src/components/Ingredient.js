@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { editIngredient, deleteIngredient } from "../store/actions";
 
 const Ingredient = (props) => {
-  console.log("Ingredient: props: ", props);
-  const { id } = useParams();
   const ingrId = props.ingredient.id;
-  console.log("id:", ingrId);
   const [isEditing, setIsEditing] = useState(false);
   const [newIngredient, setNewIngredient] = useState({
     name: "",
   });
-  console.log("newIngredient", newIngredient);
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
   };
