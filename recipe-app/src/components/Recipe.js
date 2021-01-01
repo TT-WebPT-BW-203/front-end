@@ -64,7 +64,13 @@ const Recipe = (props) => {
         <img alt="the image will go here" />
       </div>
       <div>
-        <button>edit recipe</button>
+        <button
+          onClick={() => {
+            history.push(`/recipe/${id}/update_recipe`);
+          }}
+        >
+          edit recipe
+        </button>
         <button>delete recipe</button>
       </div>
     </div>

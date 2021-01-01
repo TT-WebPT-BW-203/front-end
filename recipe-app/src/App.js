@@ -21,7 +21,10 @@ function App() {
       <PrivateRoute exact path="/dashboard">
         <Dashboard />
       </PrivateRoute>
-      <PrivateRoute path={`/recipe/:id`}>
+      <PrivateRoute exact path={`/recipe/:id/update_recipe`}>
+        <UpdateForm />
+      </PrivateRoute>
+      <PrivateRoute exact path={`/recipe/:id`}>
         <Recipe />
       </PrivateRoute>
       <PrivateRoute path={`/recipe/:id/ingredients_form`}>
@@ -30,7 +33,6 @@ function App() {
       <PrivateRoute path={`/recipe/:id/instructions_form`}>
         <InstructionsForm />
       </PrivateRoute>
-
       <PrivateRoute path={`/add_recipe`}>
         <AddRecipe />
       </PrivateRoute>
