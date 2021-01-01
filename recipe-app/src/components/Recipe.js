@@ -17,13 +17,14 @@ import {
   Image,
 } from "../styles";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import IngredientList from "./IngredientList";
 
 const Recipe = (props) => {
   console.log();
   const history = useHistory();
-  const params = useParams();
+  const { id } = useParams();
 
-  const recipe = props.recipes.find((rec) => rec.id === Number(params.id));
+  const recipe = props.recipes.find((rec) => rec.id === Number(id));
   console.log(
     "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
     recipe
@@ -31,15 +32,19 @@ const Recipe = (props) => {
 
   return (
     <div>
-      recipe component
-      <h3>Recipe title will go here</h3>
-      <p>Source will go here: </p>
+      <h3>Recipe title will go here: {recipe.title}</h3>
+      <p>Source will go here: {recipe.source}</p>
       <div>
         <h3>Ingredient List here</h3>
+        <button onClick={() => history.push(`/recipe/ingredients/${id}`)}>
+          add ingredients
+        </button>
+        <IngredientList />
         <p>will insert ingredient list here</p>
       </div>
       <div>
         <h3>instructions will go here</h3>
+        <button>add instructions</button>
         <p>will insert instructions list here</p>
       </div>
       <div>
