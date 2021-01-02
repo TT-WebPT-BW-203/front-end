@@ -18,6 +18,7 @@ import {
 import IngredientList from "./IngredientList";
 import InstructionsForm from "./InstructionsForm";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import InstructionsList from "./InstructionsList";
 
 const Recipe = (props) => {
   const history = useHistory();
@@ -59,10 +60,10 @@ const Recipe = (props) => {
       </div>
       <div>
         <h3>Instructions: </h3>
+        <InstructionsList />
         <button onClick={() => history.push(`/recipe/${id}/instructions_form`)}>
           Add Instructions
-        </button>{" "}
-        <p>will insert instructions list here</p>
+        </button>
       </div>
       <div>
         <img alt="the image will go here" />
