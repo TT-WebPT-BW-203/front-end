@@ -78,6 +78,7 @@ const Recipe = (props) => {
         </button>
         <button onClick={handleDelete}>delete recipe</button>
       </div>
+      <Link to={"/dashboard"}>Back to your recipes</Link>
     </div>
   );
 };
