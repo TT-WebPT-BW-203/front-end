@@ -23,11 +23,7 @@ const InstructionsList = (props) => {
     <div>
       <p style={{ fontWeight: "bold" }}>This is the instructions list</p>
       {props.instructions.map((instruction) => (
-        <>
-          <Step instruction={instruction} />
-          <p style={{ fontWeight: "bold" }}>Step #{instruction.step}:</p>
-          <p>Details: {instruction.details}</p>
-        </>
+        <Step instruction={instruction} />
       ))}
     </div>
   );
