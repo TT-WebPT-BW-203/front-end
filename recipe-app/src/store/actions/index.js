@@ -34,6 +34,9 @@ import {
   START_EDIT_INSTRUCTION,
   EDIT_INSTRUCTION_SUCCESS,
   EDIT_INSTRUCTION_FAIL,
+  START_INSTRUCTION_DELETE,
+  INSTRUCTION_DELETE_SUCCESS,
+  INSTRUCTION_DELETE_FAIL,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -185,10 +188,24 @@ export const putInstructions = (id, instruction) => (dispatch) => {
     .put(`/api/instructions/${id}`, instruction)
     .then((res) => {
       console.log(res);
-      dispatch({ type: EDIT_INSTRUCTION_SUCCESS, payload: res });
+      dispatch({ type: EDIT_INSTRUCTION_SUCCESS, payload: res.data });
     })
     .catch((err) => {
       console.log(err);
       dispatch({ type: EDIT_INSTRUCTION_FAIL, payload: err });
+    });
+};
+
+export const deleteInstruction = (id) => (dispatch) => {
+  dispatch({ type: START_INSTRUCTION_DELETE });
+  axiosWithAuth()
+    .delete(`/api/instructions/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: INSTRUCTION_DELETE_SUCCESS, payload: res.data });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({ type: INSTRUCTION_DELETE_FAIL, payload: err });
     });
 };

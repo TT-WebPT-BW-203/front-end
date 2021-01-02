@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   START_LOGIN,
   LOGIN_FAIL,
@@ -31,6 +32,9 @@ import {
   START_EDIT_INSTRUCTION,
   EDIT_INSTRUCTION_SUCCESS,
   EDIT_INSTRUCTION_FAIL,
+  START_INSTRUCTION_DELETE,
+  INSTRUCTION_DELETE_SUCCESS,
+  INSTRUCTION_DELETE_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -263,6 +267,50 @@ export const userReducer = (state = initialState, action) => {
       };
     }
     case POST_INSTRUCTION_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+    case START_EDIT_INSTRUCTION: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case EDIT_INSTRUCTION_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        instructions: [...action.payload],
+      };
+    }
+    case EDIT_INSTRUCTION_FAIL: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+    case START_INSTRUCTION_DELETE: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case INSTRUCTION_DELETE_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        error: "",
+        instructions: [...action.payload],
+      };
+    }
+    case INSTRUCTION_DELETE_FAIL: {
       return {
         ...state,
         isLoading: false,
