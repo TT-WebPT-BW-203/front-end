@@ -50,7 +50,7 @@ const Recipe = (props) => {
   return (
     <RecipeContainer>
       <LeftContent>
-        <h3>{recipe.title}</h3>
+        <RecipeTitle>{recipe.title}</RecipeTitle>
         <p>Source will go here: {recipe.source}</p>
         <div>
           <h3>Ingredients: </h3>
@@ -73,17 +73,24 @@ const Recipe = (props) => {
       </LeftContent>
       <RightContent>
         <div>
-          <img alt="the image will go here" />
+          {recipe.image === "" ? (
+            <Image src={img_placeholder} alt="user image missing" />
+          ) : (
+            <div>
+              <img src={recipe.image} alt="the image will go here" />
+            </div>
+          )}
         </div>
+
         <div>
-          <button
+          <Button
             onClick={() => {
               history.push(`/recipe/${id}/update_recipe`);
             }}
           >
             edit recipe
-          </button>
-          <button onClick={handleDelete}>delete recipe</button>
+          </Button>
+          <Button onClick={handleDelete}>delete recipe</Button>
         </div>
         <Link to={"/dashboard"}>Back to your recipes</Link>
       </RightContent>
