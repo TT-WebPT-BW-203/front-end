@@ -142,13 +142,25 @@ export const ListItems = styled.li`
 `;
 
 export const IngredientDiv = styled.div`
-  color: red;
   display: flex;
   flex-direction: column;
 `;
 
 export const IngredientText = styled.div`
-  border: blue solid;
+  display: flex;
   margin-top: -0.5rem;
   padding: 0;
+  text-transform: capitalize;
+`;
+export const TextP = styled.p`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+`;
+export const ActionButtons = styled.button`
+  text-transform: capitalize;
+  border-radius: 8px;
+  margin-left: 0.5rem;
+  border: #a4c639 solid 0.5px;
+  background-color: #a4c639;
 `;

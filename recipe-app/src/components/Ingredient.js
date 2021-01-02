@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { editIngredient, deleteIngredient } from "../store/actions";
+import { ActionButtons, IngredientDiv, IngredientText, TextP } from "../styles";
 
 const Ingredient = (props) => {
   const ingrId = props.ingredient.id;
@@ -27,23 +28,32 @@ const Ingredient = (props) => {
   };
 
   return (
-    <div>
+    <IngredientDiv>
       {isEditing ? (
-        <div>
-          <input value={newIngredient.name} onChange={handleChange} />
-          <button onClick={handleSave}>save</button>
-          <button onClick={() => setIsEditing(!isEditing)}>cancel</button>
-        </div>
+        <IngredientText>
+          <TextP>
+            <input value={newIngredient.name} onChange={handleChange} />
+            <ActionButtons onClick={handleSave}>save</ActionButtons>
+            <ActionButtons onClick={() => setIsEditing(!isEditing)}>
+              cancel
+            </ActionButtons>
+          </TextP>
+        </IngredientText>
       ) : (
-        <div>
-          <p>
+        <IngredientText>
+          <TextP>
             {props.ingredient.name}
-            <button onClick={handleEditButton}>edit</button>
-            <button onClick={handleDelete}>delete</button>
-          </p>
-        </div>
+            <ActionButtons onClick={handleEditButton}>edit</ActionButtons>
+            <ActionButtons
+              onClick={handleDelete}
+              style={{ backgroundColor: "#ffddf4" }}
+            >
+              delete
+            </ActionButtons>
+          </TextP>
+        </IngredientText>
       )}
-    </div>
+    </IngredientDiv>
   );
 };
 const mapStateToProps = (state) => {
