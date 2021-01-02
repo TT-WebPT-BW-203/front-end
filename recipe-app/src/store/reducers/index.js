@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import {
   START_LOGIN,
   LOGIN_FAIL,

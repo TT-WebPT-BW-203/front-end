@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -10,11 +10,18 @@ const InstructionsList = (props) => {
   const { id } = useParams();
   console.log(id);
 
+  const [gottenInstructions, setGottenInstructions] = useState([]);
+  console.log("gottenInstructions", gottenInstructions);
+
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
       .then((res) => {
-        console.log("InstructionsList: useEffect: res: ", res.data);
+        console.log(
+          "InstructionsList: useEffect: res: ",
+          res.data.instructions
+        );
+        setGottenInstructions([...res.data.instructions]);
       })
       .catch((err) => console.log(err));
   }, [props.instructions]);
@@ -22,7 +29,7 @@ const InstructionsList = (props) => {
   return (
     <div>
       <p style={{ fontWeight: "bold" }}>This is the instructions list</p>
-      {props.instructions.map((instruction) => (
+      {gottenInstructions.map((instruction) => (
         <Step instruction={instruction} />
       ))}
     </div>
