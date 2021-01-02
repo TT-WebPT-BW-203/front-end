@@ -9,14 +9,9 @@ const UpdateForm = (props) => {
   const { id } = useParams();
   const history = useHistory();
 
-  //I want to populate the values of the recipe to be edited
+  const recipeToEdit = props.recipes.find((rec) => rec.id === Number(id));
 
-  const [initialRecipe, setInitialRecipe] = useState({
-    title: "",
-    source: "",
-    category: "",
-    image: "",
-  });
+  const [initialRecipe, setInitialRecipe] = useState(recipeToEdit);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,6 +57,7 @@ const UpdateForm = (props) => {
         <input
           id="image"
           name="image"
+          placeholder="Enter inage URL"
           value={initialRecipe.image}
           onChange={handleChange}
         />
