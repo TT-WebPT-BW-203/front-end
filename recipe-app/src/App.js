@@ -10,7 +10,7 @@ import IngredientsForm from "./components/IngredientsForm";
 import InstructionsForm from "./components/InstructionsForm";
 import UpdateForm from "./components/UpdateForm";
 
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 
 function App() {
   return (

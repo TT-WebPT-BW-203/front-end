@@ -11,12 +11,12 @@ import {
   RecipeContainer,
   RecipeTitle,
   Button,
+  ButtonWrap,
   RightContent,
   LeftContent,
   Image,
 } from "../styles";
 import IngredientList from "./IngredientList";
-import InstructionsForm from "./InstructionsForm";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import InstructionsList from "./InstructionsList";
 
@@ -83,16 +83,22 @@ const Recipe = (props) => {
         </div>
 
         <div>
-          <Button
-            onClick={() => {
-              history.push(`/recipe/${id}/update_recipe`);
-            }}
-          >
-            edit recipe
-          </Button>
-          <Button onClick={handleDelete}>delete recipe</Button>
+          <ButtonWrap>
+            <Button
+              onClick={() => {
+                history.push(`/recipe/${id}/update_recipe`);
+              }}
+            >
+              edit recipe
+            </Button>
+            <Button onClick={handleDelete}>delete recipe</Button>
+          </ButtonWrap>
         </div>
-        <Link to={"/dashboard"}>Back to your recipes</Link>
+        <ButtonWrap>
+          <Link to={"/dashboard"} style={{ marginTop: ".5rem" }}>
+            Back to your recipes
+          </Link>
+        </ButtonWrap>
       </RightContent>
     </RecipeContainer>
   );

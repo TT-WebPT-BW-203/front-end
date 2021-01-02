@@ -35,10 +35,7 @@ export const Welcome = styled.h2`
 `;
 
 export const Button = styled.button`
-  color: white;
-  background: black;
-  padding: 0.75rem;
-  font-weight: bold;
+  padding: 0.25rem;
   text-transform: uppercase;
 `;
 
