@@ -5,10 +5,9 @@ import { ActionButtons, IngredientDiv, IngredientText, TextP } from "../styles";
 
 const Ingredient = (props) => {
   const ingrId = props.ingredient.id;
+  const ingredientToEdit = props.ingredient;
   const [isEditing, setIsEditing] = useState(false);
-  const [newIngredient, setNewIngredient] = useState({
-    name: "",
-  });
+  const [newIngredient, setNewIngredient] = useState(ingredientToEdit);
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
   };
@@ -34,7 +33,10 @@ const Ingredient = (props) => {
           <TextP>
             <input value={newIngredient.name} onChange={handleChange} />
             <ActionButtons onClick={handleSave}>save</ActionButtons>
-            <ActionButtons onClick={() => setIsEditing(!isEditing)}>
+            <ActionButtons
+              onClick={() => setIsEditing(!isEditing)}
+              style={{ backgroundColor: "#ff9999" }}
+            >
               cancel
             </ActionButtons>
           </TextP>
@@ -46,7 +48,7 @@ const Ingredient = (props) => {
             <ActionButtons onClick={handleEditButton}>edit</ActionButtons>
             <ActionButtons
               onClick={handleDelete}
-              style={{ backgroundColor: "#ffddf4" }}
+              style={{ backgroundColor: "#ff9999" }}
             >
               delete
             </ActionButtons>

@@ -39,7 +39,7 @@ const Dashboard = (props) => {
     <div>
       {recipesByUser && <Welcome>Welcome {props.username}</Welcome>}
       <SearchBar recipes={recipesByUser.recipes} userId={props.userId} />
-      <Link to="/add_recipe">
+      <Link to="/add_recipe" style={{ textDecoration: "none" }}>
         <ButtonWrap>
           <Button>Add New Recipe</Button>
         </ButtonWrap>

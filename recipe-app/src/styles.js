@@ -35,11 +35,12 @@ export const Welcome = styled.h2`
 `;
 
 export const Button = styled.button`
-  padding: 0.25rem;
+  padding: 0.5rem;
   text-transform: uppercase;
   background-color: dimgrey;
   color: #fff;
   border: none;
+  border-radius: 3px;
 `;
 
 export const ButtonWrap = styled.div`
@@ -87,12 +88,14 @@ export const RightContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  padding-left: 1rem;
 `;
 
 export const LeftContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
+  padding-right: 1rem;
 `;
 
 export const Image = styled.img`

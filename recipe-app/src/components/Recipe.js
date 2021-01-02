@@ -55,12 +55,14 @@ const Recipe = (props) => {
         <div>
           <h3>Ingredients: </h3>
           <IngredientList />
-          <Button
-            onClick={() => history.push(`/recipe/${id}/ingredients_form`)}
-          >
-            {" "}
-            Add Ingredients
-          </Button>
+          <ButtonWrap>
+            <Button
+              onClick={() => history.push(`/recipe/${id}/ingredients_form`)}
+            >
+              {" "}
+              Add Ingredients
+            </Button>
+          </ButtonWrap>
         </div>
         <div>
           <h3>Instructions: </h3>
@@ -86,6 +88,10 @@ const Recipe = (props) => {
         <div>
           <ButtonWrap>
             <Button
+              style={{
+                marginRight: "1rem",
+                padding: ".5rem",
+              }}
               onClick={() => {
                 history.push(`/recipe/${id}/update_recipe`);
               }}
