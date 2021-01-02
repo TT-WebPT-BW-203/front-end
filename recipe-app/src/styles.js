@@ -183,3 +183,8 @@ export const ItemInput = styled.input`
   width: 60%;
   margin: 0 auto;
 `;
+
+export const DisplayList = styled.div`
+  width: 30%;
+  margin: 2rem auto;
+`;

@@ -3,7 +3,14 @@ import { useParams, useHistory } from "react-router-dom";
 import { postIngredients } from "../store/actions";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { ItemForm, ItemLabel, ItemInput, ButtonWrap, Button } from "../styles";
+import {
+  ItemForm,
+  ItemLabel,
+  ItemInput,
+  ButtonWrap,
+  Button,
+  DisplayList,
+} from "../styles";
 
 const IngredientsForm = (props) => {
   console.log("props in the IngredientsForm: ", props);
@@ -49,7 +56,7 @@ const IngredientsForm = (props) => {
 
   return (
     <div>
-      <ItemForm onSubmit={handleSubmit}>
+      <ItemForm>
         <h3>Enter Ingredients:</h3>
         <ItemLabel htmlFor="ingredient">Ingredient</ItemLabel>
         <ItemInput
@@ -57,16 +64,17 @@ const IngredientsForm = (props) => {
           id="ingredient"
           value={ingredient.name}
           onChange={handleChange}
+          style={{ marginBottom: "2rem" }}
         />
-        <ButtonWrap style={{ marginTop: "2rem" }}>
-          <Button>Add Ingredient</Button>
+        <ButtonWrap>
+          <Button onClick={handleSubmit}>Add Ingredient</Button>
         </ButtonWrap>
       </ItemForm>
-      <div>
+      <DisplayList>
         {recipeGet.map((ingr) => (
           <p>{ingr.name}</p>
         ))}
-      </div>
+      </DisplayList>
       <ButtonWrap>
         <Button onClick={() => history.push(`/recipe/${id}`)}>
           Done adding ingredients
