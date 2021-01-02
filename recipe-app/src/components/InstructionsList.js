@@ -3,6 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
+import Step from "./Step";
+
 const InstructionsList = (props) => {
   console.log("InstructionsList: props: ", props);
   const { id } = useParams();
@@ -22,6 +24,7 @@ const InstructionsList = (props) => {
       <p style={{ fontWeight: "bold" }}>This is the instructions list</p>
       {props.instructions.map((instruction) => (
         <>
+          <Step instruction={instruction} />
           <p style={{ fontWeight: "bold" }}>Step #{instruction.step}:</p>
           <p>Details: {instruction.details}</p>
         </>
