@@ -1,7 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-const InstructionsList = () => {
-  return <div>this is the instructions list</div>;
+const InstructionsList = (props) => {
+  console.log("InstructionsList: props: ", props);
+  const { id } = useParams();
+  console.log(id);
+
+  useEffect(() => {
+    axiosWithAuth()
+      .get(`/api/recipes/${id}`)
+      .then((res) => {
+        console.log("InstructionsList: useEffect: res: ", res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [props.instructions]);
+
+  return (
+    <div>
+      <p style={{ fontWeight: "bold" }}>This is the instructions list</p>
+      {props.instructions.map((instruction) => (
+        <>
+          <p style={{ fontWeight: "bold" }}>Step #{instruction.step}:</p>
+          <p>Details: {instruction.details}</p>
+        </>
+      ))}
+    </div>
+  );
 };
 
-export default InstructionsList;
+const mapStateToProps = (state) => {
+  return {
+    instructions: state.instructions,
+  };
+};
+export default connect(mapStateToProps, {})(InstructionsList);
