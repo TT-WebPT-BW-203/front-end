@@ -62,7 +62,6 @@ const Recipe = (props) => {
         <button onClick={() => history.push(`/recipe/${id}/instructions_form`)}>
           Add Instructions
         </button>{" "}
-        //will take you to the InstructionsForm
         <p>will insert instructions list here</p>
       </div>
       <div>
