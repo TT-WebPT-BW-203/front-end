@@ -11,8 +11,8 @@ const Step = (props) => {
 
   const [isEditing, setIsEditing] = useState(false);
   const [step, setStep] = useState({
-    editedStep: "",
-    editedDetails: "",
+    step: props.instruction.step,
+    details: props.instruction.details,
   });
   console.log("step to edit: ", step);
 
@@ -20,16 +20,15 @@ const Step = (props) => {
     axiosWithAuth()
       .get(`/api/instructions/${id}`)
       .then((res) => {
-        console.log(res.data);
+        console.log("res in the step", res.data);
       })
       .catch((err) => console.log(err));
-  }, [props.step, props.details]);
+  }, [props.instruction.step, props.instruction.details]);
 
   const handleChange = (e) => {
     e.preventDefault();
     setStep({
-      editedStep: e.target.value,
-      editedDetails: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -45,24 +44,22 @@ const Step = (props) => {
   return (
     <div>
       {isEditing ? (
-        <p>
-          Step#:{" "}
-          <input
-            name="editedStep"
-            value={step.editedStep}
-            onChange={handleChange}
-          />
-          <br />
-          Details:{" "}
-          <input
-            name="editedDetails"
-            value={step.editedDetails}
-            onChange={handleChange}
-          />
-          <br />
-          <button onClick={handleSave}>save</button>
+        <>
+          <form>
+            Step#:{" "}
+            <input name="step" value={step.step} onChange={handleChange} />
+            <br />
+            Details:{" "}
+            <input
+              name="details"
+              value={step.details}
+              onChange={handleChange}
+            />
+            <br />
+            <button onClick={handleSave}>save</button>
+          </form>
           <button onClick={handleEdit}>cancel</button>
-        </p>
+        </>
       ) : (
         <div>
           <p>Step #{props.instruction.step}: </p>
