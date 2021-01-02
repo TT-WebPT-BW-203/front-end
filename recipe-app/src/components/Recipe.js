@@ -48,38 +48,46 @@ const Recipe = (props) => {
   };
 
   return (
-    <div>
-      <h3>Recipe title will go here: {recipe.title}</h3>
-      <p>Source will go here: {recipe.source}</p>
-      <div>
-        <h3>Ingredients: </h3>
-        <IngredientList />
-        <button onClick={() => history.push(`/recipe/${id}/ingredients_form`)}>
-          Add Ingredients
-        </button>
-      </div>
-      <div>
-        <h3>Instructions: </h3>
-        <InstructionsList />
-        <button onClick={() => history.push(`/recipe/${id}/instructions_form`)}>
-          Add Instructions
-        </button>
-      </div>
-      <div>
-        <img alt="the image will go here" />
-      </div>
-      <div>
-        <button
-          onClick={() => {
-            history.push(`/recipe/${id}/update_recipe`);
-          }}
-        >
-          edit recipe
-        </button>
-        <button onClick={handleDelete}>delete recipe</button>
-      </div>
-      <Link to={"/dashboard"}>Back to your recipes</Link>
-    </div>
+    <RecipeContainer>
+      <LeftContent>
+        <h3>{recipe.title}</h3>
+        <p>Source will go here: {recipe.source}</p>
+        <div>
+          <h3>Ingredients: </h3>
+          <IngredientList />
+          <button
+            onClick={() => history.push(`/recipe/${id}/ingredients_form`)}
+          >
+            Add Ingredients
+          </button>
+        </div>
+        <div>
+          <h3>Instructions: </h3>
+          <InstructionsList />
+          <button
+            onClick={() => history.push(`/recipe/${id}/instructions_form`)}
+          >
+            Add Instructions
+          </button>
+        </div>
+      </LeftContent>
+      <RightContent>
+        <div>
+          <img alt="the image will go here" />
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              history.push(`/recipe/${id}/update_recipe`);
+            }}
+          >
+            edit recipe
+          </button>
+          <button onClick={handleDelete}>delete recipe</button>
+        </div>
+        <Link to={"/dashboard"}>Back to your recipes</Link>
+      </RightContent>
+    </RecipeContainer>
   );
 };
 
