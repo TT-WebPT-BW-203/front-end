@@ -8,6 +8,7 @@ const Ingredient = (props) => {
   const ingredientToEdit = props.ingredient;
   const [isEditing, setIsEditing] = useState(false);
   const [newIngredient, setNewIngredient] = useState(ingredientToEdit);
+
   const handleChange = (e) => {
     setNewIngredient({ name: e.target.value });
   };

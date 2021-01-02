@@ -167,3 +167,19 @@ export const ActionButtons = styled.button`
   border: #a4c639 solid 0.5px;
   background-color: #a4c639;
 `;
+export const ItemForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 65%;
+  margin: 0 auto;
+`;
+
+export const ItemLabel = styled.label`
+  padding-left: 3rem;
+`;
+
+export const ItemInput = styled.input`
+  font-size: large;
+  width: 60%;
+  margin: 0 auto;
+`;
