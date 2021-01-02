@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { putInstructions } from "../store/actions";
 
 const Step = (props) => {
   console.log("props in the Step component: ", props);
@@ -13,4 +14,4 @@ const Step = (props) => {
   );
 };
 
-export default connect(null, {})(Step);
+export default connect(null, { putInstructions })(Step);

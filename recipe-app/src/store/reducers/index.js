@@ -1,4 +1,3 @@
-import { act } from "react-dom/test-utils";
 import {
   START_LOGIN,
   LOGIN_FAIL,
@@ -29,6 +28,9 @@ import {
   POST_INSTRUCTION_FAIL,
   START_INGREDIENT_DELETE,
   DELETE_INGREDIENT_SUCCESS,
+  START_EDIT_INSTRUCTION,
+  EDIT_INSTRUCTION_SUCCESS,
+  EDIT_INSTRUCTION_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
