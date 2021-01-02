@@ -51,7 +51,7 @@ const Dashboard = (props) => {
           color="#000"
           height={100}
           width={100}
-          timeout={6000}
+          timeout={10000}
         />
       ) : null}
       <RecipesContainer>

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getUserRecipes } from "../store/actions";
 import { logUser } from "../store/actions/index";
 import { Button, FormGroup, Label, Input } from "reactstrap";
+import Loader from "react-loader-spinner";
 
 const Login = (props) => {
   const history = useHistory();
@@ -36,32 +37,44 @@ const Login = (props) => {
   };
 
   return (
-    <form onSubmit={login}>
-      <FormGroup>
-        <Label for="username">Username</Label>
-        <Input
-          type="text"
-          name="username"
-          id="username"
-          value={credentials.username}
-          placeholder="Username"
-          onChange={handleChange}
+    <div>
+      {props.isLoading === true ? (
+        <Loader
+          type="ThreeDots"
+          color="#000"
+          height={100}
+          width={100}
+          timeout={10000}
         />
-      </FormGroup>
-      <FormGroup>
-        <Label for="password">Password</Label>
-        <Input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
-          value={credentials.password}
-          onChange={handleChange}
-        />
-      </FormGroup>
+      ) : (
+        <form onSubmit={login}>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input
+              type="text"
+              name="username"
+              id="username"
+              value={credentials.username}
+              placeholder="Username"
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={credentials.password}
+              onChange={handleChange}
+            />
+          </FormGroup>
 
-      <Button>Submit</Button>
-    </form>
+          <Button>Submit</Button>
+        </form>
+      )}
+    </div>
   );
 };
 
