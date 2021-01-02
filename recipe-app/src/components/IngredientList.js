@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import Ingredient from "./Ingredient";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { IngredientDiv } from "../styles";
 
 const IngredientList = (props) => {
   console.log("props in the IngredientsList component: ", props);
@@ -21,17 +22,12 @@ const IngredientList = (props) => {
       .catch((err) => console.log(err));
   }, [props.ingredients]);
 
-  // const list = props.ingredients.filter((ing) => ing.recipe_id === Number(id));
-  // console.log("list const", list);
-
   return (
-    <div>
+    <IngredientDiv>
       {rehydratedIngredients.map((ingredient) => (
-        <p>
-          <Ingredient ingredient={ingredient} />
-        </p>
+        <Ingredient ingredient={ingredient} />
       ))}
-    </div>
+    </IngredientDiv>
   );
 };
 

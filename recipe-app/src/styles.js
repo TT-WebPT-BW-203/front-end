@@ -37,6 +37,9 @@ export const Welcome = styled.h2`
 export const Button = styled.button`
   padding: 0.25rem;
   text-transform: uppercase;
+  background-color: dimgrey;
+  color: #fff;
+  border: none;
 `;
 
 export const ButtonWrap = styled.div`
@@ -136,4 +139,16 @@ export const ListItems = styled.li`
   font-size: larger;
   padding-bottom: 0.5rem;
   border: lightgray solid 1px;
+`;
+
+export const IngredientDiv = styled.div`
+  color: red;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const IngredientText = styled.div`
+  border: blue solid;
+  margin-top: -0.5rem;
+  padding: 0;
 `;
