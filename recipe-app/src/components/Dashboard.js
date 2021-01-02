@@ -45,7 +45,7 @@ const Dashboard = (props) => {
         </ButtonWrap>
       </Link>
 
-      {props.isLoading === true ? (
+      {props.isLoading && (
         <Loader
           type="ThreeDots"
           color="#000"
@@ -53,38 +53,48 @@ const Dashboard = (props) => {
           width={100}
           timeout={10000}
         />
-      ) : null}
-      <RecipesContainer>
-        {recipesByUser &&
-          recipesByUser.map((rec) => (
-            <Link
-              to={`/recipe/${rec.id}`}
-              key={rec.id}
-              style={{
-                textDecoration: "none",
-                display: "flex",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <RecipeCard>
-                <CardTitle>
-                  <h4>{rec.title}</h4>
-                </CardTitle>
-                <ThumbnailContainer>
-                  {rec.image === "" ? (
-                    <Thumbnail
-                      src={img_placeholder}
-                      alt="dish image not provided"
-                    />
-                  ) : (
-                    <Thumbnail src={rec.image} alt="Dish" />
-                  )}
-                </ThumbnailContainer>
-                <p>Category: {rec.category}</p>
-              </RecipeCard>
-            </Link>
-          ))}
-      </RecipesContainer>
+      )}
+      {props.error ? (
+        <h2
+          style={{ color: "red" }}
+          onClick={() => props.getUserRecipes(props.userId)}
+        >
+          SORRY! An error has occurred. Click here to try again, or log back in.
+          🙇
+        </h2>
+      ) : (
+        <RecipesContainer>
+          {recipesByUser &&
+            recipesByUser.map((rec) => (
+              <Link
+                to={`/recipe/${rec.id}`}
+                key={rec.id}
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <RecipeCard>
+                  <CardTitle>
+                    <h4>{rec.title}</h4>
+                  </CardTitle>
+                  <ThumbnailContainer>
+                    {rec.image === "" ? (
+                      <Thumbnail
+                        src={img_placeholder}
+                        alt="dish image not provided"
+                      />
+                    ) : (
+                      <Thumbnail src={rec.image} alt="Dish" />
+                    )}
+                  </ThumbnailContainer>
+                  <p>Category: {rec.category}</p>
+                </RecipeCard>
+              </Link>
+            ))}
+        </RecipesContainer>
+      )}
     </div>
   );
 };
@@ -95,6 +105,7 @@ const mapStateToProps = (state) => {
     recipes: state.recipes,
     userId: state.userId,
     isLoading: state.isLoading,
+    error: state.error,
   };
 };
 export default connect(mapStateToProps, { getUserRecipes })(Dashboard);
