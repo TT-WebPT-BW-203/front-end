@@ -201,3 +201,10 @@ export const Step = styled.div`
   margin-bottom: 0.5rem;
   border-radius: 5px;
 `;
+
+export const InstructionsDiv = styled.div`
+  background-color: #f8f8ff;
+  border-radius: 3px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+`;

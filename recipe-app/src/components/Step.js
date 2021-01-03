@@ -3,6 +3,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { putInstructions, deleteInstruction } from "../store/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { ActionButtons, InstructionsDiv } from "../styles";
 
 const Step = (props) => {
   console.log("props in the Step component: ", props);
@@ -44,7 +45,7 @@ const Step = (props) => {
   return (
     <div>
       {isEditing ? (
-        <>
+        <InstructionsDiv>
           <form>
             Step#:{" "}
             <input name="step" value={step.step} onChange={handleChange} />
@@ -56,17 +57,27 @@ const Step = (props) => {
               onChange={handleChange}
             />
             <br />
-            <button onClick={handleSave}>save</button>
+            <ActionButtons onClick={handleSave}>save</ActionButtons>
           </form>
-          <button onClick={handleEdit}>cancel</button>
-        </>
+          <ActionButtons
+            style={{ backgroundColor: "#ff9999" }}
+            onClick={handleEdit}
+          >
+            cancel
+          </ActionButtons>
+        </InstructionsDiv>
       ) : (
-        <div>
+        <InstructionsDiv>
           <p>Step #{props.instruction.step}: </p>
           <p>Details: {props.instruction.details}</p>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick={() => props.deleteInstruction(id)}>delete</button>
-        </div>
+          <ActionButtons onClick={handleEdit}>Edit</ActionButtons>
+          <ActionButtons
+            style={{ backgroundColor: "#ff9999" }}
+            onClick={() => props.deleteInstruction(id)}
+          >
+            delete
+          </ActionButtons>
+        </InstructionsDiv>
       )}
     </div>
   );

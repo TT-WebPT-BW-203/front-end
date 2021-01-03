@@ -67,11 +67,13 @@ const Recipe = (props) => {
         <div>
           <h3>Instructions: </h3>
           <InstructionsList />
-          <Button
-            onClick={() => history.push(`/recipe/${id}/instructions_form`)}
-          >
-            Add Instructions
-          </Button>
+          <ButtonWrap>
+            <Button
+              onClick={() => history.push(`/recipe/${id}/instructions_form`)}
+            >
+              Add Instructions
+            </Button>
+          </ButtonWrap>
         </div>
       </LeftContent>
       <RightContent>

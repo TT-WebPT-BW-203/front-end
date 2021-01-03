@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { IngredientDiv } from "../styles";
 
 import Step from "./Step";
 
@@ -27,11 +28,11 @@ const InstructionsList = (props) => {
   }, [props.instructions]);
 
   return (
-    <div>
+    <IngredientDiv>
       {gottenInstructions.map((instruction) => (
         <Step instruction={instruction} />
       ))}
-    </div>
+    </IngredientDiv>
   );
 };
 
