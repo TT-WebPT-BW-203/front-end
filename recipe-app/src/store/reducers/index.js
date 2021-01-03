@@ -28,6 +28,7 @@ import {
   POST_INSTRUCTION_FAIL,
   START_INGREDIENT_DELETE,
   DELETE_INGREDIENT_SUCCESS,
+  DELETE_INGREDIENT_FAIL,
   START_EDIT_INSTRUCTION,
   EDIT_INSTRUCTION_SUCCESS,
   EDIT_INSTRUCTION_FAIL,
@@ -243,7 +244,7 @@ export const userReducer = (state = initialState, action) => {
         ingredients: [...action.payload],
       };
     }
-    case DELETE_RECIPE_FAIL: {
+    case DELETE_INGREDIENT_FAIL: {
       return {
         ...state,
         isLoading: false,

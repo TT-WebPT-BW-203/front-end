@@ -6,17 +6,14 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { IngredientDiv } from "../styles";
 
 const IngredientList = (props) => {
-  console.log("props in the IngredientsList component: ", props);
   const { id } = useParams();
 
   const [rehydratedIngredients, setRehydratedIngredients] = useState([]);
-  console.log("IngredientList: rehydratedIngredients: ", rehydratedIngredients);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
       .then((res) => {
-        console.log("IngredientList: useEffect(): res: ", res.data);
         setRehydratedIngredients(res.data.ingredients);
       })
       .catch((err) => console.log(err));

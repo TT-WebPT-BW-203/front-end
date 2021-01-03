@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { putInstructions, deleteInstruction } from "../store/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { ActionButtons, InstructionsDiv } from "../styles";
 
 const Step = (props) => {
-  console.log("props in the Step component: ", props);
   const id = props.instruction.id;
-  console.log("id in step.js", id);
 
   const [isEditing, setIsEditing] = useState(false);
   const [step, setStep] = useState({
     step: props.instruction.step,
     details: props.instruction.details,
   });
-  console.log("step to edit: ", step);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/instructions/${id}`)
-      .then((res) => {
-        console.log("res in the step", res.data);
-      })
+      .then((res) => {})
       .catch((err) => console.log(err));
   }, [props.instruction.step, props.instruction.details]);
 

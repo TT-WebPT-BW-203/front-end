@@ -6,13 +6,11 @@ import {
   CenteredForm,
   StyledLabel,
   StyledInput,
-  ButtonCentered,
   Button,
   ButtonWrap,
 } from "../styles";
 
 const AddRecipe = (props) => {
-  console.log("props in the AddRecipe component: ", props);
   const history = useHistory();
   const { id } = useParams();
   const [recipe, setRecipe] = useState({
@@ -21,7 +19,6 @@ const AddRecipe = (props) => {
     category: "",
     image: "",
   });
-  console.log(recipe);
   const handleChange = (e) => {
     setRecipe({
       ...recipe,

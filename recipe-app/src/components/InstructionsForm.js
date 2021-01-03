@@ -15,23 +15,18 @@ import {
 } from "../styles";
 
 const InstructionsForm = (props) => {
-  console.log("InstructionsForm: props: ", props);
   const history = useHistory();
   const { id } = useParams();
-  console.log("InstructionForm: id for the recipe: ", id);
   const [instruction, setInstruction] = useState({
     step: "",
     details: "",
   });
-  console.log("InstructionsForm: instruction:", instruction);
   const [instructionList, setInstructionList] = useState([{}]);
-  console.log("instructionList", instructionList);
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
       .then((res) => {
-        console.log(res.data.instructions);
         setInstructionList([...res.data.instructions]);
       })
       .catch((err) => {

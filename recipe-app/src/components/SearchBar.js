@@ -12,7 +12,6 @@ const SearchBar = (props) => {
     axiosWithAuth()
       .get(`/api/recipes/user/${props.userId}`)
       .then((res) => {
-        console.log(res.data);
         setRecipes(res.data);
       })
       .catch((err) => {

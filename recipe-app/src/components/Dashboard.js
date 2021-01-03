@@ -18,7 +18,6 @@ import SearchBar from "./SearchBar";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Dashboard = (props) => {
-  console.log("props in the dashboard: ", props);
   const userId = props.userId;
 
   const [recipesByUser, setRecipesByUser] = useState([]);
@@ -27,7 +26,6 @@ const Dashboard = (props) => {
     axiosWithAuth()
       .get(`/api/recipes/user/${userId}`)
       .then((res) => {
-        console.log(res.data);
         setRecipesByUser(res.data);
       })
       .catch((err) => {
@@ -56,7 +54,7 @@ const Dashboard = (props) => {
       )}
       {props.error ? (
         <h2
-          style={{ color: "red" }}
+          style={{ color: "red", textAlign: "center" }}
           onClick={() => props.getUserRecipes(props.userId)}
         >
           SORRY! An error has occurred. Click here to try again, or log back in.

@@ -40,12 +40,10 @@ import {
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
-  console.log("userData:", userData);
   dispatch({ type: START_LOGIN });
   axiosWithAuth()
     .post("api/users/login", userData)
     .then((res) => {
-      console.log("response login in reducer: ", res.data);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
@@ -60,7 +58,6 @@ export const signup = (signupData) => (dispatch) => {
   axiosWithAuth()
     .post("/api/users/register", signupData)
     .then((res) => {
-      console.log("res in the signup request: ", res);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: SIGNUP_SUCCESS, payload: res.data.token });
     })
@@ -101,7 +98,6 @@ export const postIngredients = (recId, ingredient) => (dispatch) => {
   axiosWithAuth()
     .post(`/api/recipes/${recId}/ingredients`, ingredient)
     .then((res) => {
-      console.log("res in the post ingredient: ", res.data);
       dispatch({ type: POST_INGREDIENT_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -111,12 +107,10 @@ export const postIngredients = (recId, ingredient) => (dispatch) => {
 };
 
 export const updateRecipe = (id, updatedRecipe) => (dispatch) => {
-  console.log("updated recipe: ", updatedRecipe);
   dispatch({ type: START_UPDATE_RECIPE });
   axiosWithAuth()
     .put(`/api/recipes/${id}`, updatedRecipe)
     .then((res) => {
-      console.log("res in the update recipeByID", res);
       dispatch({ type: UPDATE_RECIPE_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -130,7 +124,6 @@ export const deleteRecipe = (id) => (dispatch) => {
   axiosWithAuth()
     .delete(`/api/recipes/${id}`)
     .then((res) => {
-      console.log("res in the delete: ", res);
       dispatch({ type: DELETE_RECIPE_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -144,7 +137,6 @@ export const editIngredient = (id, ingredient) => (dispatch) => {
   axiosWithAuth()
     .put(`/api/ingredients/${id}`, ingredient)
     .then((res) => {
-      console.log("res inside the editIngByID: ", res.data);
       dispatch({ type: EDIT_INGREDIENT_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -158,7 +150,6 @@ export const deleteIngredient = (id) => (dispatch) => {
   axiosWithAuth()
     .delete(`/api/ingredients/${id}`)
     .then((res) => {
-      console.log(res);
       dispatch({ type: DELETE_INGREDIENT_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -173,7 +164,6 @@ export const postInstructions = (id, instruction) => (dispatch) => {
   axiosWithAuth()
     .post(`/api/recipes/${id}/instructions`, instruction)
     .then((res) => {
-      console.log(res.data);
       dispatch({ type: POST_INSTRUCTION_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -187,7 +177,6 @@ export const putInstructions = (id, instruction) => (dispatch) => {
   axiosWithAuth()
     .put(`/api/instructions/${id}`, instruction)
     .then((res) => {
-      console.log(res);
       dispatch({ type: EDIT_INSTRUCTION_SUCCESS, payload: res.data });
     })
     .catch((err) => {
@@ -201,7 +190,6 @@ export const deleteInstruction = (id) => (dispatch) => {
   axiosWithAuth()
     .delete(`/api/instructions/${id}`)
     .then((res) => {
-      console.log(res);
       dispatch({ type: INSTRUCTION_DELETE_SUCCESS, payload: res.data });
     })
     .catch((err) => {

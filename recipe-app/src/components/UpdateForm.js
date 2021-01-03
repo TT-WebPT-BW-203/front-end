@@ -5,7 +5,6 @@ import { updateRecipe } from "../store/actions";
 import { Button, ButtonWrap, CenteredForm, StyledLabel } from "../styles";
 
 const UpdateForm = (props) => {
-  console.log("props in the updateRecipe compoment: ", props);
   const { id } = useParams();
   const history = useHistory();
 

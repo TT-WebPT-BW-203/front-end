@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { StyledNavBar, H1, NavBarLinks, NavLinks } from "../styles";
 
 const NavBar = (props) => {
-  console.log("props in the navbar", props);
   const { push } = useHistory();
   const logout = () => {
     localStorage.removeItem("token");

@@ -23,20 +23,14 @@ import InstructionsList from "./InstructionsList";
 const Recipe = (props) => {
   const history = useHistory();
   const { id } = useParams();
-  console.log(id);
   const [recipes, setRecipes] = useState([]);
 
   const recipe = props.recipes.find((rec) => rec.id === Number(id));
-  console.log(
-    "The CURRENT RECIPE we are working on, by id taken from the params obj: ",
-    recipe
-  );
 
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/user/${props.userId}`)
       .then((res) => {
-        console.log(res.data);
         setRecipes(res.data);
       })
       .catch((err) => console.log(err));

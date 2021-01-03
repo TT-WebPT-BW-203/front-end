@@ -13,15 +13,11 @@ import {
 } from "../styles";
 
 const IngredientsForm = (props) => {
-  console.log("props in the IngredientsForm: ", props);
-
   const [ingredient, setIngredient] = useState({
     name: "",
   });
-  console.log("ingredient", ingredient);
 
   const [recipeGet, setRecipeGet] = useState([{}]);
-  console.log("recipeGet: ", recipeGet);
 
   const { id } = useParams();
   const history = useHistory();
@@ -30,10 +26,6 @@ const IngredientsForm = (props) => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
       .then((res) => {
-        console.log(
-          "IngredientsForm: useEffect(): res: ",
-          res.data.ingredients
-        );
         setRecipeGet([...res.data.ingredients]);
       })
       .catch((err) => {
@@ -42,7 +34,6 @@ const IngredientsForm = (props) => {
   }, [props.ingredients, props.recipe]);
 
   const recipe = props.recipes.find((recipe) => recipe.id === Number(id));
-  console.log("recipe params: ", recipe);
 
   const handleChange = (e) => {
     setIngredient({ name: e.target.value });

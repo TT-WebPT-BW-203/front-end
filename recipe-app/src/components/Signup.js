@@ -5,7 +5,6 @@ import { signup } from "../store/actions";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 const SignUp = (props) => {
-  console.log("props in the signup: ", props);
   const history = useHistory();
   const [user, setUser] = useState({
     username: "",
