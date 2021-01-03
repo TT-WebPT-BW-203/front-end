@@ -188,3 +188,16 @@ export const DisplayList = styled.div`
   width: 30%;
   margin: 2rem auto;
 `;
+
+export const TextArea = styled.input`
+  width: 60%;
+  margin: 0 auto;
+  font-size: large;
+`;
+
+export const Step = styled.div`
+  background-color: #faf0be;
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+`;

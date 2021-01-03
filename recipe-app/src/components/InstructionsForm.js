@@ -3,6 +3,16 @@ import { useHistory, useParams } from "react-router-dom";
 import { connect } from "react-redux";
 import { postInstructions } from "../store/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import {
+  Button,
+  ButtonWrap,
+  DisplayList,
+  ItemForm,
+  ItemLabel,
+  ItemInput,
+  TextArea,
+  Step,
+} from "../styles";
 
 const InstructionsForm = (props) => {
   console.log("InstructionsForm: props: ", props);
@@ -46,37 +56,41 @@ const InstructionsForm = (props) => {
 
   return (
     <div>
-      this is the instructions component
-      <form>
-        <label htmlFor="step">Step #:</label>
-        <input
+      <ItemForm>
+        <ItemLabel htmlFor="step">Step #:</ItemLabel>
+        <ItemInput
           id="step"
           name="step"
           value={instruction.step}
           onChange={handleChange}
         />
         <br />
-        <label htmlFor="details">Details: </label>
-        <input
+        <ItemLabel htmlFor="details">Details: </ItemLabel>
+        <TextArea
           id="details"
+          style={{ resize: "vertical", rows: "3" }}
           name="details"
           value={instruction.details}
           onChange={handleChange}
         />
         <br />
-        <button onClick={handleSubmit}>Save Step</button>
-        <button onClick={() => history.push(`/recipe/${id}`)}>
-          Done adding instructions
-        </button>
-      </form>
-      <div>
+        <ButtonWrap>
+          <Button onClick={handleSubmit}>Save Step</Button>
+        </ButtonWrap>
+      </ItemForm>
+      <DisplayList>
         {instructionList.map((inst) => (
-          <div>
+          <Step>
             <p>Step#: {inst.step}</p>
             <p>Details: {inst.details}</p>
-          </div>
+          </Step>
         ))}
-      </div>
+      </DisplayList>
+      <ButtonWrap>
+        <Button onClick={() => history.push(`/recipe/${id}`)}>
+          Done adding instructions
+        </Button>
+      </ButtonWrap>
     </div>
   );
 };
