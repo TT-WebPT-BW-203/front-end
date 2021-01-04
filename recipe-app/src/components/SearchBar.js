@@ -21,9 +21,6 @@ const SearchBar = (props) => {
 
   const handleChange = (e) => {
     setSearch(e.target.value);
-  };
-  const performSearch = (e) => {
-    e.preventDefault();
     setResults(
       recipes.filter(
         (recipe) =>
@@ -31,6 +28,10 @@ const SearchBar = (props) => {
           recipe.category.toLowerCase().includes(search.toLowerCase())
       )
     );
+  };
+  const performSearch = (e) => {
+    e.preventDefault();
+
     setSearch("");
   };
 
