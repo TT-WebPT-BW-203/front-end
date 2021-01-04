@@ -26,7 +26,9 @@ const SearchBar = (props) => {
     e.preventDefault();
     setResults(
       recipes.filter(
-        (recipe) => recipe.title === search || recipe.category === search
+        (recipe) =>
+          recipe.title.toLowerCase().includes(search.toLowerCase()) ||
+          recipe.category.toLowerCase().includes(search.toLowerCase())
       )
     );
     setSearch("");
