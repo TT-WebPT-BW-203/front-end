@@ -25,7 +25,8 @@ const SearchBar = (props) => {
       recipes.filter(
         (recipe) =>
           recipe.title.toLowerCase().includes(search.toLowerCase()) ||
-          recipe.category.toLowerCase().includes(search.toLowerCase())
+          recipe.category.toLowerCase().includes(search.toLowerCase()) ||
+          recipe.source.toLowerCase().includes(search.toLowerCase())
       )
     );
   };
@@ -50,7 +51,7 @@ const SearchBar = (props) => {
         </form>
       </SearchCentered>
       <SearchCentered>
-        <h4>Results:</h4>
+        <h4>Number of Results: {results.length}</h4>
         {results.length >= 1 &&
           results.map((result) => (
             <div>
