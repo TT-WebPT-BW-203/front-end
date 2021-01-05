@@ -1,12 +1,11 @@
 import axios from "axios";
-const port;
 
 export const axiosWithAuth = () => {
   const token = localStorage.getItem("token");
-  axios.create({
-    baseURL: `http:localhost:${port}`,
+  return axios.create({
+    baseURL: `https://family-recipes21.herokuapp.com/`,
     headers: {
-      Authorization: JSON.parse(token),
+      Authorization: token,
     },
   });
 };

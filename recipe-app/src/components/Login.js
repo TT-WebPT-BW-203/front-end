@@ -1,27 +1,87 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { getUserRecipes } from "../store/actions";
+import { logUser } from "../store/actions/index";
+import { Button, FormGroup, Label, Input } from "reactstrap";
+import Loader from "react-loader-spinner";
 
-const Login = () => {
+const Login = (props) => {
+  const history = useHistory();
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
+
+  const goToDashboard = () => {
+    history.push("/dashboard");
+  };
+
+  const handleChange = (e) => {
+    setCredentials({
+      ...credentials,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const login = (e) => {
+    e.preventDefault();
+    props.logUser(credentials);
+    props.getUserRecipes(props.userId);
+    setCredentials({
+      username: "",
+      password: "",
+    });
+
+    goToDashboard();
+  };
+
   return (
+    <div>
+      {props.isLoading === true ? (
+        <Loader
+          type="ThreeDots"
+          color="#000"
+          height={100}
+          width={100}
+          timeout={10000}
+        />
+      ) : (
+        <form onSubmit={login}>
+          <FormGroup>
+            <Label for="username">Username</Label>
+            <Input
+              type="text"
+              name="username"
+              id="username"
+              value={credentials.username}
+              placeholder="Username"
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Password</Label>
+            <Input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="Password"
+              value={credentials.password}
+              onChange={handleChange}
+            />
+          </FormGroup>
 
-    //navigation still needs to be done
-
-    // Login Form with Username and Password and submit button.
-    <Form>
-        <FormGroup>
-            <Label for="userName">Username</Label>
-            <Input type="text" name="Name" id="userName" placeholder="Username" />
-        </FormGroup>
-        <FormGroup>
-            <Label for="userPassword">Password</Label>
-            <Input type="password" name="password" id="userPassword" placeholder="Password" />
-        </FormGroup>
-        
-      <Button>Submit</Button>
-    </Form>
-
-    //footer still needs to be done
+          <Button>Submit</Button>
+        </form>
+      )}
+    </div>
   );
-}
+};
 
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    isLoading: state.isLoading,
+    userId: state.userId,
+  };
+};
+export default connect(mapStateToProps, { logUser, getUserRecipes })(Login);

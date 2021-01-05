@@ -1,35 +1,76 @@
-import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signup } from "../store/actions";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const history = useHistory();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+    email: "",
+  });
+
+  const handleChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.signup(user);
+    setUser({
+      username: "",
+      password: "",
+      email: "",
+    });
+    history.push("/dashboard");
+  };
+
   return (
+    <div>
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <Label for="username">Username</Label>
+          <Input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Username"
+            value={user.username}
+            onChange={handleChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="email">Email</Label>
+          <Input
+            // type="email"
+            name="email"
+            id="email"
+            placeholder="Email"
+            value={user.email}
+            onChange={handleChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="password">Password</Label>
+          <Input
+            // type="password"
+            name="password"
+            id="password"
+            placeholder="Password"
+            value={user.password}
+            onChange={handleChange}
+          />
+        </FormGroup>
 
-    //navigation still needs to be done
-
-    // SignUp Form with Full Name, Username, Email and Password and submit button.
-    <Form>
-        <FormGroup>
-            <Label for="fullName">Full Name</Label>
-            <Input type="text" name="fName" id="fullName" placeholder="Full Name" />
-        </FormGroup>
-        <FormGroup>
-            <Label for="userName">Username</Label>
-            <Input type="text" name="Name" id="userName" placeholder="Username" />
-        </FormGroup>
-        <FormGroup>
-            <Label for="userEmail">Email</Label>
-            <Input type="email" name="email" id="userEmail" placeholder="Email" />
-        </FormGroup>
-        <FormGroup>
-            <Label for="userPassword">Password</Label>
-            <Input type="password" name="password" id="userPassword" placeholder="Password" />
-        </FormGroup>
-        
-      <Button>Submit</Button>
-    </Form>
-
-    //footer still needs to be done
+        <Button>Sign Up!</Button>
+      </Form>
+    </div>
   );
-}
+};
 
-export default SignUp;
+export default connect(null, { signup })(SignUp);

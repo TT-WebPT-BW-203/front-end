@@ -10,10 +10,10 @@ import logger from "redux-logger";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reportWebVitals from "./reportWebVitals";
 
-import rootReducer from "./store/reducers";
+import { userReducer } from "./store/reducers";
 
 const store = createStore(
-  rootReducer,
+  userReducer,
   composeWithDevTools(applyMiddleware(thunk, logger))
 );
 
