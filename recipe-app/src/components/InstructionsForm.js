@@ -21,7 +21,7 @@ const InstructionsForm = (props) => {
     step: "",
     details: "",
   });
-  const [instructionList, setInstructionList] = useState([{}]);
+  const [instructionList, setInstructionList] = useState([]);
 
   useEffect(() => {
     axiosWithAuth()
@@ -75,7 +75,7 @@ const InstructionsForm = (props) => {
       </ItemForm>
       <DisplayList>
         {instructionList.map((inst) => (
-          <Step>
+          <Step key={inst.id}>
             <p>Step#: {inst.step}</p>
             <p>Details: {inst.details}</p>
           </Step>

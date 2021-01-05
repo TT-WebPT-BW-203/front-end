@@ -29,6 +29,7 @@ const Step = (props) => {
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
+    //populate state here
   };
 
   const handleSave = () => {

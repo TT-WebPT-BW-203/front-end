@@ -54,7 +54,7 @@ const SearchBar = (props) => {
         <h4>Number of Results: {results.length}</h4>
         {results.length >= 1 &&
           results.map((result) => (
-            <div>
+            <div key={result.id}>
               <Link to={`/recipe/${result.id}`}>{result.title}</Link>
             </div>
           ))}

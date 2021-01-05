@@ -56,7 +56,7 @@ const UpdateForm = (props) => {
         <input
           id="image"
           name="image"
-          placeholder="Enter inage URL"
+          placeholder="Enter image URL"
           value={initialRecipe.image}
           onChange={handleChange}
         />
