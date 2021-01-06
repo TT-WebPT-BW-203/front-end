@@ -10,8 +10,9 @@ import { ActionButtons, InstructionsDiv } from "../styles";
 
 const Step = (props) => {
   const id = props.instruction.id;
-  console.log(id);
-
+  // debugger;
+  console.log("id at the...", id);
+  // debugger;
   const [initalStep, setInitialStep] = useState({
     step: props.instruction.step,
     details: props.instruction.details,
@@ -27,10 +28,13 @@ const Step = (props) => {
     axiosWithAuth()
       .get(`/api/instructions/${id}`)
       .then((res) => {
-        console.log("res in the step", res);
+        console.log("res in the step", res.data);
+        setStep(res.data);
       })
       .catch((err) => console.log(err));
   }, [props.instruction.step, props.instruction.details]);
+
+  // const getInstruction = () => {};
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -41,9 +45,11 @@ const Step = (props) => {
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
-    props.getInstructionById(id);
+    // getInstruction(id);
+
     //populate state here
   };
+  // debugger;
 
   const handleSave = () => {
     props.putInstructions(id, step);
@@ -56,16 +62,12 @@ const Step = (props) => {
         <InstructionsDiv>
           <form>
             Step#:{" "}
-            <input
-              name="step"
-              value={initalStep.step}
-              onChange={handleChange}
-            />
+            <input name="step" value={step.step} onChange={handleChange} />
             <br />
             Details:{" "}
             <input
               name="details"
-              value={initalStep.details}
+              value={step.details}
               onChange={handleChange}
             />
             <br />
