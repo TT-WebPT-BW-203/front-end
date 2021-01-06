@@ -22,6 +22,9 @@ const IngredientsForm = (props) => {
   const { id } = useParams();
   const history = useHistory();
 
+  const thisRecipe = props.recipes.find((recipe) => recipe.id === Number(id));
+  console.log("thisRecipe", thisRecipe);
+
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/recipes/${id}`)
@@ -47,8 +50,8 @@ const IngredientsForm = (props) => {
 
   return (
     <div>
+      <h3>Ingredients for {thisRecipe.title}</h3>
       <ItemForm>
-        <h3>Enter Ingredients:</h3>
         <ItemLabel htmlFor="ingredient">Ingredient</ItemLabel>
         <ItemInput
           name="ingredient"
