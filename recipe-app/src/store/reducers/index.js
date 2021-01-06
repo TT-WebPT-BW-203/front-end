@@ -35,6 +35,9 @@ import {
   START_INSTRUCTION_DELETE,
   INSTRUCTION_DELETE_SUCCESS,
   INSTRUCTION_DELETE_FAIL,
+  START_GET_INSTRUCTION,
+  GET_INSTRUCTION_SUCCESS,
+  GET_INSTRUCTION_FAIL,
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -315,6 +318,27 @@ export const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
         error: action.payload,
+      };
+    }
+    case START_GET_INSTRUCTION: {
+      return {
+        ...state,
+        isLoading: true,
+        error: "",
+      };
+    }
+    case GET_INSTRUCTION_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        instructions: [...action.payload],
+      };
+    }
+    case GET_INSTRUCTION_FAIL: {
+      return {
+        ...state,
+        error: action.payload,
+        isLoading: false,
       };
     }
     default: {

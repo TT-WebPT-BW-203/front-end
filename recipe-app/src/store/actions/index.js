@@ -37,6 +37,9 @@ import {
   START_INSTRUCTION_DELETE,
   INSTRUCTION_DELETE_SUCCESS,
   INSTRUCTION_DELETE_FAIL,
+  START_GET_INSTRUCTION,
+  GET_INSTRUCTION_FAIL,
+  GET_INSTRUCTION_SUCCESS,
 } from "./actionTypes";
 
 export const logUser = (userData) => (dispatch) => {
@@ -195,5 +198,18 @@ export const deleteInstruction = (id) => (dispatch) => {
     .catch((err) => {
       console.log(err);
       dispatch({ type: INSTRUCTION_DELETE_FAIL, payload: err });
+    });
+};
+
+export const getInstructionById = (id) => (dispatch) => {
+  dispatch({ type: START_GET_INSTRUCTION });
+  axiosWithAuth()
+    .get(`/api/instructions/${id}`)
+    .then((res) => {
+      console.log(res);
+      dispatch({ type: GET_INSTRUCTION_SUCCESS, payload: res });
+    })
+    .catch((err) => {
+      dispatch({ type: GET_INSTRUCTION_FAIL, payload: err });
     });
 };

@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { putInstructions, deleteInstruction } from "../store/actions";
+import {
+  putInstructions,
+  deleteInstruction,
+  getInstructionById,
+} from "../store/actions";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 import { ActionButtons, InstructionsDiv } from "../styles";
 
 const Step = (props) => {
   const id = props.instruction.id;
+  console.log(id);
+
+  const [initalStep, setInitialStep] = useState({
+    step: props.instruction.step,
+    details: props.instruction.details,
+  });
 
   const [isEditing, setIsEditing] = useState(false);
   const [step, setStep] = useState({
@@ -16,7 +26,9 @@ const Step = (props) => {
   useEffect(() => {
     axiosWithAuth()
       .get(`/api/instructions/${id}`)
-      .then((res) => {})
+      .then((res) => {
+        console.log("res in the step", res);
+      })
       .catch((err) => console.log(err));
   }, [props.instruction.step, props.instruction.details]);
 
@@ -29,6 +41,7 @@ const Step = (props) => {
 
   const handleEdit = () => {
     setIsEditing(!isEditing);
+    props.getInstructionById(id);
     //populate state here
   };
 
@@ -43,12 +56,16 @@ const Step = (props) => {
         <InstructionsDiv>
           <form>
             Step#:{" "}
-            <input name="step" value={step.step} onChange={handleChange} />
+            <input
+              name="step"
+              value={initalStep.step}
+              onChange={handleChange}
+            />
             <br />
             Details:{" "}
             <input
               name="details"
-              value={step.details}
+              value={initalStep.details}
               onChange={handleChange}
             />
             <br />
@@ -78,4 +95,8 @@ const Step = (props) => {
   );
 };
 
-export default connect(null, { putInstructions, deleteInstruction })(Step);
+export default connect(null, {
+  putInstructions,
+  deleteInstruction,
+  getInstructionById,
+})(Step);
