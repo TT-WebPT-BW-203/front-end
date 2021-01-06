@@ -17,11 +17,14 @@ import {
 const InstructionsForm = (props) => {
   const history = useHistory();
   const { id } = useParams();
+  console.log("id in thre form", id);
   const [instruction, setInstruction] = useState({
     step: "",
     details: "",
   });
   const [instructionList, setInstructionList] = useState([]);
+  const thisRecipe = props.recipes.find((recipe) => recipe.id === Number(id));
+  console.log("this recipe", thisRecipe);
 
   useEffect(() => {
     axiosWithAuth()
@@ -51,6 +54,7 @@ const InstructionsForm = (props) => {
 
   return (
     <div>
+      <h3>Instructions for {thisRecipe.title}</h3>
       <ItemForm>
         <ItemLabel htmlFor="step">Step #:</ItemLabel>
         <ItemInput
@@ -93,6 +97,7 @@ const InstructionsForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     instructions: state.instructions,
+    recipes: state.recipes,
   };
 };
 export default connect(mapStateToProps, { postInstructions })(InstructionsForm);
